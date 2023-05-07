@@ -1,4 +1,4 @@
-package org.ezen.ex02;
+package org.ezen.ex02.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "/home";
 	}
 	
 }

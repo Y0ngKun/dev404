@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.ezen.ex02.controller.HomeController;
 import org.ezen.ex02.member.dto.MemberDTO;
 import org.ezen.ex02.member.service.MemberService;
@@ -30,7 +32,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String saveForm() {
-		return "/member/join";
+		return "member/join";
 	}
 	
 	@PostMapping("/join")
@@ -39,10 +41,27 @@ public class MemberController {
 		int saveResult = memberService.join(memberDTO);	
 		
 		if (saveResult > 0) {
-			return "/member/login";
+			return "member/login";
 		}
 		else {
-			return "/member/join";
+			return "member/join";
+		}
+	}
+	
+	@GetMapping("/login")
+	public String loginForm() {
+		return "member/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession httpSession) {
+		boolean loginResult = memberService.login(memberDTO);
+		if(loginResult) {
+			httpSession.setAttribute("loginEmail", memberDTO.getMemberEmail());
+			return "main";
+		}else {
+			return "member/login";
+			
 		}
 	}
 	

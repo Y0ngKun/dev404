@@ -32,7 +32,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String saveForm() {
-		return "member/join";
+		return "member/joinForm";
 	}
 	
 	@PostMapping("/join")
@@ -41,29 +41,34 @@ public class MemberController {
 		int saveResult = memberService.join(memberDTO);	
 		
 		if (saveResult > 0) {
-			return "member/login";
+			return "member/loginForm";
 		}
 		else {
-			return "member/join";
+			return "member/joinFrom";
 		}
 	}
 	
 	@GetMapping("/login")
 	public String loginForm() {
-		return "member/login";
+		return "member/loginForm";
 	}
 	
 	@PostMapping("/login")
-	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession httpSession) {
-		boolean loginResult = memberService.login(memberDTO);
-		if(loginResult) {
-			httpSession.setAttribute("loginEmail", memberDTO.getMemberEmail());
-			return "main";
-		}else {
-			return "member/login";
-			
-		}
+	public String loginSuccess() {
+		return "redirect:/";
 	}
+	
+//	@PostMapping("/login")
+//	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession httpSession) {
+//		boolean loginResult = memberService.login(memberDTO);
+//		if(loginResult) {
+//			httpSession.setAttribute("loginEmail", memberDTO.getMemberEmail());
+//			return "main";
+//		}else {
+//			return "member/login";
+//			
+//		}
+//	}
 	
 
 }

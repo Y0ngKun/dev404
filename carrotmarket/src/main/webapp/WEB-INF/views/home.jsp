@@ -69,7 +69,12 @@
 
 <style type="text/css">
 
+.headerNav ul li{
+	margin-right: 8px !important;
+}
+
 .headerNav ul li a {
+margin-right: 8px !important;
 color:#4d5159;
 }
 .headerNav ul li a:hover{color:rgba(134, 139, 147, 1);}
@@ -77,6 +82,13 @@ color:#4d5159;
 .chatBtn{border: 1px solid #d1d3d8 !important;}
 
 </style>
+
+
+<!--icon -->
+<!--fontawesome icon-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!--google icon -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 </head>
@@ -167,12 +179,14 @@ color:#4d5159;
 							</button>
 							<button type="button"
 								class="karrot-button r14vym0 _1s38h9c3 _1s38h9c4 r14vym4 r14vym7 _1knjz49j chatBtn">채팅하기</button></span>
-								<span><a href="member/login"><i class="fa-solid fa-user"></i>회원가입</a></span>
+								<span><a href="/member/login"><i class="fas fa-user" style="font-size: 30px; color:#ff6f0f; margin-left:15px;"></i></a></span>
+								
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 
 
 	<main>
@@ -271,7 +285,7 @@ color:#4d5159;
 							class="ga-click home-button text-l text-bold"
 							data-event-category="town_link_from"
 							data-event-action="index_base" data-event-label="main_town"
-							href="https://town.daangn.com">당근마켓 동네가게 찾기</a>
+							href="#">당근마켓 동네가게 찾기</a>
 					</div>
 				</div>
 			</div>
@@ -2284,26 +2298,26 @@ color:#4d5159;
 						<nav aria-label="footer" class="_1trxeqs9">
 							<ul class="_1trxeqsa">
 								<li class="_1trxeqsp"><a
-									href="https://www.daangn.com/hot_articles" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">중고거래</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://www.daangn.com/kr/nearby-stores" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">동네가게</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://www.daangn.com/kr/jobs" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">당근알바</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://www.daangn.com/kr/realty" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">부동산 직거래</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://www.daangn.com/kr/car" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">중고차 직거래</a></li>
 							</ul>
 							<ul class="_1trxeqsa">
-								<li class="_1trxeqsp"><a href="https://business.daangn.com"
+								<li class="_1trxeqsp"><a href="#"
 									target="_blank" class="undefined _1trxeqso">당근비즈니스</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://chat.daangn.com/onboarding" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">채팅하기</a></li>
 							</ul>
 							<ul class="_1trxeqsa">
@@ -2313,7 +2327,7 @@ color:#4d5159;
 								<li class="_1trxeqsp"><a href="https://about.daangn.com"
 									target="_blank" class="undefined _1trxeqso">회사 소개</a></li>
 								<li class="_1trxeqsp"><a
-									href="https://about.daangn.com/jobs" target="_blank"
+									href="#" target="_blank"
 									class="undefined _1trxeqso">인재 채용</a></li>
 							</ul>
 						</nav>

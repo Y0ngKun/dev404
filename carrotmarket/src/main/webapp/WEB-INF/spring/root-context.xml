@@ -15,18 +15,16 @@
 
 	
 	<!-- root-context.xml에서 bean으로 등록하면 스프링의 bean이 됨 -->
+		<!-- 
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		 -->
+	<!-- mybatis sql 로그처리가 가능토록 수정(preparedStatement의 ?인 바인딩 변수가 대입되는 로그 가능 -->
 	
 	
 	
 	<!-- hikari로  JDBC설정 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<!-- 
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
-		 -->
-		 
-	<!-- mybatis sql 로그처리가 가능토록 수정(preparedStatement의 ?인 바인딩 변수가 대입되는 로그 가능 -->
-	
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"></property>	
 		<property name="username" value="scott"></property>
@@ -45,7 +43,6 @@
 	<!-- mybatis사용시는 별도로 scan -->
 	<mybatis-spring:scan base-package="org.ezen.ex02.mapper" />
 	
-	<context:component-scan
-		base-package="org.ezen.ex02"></context:component-scan>
+	<context:component-scan base-package="org.ezen.ex02"></context:component-scan>
 		
 </beans>

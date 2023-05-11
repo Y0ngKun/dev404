@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fdiv{	
+	display:block;
+	margin-top:200px;
+}
+
+.formBtns{
+	text-align:center;
+	margin-top:20px;
+}
+.fdivsub span{
+	display: block;
+}

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<mapper namespace="Member">
-<insert id="join" parameterType="member">
-insert into member_table(memberEmail, memberPassword, memberName, memberAge, memberMobile)
-values (#{memberEmail},#{memberPassword},#{memberName},#{memberAge},#{memberMobile})
-</insert>
-</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.StoresMapper">
+	<!-- namespace는 BoardMapperd 인터페이스의 URL -->
+	
+	
+	<!-- 게시글 리스트 전부 불러오기 -->
+	<select id="getList" resultType="org.ezen.ex02.domain.StoresVO">
+	<![CDATA[
+	select * from carrot_board where bno > 0 ORDER BY BNO DESC
+	]]>
+	</select>
+	
+	<!--  bno번호에 해당 하는 거 불러오기 -->
+	<select id="read" resultType="org.ezen.ex02.domain.StoresVO">
+	<![CDATA[
+		select * from carrot_board where bno = #{bno}
+	]]>
+	</select>
+	
+	<!-- PreparedStatement를 사용하고 ?바인딩변수 대신에 #{변수명}을 사용 parameterType은 기본형,문자열,객체형일시 
+		생략 이가능 -->
+	<insert id="insert">
+	<![CDATA[
+		insert into  carrot_board (bno,title,content,writer)
+		values (carrot_seq_board.nextval, #{title}, #{content}, #{writer})
+	]]>
+	</insert>
+	
+	<!-- 
+	PK인 BNO값을 사전에 알필요가 있는 경우 
+	selectKey 마이바티스 태그를 사용하여 bno값을 select하여 BoardVO의 
+	bno속성에 매핑
+	-->
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE"	resultType="Long">
+			select carrot_seq_board.nextval from dual
+		</selectKey>
+
+		insert into carrot_board (bno,title,content, writer)
+		values (#{bno},#{title}, #{content}, #{writer})
+	</insert>
+	
+	<!--
+	Bean클래스형인 객체는 parameterType 생략 가능
+	파라메터로 전달되는 BoardVO의 멤버 변수를 바인딩 변수 이름으로 사용 
+	update시는 default값이 적용 안되므로 updateDate도 변경 처리
+	 -->
+	<update id="update">
+		update carrot_board
+		set title= #{title},
+		content=#{content},
+		writer = #{writer},
+		updateDate = sysdate
+		where bno = #{bno}
+	</update>
+	
+	<!-- bno번호로 찾아서 삭제 하기 -->
+	<delete id="delete">
+		delete carrot_board where bno = #{bno}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 공통으로 사용되는 sql조각, 사용전에 정의, 사용은 include refid로 사용 -->
+	<!--  
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	-->
+	
+	
+	<!-- page 처리가 포함된 sql -->
+	<!-- 정렬 성능을 위해 힌트 사용 /*+INDEX_DESC(tbl_board pk_board)*/-->
+	<!-- rownum사용 위해 인라인뷰를 사용,rownum은 1이 꼭포함되게 조건 만듬 -->
+	<!-- 인라인뷰의 결과도 가상 view객체처럼 사용 -->
+	<!-- 
+	<select id="getListWithPaging" resultType="org.ezen.ex02.domain.BoardVO"> 
+		<![CDATA[ 
+		select bno, title, content, writer, regdate, updatedate 
+		from 
+		( 
+			select /*+INDEX_DESC(tbl_board pk_board)*/ 
+			rownum rn, bno, title, content,	writer, regdate, updatedate 
+			from tbl_board 
+			where rownum <= #{pageNum} * #{amount} 
+		) 
+		where rn > (#{pageNum} -1) * #{amount}  
+		]]> 
+	</select>
+	-->
+	
+	 
+	 <!-- prefix는 접두사 suffix는 접미사, prefixOverrides는 필요 없을시 OR를 제거-->
+	 <!-- foreach는 반복 처리,collection의 item에 대해 반복 처리 -->
+	 <!-- getTypeArr()메서드가 반환하는 문자열 배열,collection은 컬렉션의 이름,item은 값,index속성은 색인번호 또는 key-->
+	 <!-- 실행문 앞에 접두사 OR를 추가 -->
+	 <!-- choose는 다중 선택 -->
+	 <!-- sql태그를 이용한 공통 사용 부분 미사용
+	
+	<select id="getListWithPaging"
+		resultType="org.ezen.ex02.domain.BoardVO" parameterType ="org.ezen.ex02.domain.Criteria" >
+	    <![CDATA[
+	  	select 
+	    	bno, title, content, writer, regdate, updatedate
+	 	from 
+	    (
+	      select /*+INDEX_DESC(tbl_board pk_board) */
+	        rownum rn, bno, title, content, writer, regdate, updatedate 
+	      from 
+	        tbl_board
+	      where 
+	    ]]>	    
+			<trim prefix="(" suffix=") AND " prefixOverrides="OR">			
+				<foreach item='type' collection="typeArr"> 
+				
+					<trim prefix="OR">					
+						<choose>						
+							<when test="type == 'T'.toString()">
+								title like '%'||#{keyword}||'%'
+							</when>
+							<when test="type == 'C'.toString()">
+								content like '%'||#{keyword}||'%'
+							</when>
+							<when test="type == 'W'.toString()">
+								writer like '%'||#{keyword}||'%'
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>	      
+	   <![CDATA[    
+	        rownum <= #{pageNum} * #{amount}
+	        )
+	    where rn > (#{pageNum} -1) * #{amount}   
+	    ]]>
+	</select>
+	-->
+	
+	
+	
+	<!--  
+	<select id="getListWithPaging" resultType="org.ezen.ex02.domain.BoardVO" parameterType ="org.ezen.ex02.domain.Criteria" >
+	    <![CDATA[
+	  	select 
+	    	bno, title, content, writer, regdate, updatedate,replyCnt
+	 	from 
+	    (
+	      select /*+INDEX_DESC(tbl_board pk_board) */
+	        rownum rn, bno, title, content, writer, regdate, updatedate,replyCnt 
+	      from 
+	        tbl_board
+	      where 
+			<include refid="criteria"></include>  
+	   <![CDATA[    
+	        rownum <= #{pageNum} * #{amount}
+	        )
+	    where rn > (#{pageNum} -1) * #{amount}   
+	    ]]>
+	</select>
+	-->
+	
+
+	
+	<!-- 검색처리 안한  경우 -->
+	<!--  
+	<select id="getTotalCount" resultType="int">
+	
+		select count(*) from tbl_board where bno > 0
+		
+	</select>
+	-->
+	
+	<!-- 검색을 적용한 경우, 즉 검색된 결과의 총 게시물수 반환 ,검색 조건이 없으면 전체 게시글 개수 반환 -->
+	
+	<!--  
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board 
+		where 		
+			<include refid="criteria"></include> 		
+		bno > 0		
+	</select>
+	-->
+	
+	<!-- 댓글 추가 및 삭제시 댓글수 처리 -->
+	
+	<!--  	
+	<update id="updateReplyCnt">
+	    update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+	-->
+	
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.ArticlesMapper">
+
+	<insert id="registerArticles">
+		insert into carrot_articles(
+			id, memberno, title, body
+			<if test="cost != null">,cost</if>
+			<if test="costOffer != null">,costOffer</if>
+			<if test="lng != null">,lng</if>
+			<if test="lat != null">,lat</if>
+			<if test="locationInfo != null">,locationInfo</if>
+			)
+		values(
+			carr_art_id_seq.nextval, #{memberNo}, #{title}, #{body}
+			<if test="cost != null">,#{cost}</if>
+			<if test="costOffer != null">,#{costOffer}</if>
+			<if test="lng != null">,#{lng}</if>
+			<if test="lat != null">,#{lat}</if>
+			<if test="locationInfo != null">,#{locationInfo}</if>
+			)
+	</insert>
+	
+	<select id="getLastId" resultType="int">
+		select carr_art_id_seq.currval from dual
+	</select>
+	
+	<insert id="registerImg">
+		insert into carrot_img(id, articleno, filepath, filename)
+		values(carr_img_id_seq.nextval,#{articleNo},#{filePath},#{fileName}) 
+	</insert>
+	
+	<select id="getArticle" resultType="org.ezen.ex02.domain.ArticleVO">
+		select c.*
+			,m.usernickname as nickname
+			,m.useraddress as address
+		from 
+			carrot_articles c left outer join carrot_member m on(c.memberno = m.id)  
+		where c.id = #{id}
+	</select>
+	
+	<select id="getArticleImage" resultType="org.ezen.ex02.domain.ImageVO">
+		select * from carrot_img where articleno = #{id}
+	</select>
+
+</mapper>

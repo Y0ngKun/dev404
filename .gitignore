@@ -765,3 +765,8 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+iml,intellij+all,eclipse,visualbasic,visualstudiocode,visualstudio
+carrotmarket/target/m2e-wtp/web-resources/META-INF/maven/org.ezen/ex02/pom.properties
+
+Servers/Tomcat v9.0 Server at localhost-config/
+
+Servers/

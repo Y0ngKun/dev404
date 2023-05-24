@@ -76,6 +76,7 @@ public class StoresController {
 		storesVO.setWriter(writer);
 		service.register(storesVO)	;
 		
+		
 		//nameth속성과 파라메터형이 다를시는  @Requestparam에 보내는 속성 이름사용
 				//uploadFile은 name속성값이고 muptiple일시 배열 처리
 				log.info("postMapping uploadFormAction");
@@ -96,7 +97,7 @@ public class StoresController {
 					}
 				}
 		
-		return "stores/stores";
+		return "redirect:/stores/stores";
 	}
 	
 	

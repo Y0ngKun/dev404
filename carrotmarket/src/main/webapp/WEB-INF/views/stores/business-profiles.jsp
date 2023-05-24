@@ -8,58 +8,40 @@
 
 <div class="container" style="margin-top: 100px;">
 <div class="row text-center justify-content-md-center">
-<div class="col-md-9"> <!-- 이미지 영역 시작 -->
-	<div style="height: 500px;"> 
-	
-	<div class="container mt-3 mb-5 p-0 m-0 mx-auto">
-	
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	
-						<!-- Indicators -->
-						<ul class="carousel-indicators ">
-							<li data-target="#myCarousel" data-slide-to="0"
-								class="active bg-danger"></li>
-							<li data-target="#myCarousel" data-slide-to="1"
-								class=" bg-danger"></li>
-							<li data-target="#myCarousel" data-slide-to="2"
-								class=" bg-danger"></li>
-							<li data-target="#myCarousel" data-slide-to="3"
-								class=" bg-danger"></li>
-						</ul>
-	
-						<!-- The slideshow -->
-						<div class="carousel-inner ">
-							<div class="carousel-item active">
-								<img src="../images/susan1.jpeg" alt="갑을농수산" class="d-block mx-auto">
-								<div class="carousel-caption">
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="../images/susan2.jpeg" alt="갑을농수산" class="d-block mx-auto ">
-								<div class="carousel-caption">
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="../images/susan3.jpeg" alt="갑을농수산" class="d-block mx-auto ">
-								<div class="carousel-caption">
-								</div>
-							</div>
-						</div>
-	
-						<!-- Left and right controls -->
-						<a class="carousel-control-prev bg-primary" href="#myCarousel"
-							data-slide="prev"> <span class="carousel-control-prev-icon"></span>
-						</a> <a class="carousel-control-next bg-primary" href="#myCarousel"
-							data-slide="next"> <span class="carousel-control-next-icon"></span>
-						</a>
-					</div>
-				</div>
-	<!--  
-	<span style="color: #ffffff; line-height: 500px; font-size: 50px;" >이미지 영역</span> 
-	
-	-->
-	</div>
-</div> <!-- 이미지 영역 끝 -->
+
+<!-- 이미지 영역 시작 -->
+<div class="container mt-3 mb-5 p-0 m-0 mx-auto d-flex justify-content-center">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+  
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../images/susan1.jpeg" class="d-block" alt="image1">
+      </div>
+      <div class="carousel-item">
+        <img src="../images/susan2.jpeg" class="d-block" alt="image2">
+      </div>
+      <div class="carousel-item">
+        <img src="../images/susan3.jpeg" class="d-block" alt="image3">
+      </div>
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+ <!-- 이미지 영역 끝 -->
+
 
 <section class="col-md-9">
 
@@ -169,6 +151,8 @@
 
 
 
+
+
 <%@ include file="../include/footer.jspf" %>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=787053e4ea44893735697779f0b00441"></script>
@@ -195,4 +179,23 @@
 	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 	// marker.setMap(null);   
 </script>
+<style>
+.carousel-item img {
+    width: 800px;
+    height: 469px;
+    object-fit: cover;
+  }
+.carousel-inner {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+</style>
+
+<script type="text/javascript">
+$('.carousel').carousel({
+    touch: true
+  });
+</script>
 </body>
+

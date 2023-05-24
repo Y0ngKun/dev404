@@ -11,9 +11,10 @@
 		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-
 	<!-- root-context.xml에서 bean으로 등록하면 스프링의 bean이 됨 -->
+
+
+
 	<!-- hikari로 JDBC설정 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
@@ -27,16 +28,30 @@
 		<property name="password" value="tiger"></property>
 	</bean>
 
+
+
 	<!-- HikariCP configuration을 이용하여 hikari dataSource설정 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 
+
+	<!-- sql세션 등록 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<!-- 파일 업로드를 위한 MutipartResolver 구현체 CommonsMultipartResolver  bean 등록 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="maxUploadSize" value="104857600"/>
+	  <property name="maxUploadSizePerFile" value="104857600"/>
+	  <property name="maxInMemorySize" value="104857600"/>
+	</bean>
+	
+
+	<tx:annotation-driven/>
 	
 	<!-- 트랜잭션 설정 -->
 	<bean id="transactionManager" 
@@ -44,18 +59,16 @@
  		<property name="dataSource" ref="dataSource"/>
  	</bean>
 	
-	<tx:annotation-driven/>
-	
-	<!-- mybatis사용시는 별도로 scan -->
-	<mybatis-spring:scan
-		base-package="org.ezen.ex02.mapper" />
-
-	<context:component-scan
-		base-package="org.ezen.ex02"></context:component-scan>
 	<!-- AOP -->
 	<context:annotation-config></context:annotation-config>
+
+	<!-- mybatis사용시는 별도로 scan -->
+	<mybatis-spring:scan base-package="org.ezen.ex02.mapper" />
+
+	<context:component-scan base-package="org.ezen.ex02"></context:component-scan>
 	
 	<context:component-scan base-package="org.ezen.ex02.service"></context:component-scan>
+
 	<context:component-scan base-package="org.ezen.ex02.aop"></context:component-scan>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>

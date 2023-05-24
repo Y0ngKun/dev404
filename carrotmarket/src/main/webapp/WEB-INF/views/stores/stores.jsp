@@ -284,9 +284,7 @@
 						<h4 class="text-center wordArtEffect text-success">게시물 등록</h4>
 
 
-
-
-						<form action="stores" method="post" id="storesForm" enctype="multipart/form-data">
+						<form action="stores" id="storesForm" method="post" enctype="multipart/form-data">
 							<div class="attach mt-4">
 								<!-- 파일 업로드 부분 -->
 								<div class="form-group uploadDiv col-md-12">

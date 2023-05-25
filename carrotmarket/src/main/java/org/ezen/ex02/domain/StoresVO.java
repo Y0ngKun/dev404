@@ -1,6 +1,7 @@
 package org.ezen.ex02.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,5 +15,8 @@ public class StoresVO {
 	  private String region;
 	  private Date regdate;
 	  private Date updateDate;
+	  
+	  //이미지 VO 추가
+	  private List<ImageVO> attachList;
 
 }

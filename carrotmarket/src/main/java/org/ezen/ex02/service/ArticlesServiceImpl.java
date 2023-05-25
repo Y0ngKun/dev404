@@ -61,7 +61,7 @@ public class ArticlesServiceImpl implements ArticlesService{
 			
 			try {
 				file.transferTo(saveFile);
-				imageVO.setArticleNo(articleId);
+				//imageVO.setArticleNo(articleId);
 				imageVO.setFileName(sb.toString());
 				imageVO.setFilePath(filePath.toString() + "\\" +  getFolder());
 				

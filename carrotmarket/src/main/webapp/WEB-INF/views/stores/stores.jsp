@@ -284,15 +284,25 @@
 						<h4 class="text-center wordArtEffect text-success">게시물 등록</h4>
 
 
-						<form action="stores" id="storesForm" method="post" enctype="multipart/form-data">
-							<div class="attach mt-4">
+						<form role="form" action="stores" id="storesForm" method="post" enctype="multipart/form-data">
 								<!-- 파일 업로드 부분 -->
-								<div class="form-group uploadDiv col-md-12">
-									<label for="upload">&nbsp;&nbsp;&nbsp;&nbsp;파일업로드:</label> <input
-										type="file" class="form-control" id="upload" name="uploadFile"
-										multiple />
-									<!-- submit 버튼 없이 change 이벤트로 처리 -->
+							<div class="attach mt-4">
+								<div class="row">
+									<div class="form-group uploadDiv col-md-12">
+										<label for="upload">&nbsp;&nbsp;&nbsp;&nbsp;파일업로드:</label> <input
+											type="file" class="form-control" id="upload" name="uploadFile"
+											multiple />
+										<!-- submit 버튼 없이 change 이벤트로 처리 -->
+									</div>
 								</div>
+								
+								<div class='uploadResult mt-3'>
+									<!-- 업로드 파일 결과를 보여 주는 창 -->					
+									<div class='row' id='card'>
+									
+									</div>  			
+								</div>	
+								
 							</div>
 
 							<div class="form-group">
@@ -348,8 +358,25 @@
   closeModalBtn.addEventListener("click", function() {
     modal.style.display = "none";
   });
+  
 </script>
 
+<!-- 글쓰기 모달창에서 파일 첨부 관련 스크립트 -->
+<script type="text/javascript">
+$(document).ready(function(){
+	let formObj = $("form[role='form']");
+	let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+	let maxSize = 25242880; //25MB 파일 최대 크기
+	let uploadUL = $(".uploadResult #card");
+	
+	$("button[type='submit']").on("click",function(e){
+		console.log("서브밋 버튼 작동 중지 확인")
+		e.preventDefault();
+		let str = "";
+	});
+	
+});
+</script>
 
 
 
@@ -362,12 +389,6 @@
 <%@ include file="../include/footer.jspf" %>
 
 </body>
-
-
-
-
-
-
 
 
 <style type="text/css">
@@ -505,6 +526,7 @@ border-radius: 50%;
 </style>
 
 <script>
+/*
 $(document).ready(function(){
   
   $("#uploadBtn").on("click", function(e){
@@ -519,6 +541,7 @@ $(document).ready(function(){
     
   });  
 });
+*/
 </script>  
 
 

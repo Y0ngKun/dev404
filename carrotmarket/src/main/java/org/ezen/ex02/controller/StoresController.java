@@ -76,27 +76,6 @@ public class StoresController {
 		storesVO.setWriter(writer);
 		service.register(storesVO)	;
 		
-		
-		//nameth속성과 파라메터형이 다를시는  @Requestparam에 보내는 속성 이름사용
-				//uploadFile은 name속성값이고 muptiple일시 배열 처리
-				log.info("postMapping uploadFormAction");
-				
-				String uploadFolder = "C:/upload";
-				
-				for (MultipartFile multipartFile : uploadFile) {
-					log.info("-------------------------------------");
-					log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-					log.info("Upload File Size: " + multipartFile.getSize());
-					
-					File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-					try {
-						multipartFile.transferTo(saveFile);
-					} 
-					catch (Exception e) {
-						log.error(e.getMessage());
-					}
-				}
-		
 		return "redirect:/stores/stores";
 	}
 	

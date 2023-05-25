@@ -4,7 +4,7 @@ package org.ezen.ex02.domain;
 import lombok.Data;
 
 @Data
-public class ImageVO {
+public class StoresImageVO {
 
 	private String uuid;
 	private String uploadPath;

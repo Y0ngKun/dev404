@@ -268,7 +268,7 @@
 <!-- 글쓰기 등록 버튼 -->
 <c:if test="${message == 1}">
 <div class="fixed-button text-center">
-  <a href="#" id="openModal"><span>+ 글쓰기</span></a>
+  <a href="/ex02/storesWrite"><span>+ 글쓰기</span></a>
 </div>
 </c:if>
 
@@ -281,29 +281,10 @@
 
 				<div class="col-md-12">
 					<div id="submain">
-						<h4 class="text-center wordArtEffect text-success">게시물 등록</h4>
+						<h4 class="text-center wordArtEffect text-success">우리 동네가게 등록</h4>
 
-
-						<form role="form" action="stores" id="storesForm" method="post" enctype="multipart/form-data">
+						<form role="form" action="stores" id="storesForm" method="post">
 								<!-- 파일 업로드 부분 -->
-							<div class="attach mt-4">
-								<div class="row">
-									<div class="form-group uploadDiv col-md-12">
-										<label for="upload">&nbsp;&nbsp;&nbsp;&nbsp;파일업로드:</label> <input
-											type="file" class="form-control" id="upload" name="uploadFile"
-											multiple />
-										<!-- submit 버튼 없이 change 이벤트로 처리 -->
-									</div>
-								</div>
-								
-								<div class='uploadResult mt-3'>
-									<!-- 업로드 파일 결과를 보여 주는 창 -->					
-									<div class='row' id='card'>
-									
-									</div>  			
-								</div>	
-								
-							</div>
 
 							<div class="form-group">
 								<label for="title">작성자:</label> <input type="text"
@@ -343,48 +324,6 @@
 	</div>
 </div>
 <!-- 모달창 끝 -->
-
-<script>
-  var openModalBtn = document.getElementById("openModal");
-  var closeModalBtn = document.getElementById("closeModal");
-  var modal = document.getElementById("myModal");
-
-  // 모달 열기 버튼 클릭 시 모달 표시
-  openModalBtn.addEventListener("click", function() {
-    modal.style.display = "block";
-  });
-
-  // 모달 닫기 버튼 클릭 시 모달 숨김
-  closeModalBtn.addEventListener("click", function() {
-    modal.style.display = "none";
-  });
-  
-</script>
-
-<!-- 글쓰기 모달창에서 파일 첨부 관련 스크립트 -->
-<script type="text/javascript">
-$(document).ready(function(){
-	let formObj = $("form[role='form']");
-	let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	let maxSize = 25242880; //25MB 파일 최대 크기
-	let uploadUL = $(".uploadResult #card");
-	
-	$("button[type='submit']").on("click",function(e){
-		console.log("서브밋 버튼 작동 중지 확인")
-		e.preventDefault();
-		let str = "";
-	});
-	
-});
-</script>
-
-
-
-
-
-
-
-
 
 <%@ include file="../include/footer.jspf" %>
 
@@ -524,25 +463,5 @@ border-radius: 50%;
 
 
 </style>
-
-<script>
-/*
-$(document).ready(function(){
-  
-  $("#uploadBtn").on("click", function(e){
- 
-    var formData = new FormData(); //코아객체,form태그DOM,빈 객체                   uploadAjax.jsp
-    
-    var inputFile = $("input[name='uploadFile']");
-    
-    var files = inputFile[0].files;
-    
-    console.log(files);
-    
-  });  
-});
-*/
-</script>  
-
 
 </html>

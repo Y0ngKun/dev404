@@ -17,6 +17,6 @@ public class StoresVO {
 	  private Date updateDate;
 	  
 	  //이미지 VO 추가
-	  private List<ImageVO> attachList;
+	  private List<StoresImageVO> attachList;
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ezen.ex02.mapper.ImageVOMapper">
+<mapper namespace="org.ezen.ex02.mapper.StoresImageVOMapper">
 
 <!-- java의 boolean인 fileType은 문자 '0'이나 '1'로 처리(true는 '1') -->
 	<insert id="insert">
@@ -17,7 +17,7 @@
 
 	</delete>
 	
-	<select id="findByBno" resultType="org.ezen.ex02.domain.ImageVO">
+	<select id="findByBno" resultType="org.ezen.ex02.domain.StoresImageVO">
 	
 		select * from CARROT_IMAGEVO where bno = #{bno}
 		
@@ -31,7 +31,7 @@
 	
 	<select id="getOldFiles"
 	
-		resultType="org.ezen.ex02.domain.ImageVO">
+		resultType="org.ezen.ex02.domain.StoresImageVO">
 
 		select * from CARROT_IMAGEVO where uploadpath = to_char(sysdate -1 ,'yyyy/mm/dd')
 		<!-- 어제 날자로 경로가 된 첨부파일 데이터 반환 -->

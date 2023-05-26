@@ -53,13 +53,62 @@
 			  	</div>
 			</div>
 			
+			<h1>개인/사장님 확인</h1>
+			<div class="w-75 form-check d-flex justify-content-between m-auto align-bottom" style="height : 60px">
+				<div>
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="C" checked="checked" id="C">
+				 	<label class="form-check-label ms-1" for="C"> 개인</label>
+			  	</div>
+			  	<div>
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="B" id="B">
+				 	<label class="form-check-label ms-1" for="B"> 사장님</label>
+			  	</div>
+			</div>
+			
 			
 			
 			<input type="submit" id="join_submit" value="회원가입" style="width: 100%;background-color : #ff6f0f; color: white;"/>
 			<input type="button" id="join_reset" value="뒤로가기" onclick="history.back()" style="width: 100%;background-color : #ff6f0f; color: white;"/>
 	</form>
 </div>
-<script type="text/javascript" src="../js/member.js">
+<script type="text/javascript" src="../js/member.js"></script>
+
+<script type="text/javascript">
+document.getElementById('B').addEventListener('change', function() {
+	  if (this.checked) {
+	    // 프로필 사진 첨부하는 창을 생성
+	    var profilePhotoDiv = document.createElement('div');
+	    profilePhotoDiv.innerHTML = `
+	      <h1>프로필 사진 첨부</h1>
+	      <input type="file" name="profilephoto" accept="image/*">
+	    `;
+
+	    // 드롭박스 창을 생성
+	    var dropboxDiv = document.createElement('div');
+	    dropboxDiv.innerHTML = `
+	      <h1>카테고리를 선택하세요</h1>
+	      <select name="dropbox">
+	        <option value="option1">식당</option>
+	        <option value="option2">카페</option>
+	        <option value="option3">용달/이사</option>
+	        <option value="option4">뷰티/미용</option>
+	        <option value="option5">헬스/필라테스</option>
+	      </select>
+	    `;
+
+	    // 생성한 창들을 폼에 추가
+	    var form = document.getElementById('join_form');
+	    form.insertBefore(profilePhotoDiv, form.lastElementChild);
+	    form.insertBefore(dropboxDiv, form.lastElementChild);
+	  }
+	});
+
+
+
+
+
+
 
 </script>
+
 <%@ include file="../include/footer.jspf"%>

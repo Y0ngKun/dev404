@@ -24,22 +24,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!--  common file 처리 ppt 챕터2
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
-		
-		<beans:property name="maxUploadSize" value="104857560"></beans:property>
-
-		<beans:property name="maxUploadSizePerFile"
-			value="2097152"></beans:property>
-	
-		<beans:property name="uploadTempDir"
-			value="file:/C:/upload/tmp"></beans:property>
-	
-		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
-	</beans:bean>
-	-->	
 	<context:component-scan base-package="org.ezen.ex02" />
 	
 	<context:component-scan base-package="org.ezen.ex02.controller"></context:component-scan>
@@ -47,9 +31,6 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
-	
 	<context:component-scan base-package="org.ezen.ex02.exception"/>
-	
-	
 	
 </beans:beans>

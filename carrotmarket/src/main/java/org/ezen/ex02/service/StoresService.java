@@ -2,7 +2,8 @@ package org.ezen.ex02.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+
+import org.ezen.ex02.domain.StoresImageVO;
 import org.ezen.ex02.domain.StoresVO;
 
 public interface StoresService {
@@ -14,13 +15,15 @@ public interface StoresService {
 
 	public boolean modify(StoresVO board); //Update
 
-	public boolean delete(Long bno); //delete
+	public boolean remove(Long bno); //delete
 
 	public List<StoresVO> getList(); //목록 select
 	
 //	public List<BoardVO> getList(Criteria cri);
 //	
 //	public int getTotal(Criteria cri);
+	
+	public List<StoresImageVO> getAttachList(Long bno);
 
 
 }

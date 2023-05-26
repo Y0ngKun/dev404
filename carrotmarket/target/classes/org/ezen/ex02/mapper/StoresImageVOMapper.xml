@@ -29,9 +29,7 @@
 
 	</delete>
 	
-	<select id="getOldFiles"
-	
-		resultType="org.ezen.ex02.domain.StoresImageVO">
+	<select id="getOldFiles" resultType="org.ezen.ex02.domain.StoresImageVO">
 
 		select * from CARROT_IMAGEVO where uploadpath = to_char(sysdate -1 ,'yyyy/mm/dd')
 		<!-- 어제 날자로 경로가 된 첨부파일 데이터 반환 -->

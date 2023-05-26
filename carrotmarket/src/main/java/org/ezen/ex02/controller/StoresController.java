@@ -61,29 +61,26 @@ public class StoresController {
 		return "stores/stores";
 	};
 	
+
 	
-	//push test
-	
-	
-	
-	@PostMapping("/stores")
-	public String register(MultipartFile[] uploadFile,Model model,HttpServletRequest request, HttpSession session,StoresVO storesVO,String title, String content) {
-		String writer = (String)session.getAttribute("username");
-		log.info(writer);
-		System.out.println("writer : "+writer);
-		storesVO.setTitle(title);
-		storesVO.setContent(content);
-		storesVO.setWriter(writer);
-		service.register(storesVO)	;
-		
-		return "redirect:/stores/stores";
-	}
+//	@PostMapping("/stores")
+//	public String register(MultipartFile[] uploadFile,Model model,HttpServletRequest request, HttpSession session,StoresVO storesVO,String title, String content) {
+//		String writer = (String)session.getAttribute("username");
+//		log.info(writer);
+//		System.out.println("writer : "+writer);
+//		storesVO.setTitle(title);
+//		storesVO.setContent(content);
+//		storesVO.setWriter(writer);
+//		service.register(storesVO)	;
+//		
+//		return "redirect:/stores/stores";
+//	}
 	
 	
 	
 	
 	@GetMapping("/business-profiles")
-	public String businessProfiles(HttpServletRequest request, HttpServletResponse response){
+	public String showBizProfiles(HttpServletRequest request, HttpServletResponse response){
 		
 		String title = request.getParameter("title");
         String content = request.getParameter("content");

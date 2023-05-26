@@ -2,18 +2,21 @@ package org.ezen.ex02.mapper;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 import org.ezen.ex02.domain.StoresImageVO;
 
 @Mapper
 public interface StoresImageVOMapper {
 	
-	public void insert(StoresImageVO SImageVO);
-	
-	public void delete(StoresImageVO SImageVO);
-	
-	public List<StoresImageVO> findByBno (Long bno);
-	
-	//첨부물은 수정의 의미가 없으므로 update는 없고 insert,delete
+public void insert(StoresImageVO vo);
+
+public void delete(String uuid);
+
+public List<StoresImageVO> findByBno(Long bno);
+
+public void deleteAll(Long bno);
+
+public List<StoresImageVO> getOldFiles(); //어제의 첨부 파일 데이터 반환
 
 }

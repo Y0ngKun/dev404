@@ -42,67 +42,160 @@ import net.coobird.thumbnailator.Thumbnailator;
 @AllArgsConstructor
 public class StoresWriteController {
 	
-	
 	@Autowired
 	private StoresService service;
 	
 	
-	
-	@GetMapping()
-	public String storesWriteUp() {
+	private String getFolder() {
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date date = new Date();
+
+		String str = sdf.format(date); // 날자를 yyyy-MM-dd형식의 문자열로 변환
+
+		return str.replace("-", File.separator); // 파일구분자로 -문자를 변경
+	}
+
+	//업로드 파일이 이미지 인치 체크
+	private boolean checkImageType(File file) {
+
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			// Path객체를 이용하여 파일의 content형식을 반환
+
+			return contentType.startsWith("image");
+			// image일시 true반환
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.info("첨부파일이 이미지 타입이 아님");
+		}
+
+		return false;
+	}
+	
+	//시큐리티로 처리하던지, 권한 없으면 get 막기
+	@GetMapping() 
+	public String storesWriteUp() {
 		log.info("스토어 글쓰기 페이지 진입");
-		
 		return "stores/storesWrite";
 	}
 	
-	//게시판 등록 작업 처리
+	//동네가게 게시글 등록 작업 처리
 	@PostMapping()
-	public String register(StoresVO board, RedirectAttributes rttr) {
+	public String register(StoresVO storesVO, RedirectAttributes rttr) {
 
-		log.info("register: " + board);
+		log.info("register: " + storesVO);
 		
-		if (board.getAttachList() != null) {
-
-			board.getAttachList().forEach(attach -> log.info(attach));
-
+		if (storesVO.getAttachList() != null) {
+			storesVO.getAttachList().forEach(attach -> log.info(attach));
 		}
 
-		service.register(board);
-
-		rttr.addFlashAttribute("result", board.getBno());
+		service.register(storesVO); //service 실행
+		rttr.addFlashAttribute("result", storesVO.getBno());
 
 		return "redirect:/stores/stores";
 	}
 	
 	
-	
-	//비즈프로필 글쓰기시 파일 첨부 부분 시작
-	
-	/*
-	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		// servlet제공 업로드는 MultipartFile클래스 객체로 처리,multiple이므로 배열, 파라메터 이름은 form의 name속성
-		// 다를때는 @RequestParam사용
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<StoresImageDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
+		
+		log.info("파일첨부 ajax 메소드 확인");
+		
+		List<StoresImageDTO> list = new ArrayList<>();
 
-		String uploadFolder = "C:/upload";
+		String uploadFolder = "C:/upload"; 
+
+		String uploadFolderPath = getFolder();// 날짜별로된 폴더를 이용한 경로
+		
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+
+		if (uploadPath.exists() == false) {
+			uploadPath.mkdirs(); // File객체의 경로를 이용하여 폴더로 만듬
+		}
 
 		for (MultipartFile multipartFile : uploadFile) {
-			log.info("-------------------------------------");
-			log.info("Upload File Name: " + multipartFile.getOriginalFilename()); // 파일 이름
-			log.info("Upload File Size: " + multipartFile.getSize()); // 파일 크기
+			
+			StoresImageDTO attachDTO = new StoresImageDTO();
 
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			// 경로와 파일이름을 사용하는 File객체 생성
+			String uploadFileName = multipartFile.getOriginalFilename();
+
+			
+			// 순수 파일 이름
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("/") + 1);
+
+			log.info("only file name: " + uploadFileName);
+
+			attachDTO.setFileName(uploadFileName);
+
+			UUID uuid = UUID.randomUUID();
+			// 임의의 UUID객체 만들기
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+
+			// File saveFile = new File(uploadFolder, uploadFileName);
+			File saveFile = new File(uploadPath, uploadFileName); // 날짜 형식 경로
 
 			try {
-				multipartFile.transferTo(saveFile); // 해당 경로에 file객체 저장
+				multipartFile.transferTo(saveFile); // 원본 파일 저장
+
+				attachDTO.setUuid(uuid.toString());
+				attachDTO.setUploadPath(uploadFolderPath);
+
+				// 이미지 파일인지 체크
+				if (checkImageType(saveFile)) {
+
+					attachDTO.setImage(true);
+
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+					// 섬네일 이름의 출력 스트림을 만듬
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					// 출력스트림에 저장된 thumbnail부터 읽어와 크기 100 x 100의 섬네일 파일 생성
+					thumbnail.close();
+				}
+
+				list.add(attachDTO);
 			} catch (Exception e) {
 				log.error(e.getMessage());
 			}
 		}
+
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	} //이미지 첨부 메서드;
+	
+	
+	//글작성시 업로드한 이미지 미리보기 메서드
+	@GetMapping(value = "/display", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName) {
+
+		// fileName은 전체 경로 보냄(YYYY/MM/DD/S_UUID/이름
+		log.info("fileName: " + fileName);
+
+		File file = new File("c:/upload/" + fileName);
+
+		log.info("file: " + file);
+
+		ResponseEntity<byte[]> result = null;
+
+		try {
+			HttpHeaders header = new HttpHeaders();
+
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			// header에 Content-Type에 MIME추가
+
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			// file객체를 byte배열로 변환하여 JSON으로 반환
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return result;
 	}
-	*/
+	
 	
 	
 	/*
@@ -229,109 +322,13 @@ public class StoresWriteController {
 	
 	
 	
-	// 브라우져에서 업로드 결과를 보여주기 위해 JSON으로 첨부파일 관련 객체(AttachFileDTO) 보내기
-	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<StoresImageDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
-		
-		
-		
-		log.info("파일첨부 ajax 메소드 확인");
-		
-
-		List<StoresImageDTO> list = new ArrayList<>();
-
-		String uploadFolder = "C:/upload";
-
-		String uploadFolderPath = getFolder();
-		// 날짜별로된 폴더를 이용한 경로
-		File uploadPath = new File(uploadFolder, uploadFolderPath);
-
-		if (uploadPath.exists() == false) {
-			uploadPath.mkdirs(); // File객체의 경로를 이용하여 폴더로 만듬
-		}
-
-		for (MultipartFile multipartFile : uploadFile) {
-			
-			
-
-			StoresImageDTO attachDTO = new StoresImageDTO();
-
-			String uploadFileName = multipartFile.getOriginalFilename();
-
-
-			
-			
-			// 순수 파일 이름
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("/") + 1);
-
-			log.info("only file name: " + uploadFileName);
-
-			attachDTO.setFileName(uploadFileName);
-
-			UUID uuid = UUID.randomUUID();
-			// 임의의 UUID객체 만들기
-			uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-			// File saveFile = new File(uploadFolder, uploadFileName);
-			File saveFile = new File(uploadPath, uploadFileName); // 날짜 형식 경로
-
-			try {
-				multipartFile.transferTo(saveFile); // 원본 파일 저장
-
-				attachDTO.setUuid(uuid.toString());
-				attachDTO.setUploadPath(uploadFolderPath);
-
-				// 이미지 파일인지 체크
-				if (checkImageType(saveFile)) {
-
-					attachDTO.setImage(true);
-
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-					// 섬네일 이름의 출력 스트림을 만듬
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
-					// 출력스트림에 저장된 thumbnail부터 읽어와 크기 100 x 100의 섬네일 파일 생성
-					thumbnail.close();
-				}
-
-				list.add(attachDTO);
-			} catch (Exception e) {
-				log.error(e.getMessage());
-			}
-		}
-
-		return new ResponseEntity<>(list, HttpStatus.OK);
-	}
+	
+	
 	
 	
 	
 
-	private String getFolder() {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		Date date = new Date();
-
-		String str = sdf.format(date); // 날자를 yyyy-MM-dd형식의 문자열로 변환
-
-		return str.replace("-", File.separator); // 파일구분자로 -문자를 변경
-	}
-
-	private boolean checkImageType(File file) {
-
-		try {
-			String contentType = Files.probeContentType(file.toPath());
-			// Path객체를 이용하여 파일의 content형식을 반환
-
-			return contentType.startsWith("image");
-			// image일시 true반환
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return false;
-	}
 	
 	
 	
@@ -344,35 +341,7 @@ public class StoresWriteController {
 
 	
 
-	@GetMapping(value = "/display", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName) {
 
-		// 실제 이미지 데이터를 바이트 배열로 보냄(외부 경로에 있는 파일에는 직접 접근이 불가능해서 바이트 배열로 데이터를 보냄)
-		// fileName은 전체 경로 보냄(YYYY/MM/DD/S_UUID/이름
-		log.info("fileName: " + fileName);
-
-		File file = new File("c:/upload/" + fileName);
-
-		log.info("file: " + file);
-
-		ResponseEntity<byte[]> result = null;
-
-		try {
-			HttpHeaders header = new HttpHeaders();
-
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			// header에 Content-Type에 MIME추가
-
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			// file객체를 byte배열로 변환하여 JSON으로 반환
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		return result;
-	}
 	
 	
 	

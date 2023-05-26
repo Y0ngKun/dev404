@@ -13,5 +13,6 @@ public class MemberVO {
 	private String useraddress;
 	private String useremail;
 	private String usergender;
+	private String isbusiness;
 	
 }

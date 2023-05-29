@@ -19,6 +19,7 @@
 <!-- 동네 가게 리스트 섹션 -->
 <section>
 	<div>
+	<h1 class="text-center" style="font-size: 32px; padding: 40px 0 40px 0;">다양한 동네가게를 볼 수 있어요</h1>
 		<div class="stores-caterory">
 			<ul>
 				<li role="listitem"><label>전체<input name="" type="radio">
@@ -38,7 +39,7 @@
 		</div>
 
 		<div class="container stores-list">
-			<h1 class="text-center" style="font-size: 30px; padding: 40px 0 40px 0;">다양한 동네가게를 볼 수 있어요</h1>
+			
 			<ul class="row">
 				<li class="col-md-6">
 				<a href="/ex02/stores/business-profiles?title=${list[0].title}&content=${list[0].content}">
@@ -245,24 +246,43 @@
 
 <!-- 하단 비즈프로필 만들기  -->
 <section class="container stores-business" >
-<div>
+<div class="imgWrapDiv">
 <span>
 <img alt="#" src="../resources/images/stores-business.png">
 </span>
 </div>
 
-<div>
-<h6 style="font-size: 30px;">가게를 운영하고 계신가요?</h6>
-<span>당근마켓에 등록하고 이웃에게 알려보세요!</span>
+<div style="
+	padding-left: 170px;
+	flex: 1 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;">
+<h6 style="font-size: 24px;"> <strong> 가게를 운영하고 계신가요? </strong></h6>
+
+<span style="
+	font-weight: 400;
+    font-size: 13px;
+    margin-top: 0.125rem;
+    line-height: 1.35;">당근마켓에 등록하고 이웃에게 알려보세요!</span>
 </div>
 
 
-<div>
-<a href="#">비즈프로필 만들기</a>
+<div style="display: flex !important;">
+<a href="#" style="
+background-color: #ff6f0f;
+font-size: 20px;
+color: #ffffff; 
+text-decoration: none; 
+font-weight: 600;
+padding: 7px;
+border-radius: 5px;
+">비즈프로필 만들기</a>
 </div>
-
-
 </section>
+
+
 
 
 <!-- 글쓰기 등록 버튼 -->
@@ -273,57 +293,7 @@
 </c:if>
 
 
-<!-- 글쓰기 모달창 -->
-<div id="myModal" class="modal fixed-button text-center">
-	<div class="modal-content">
-		<div class="container mt-4 mb-4" id="mainContent">
-			<div class="row">
 
-				<div class="col-md-12">
-					<div id="submain">
-						<h4 class="text-center wordArtEffect text-success">우리 동네가게 등록</h4>
-
-						<form role="form" action="stores" id="storesForm" method="post">
-								<!-- 파일 업로드 부분 -->
-
-							<div class="form-group">
-								<label for="title">작성자:</label> <input type="text"
-									class="form-control" id="usernickname" value="${usernickname}"
-									name="title" readonly="readonly" />
-							</div>
-							<div class="form-group">
-								<label for="location">위치</label> <input type="text"
-									class="form-control" id="location" placeholder="가게 위치를 입력해주세요"
-									name="location" required />
-							</div>
-							<div class="form-group">
-								<label for="content">내용:</label>
-								<textarea class="form-control" id="content" name="content"
-									rows="10" style="color: #000000;" maxlength="500" required></textarea>
-							</div>
-
-							<button type="submit"
-								style="background-color: #ff6f0f; width: 40px; height: 30px; margin-left: 20px; border-radius: 20%;">작성</button>
-							&nbsp;&nbsp;
-							<button type="reset" id="closeModal"
-								style="background-color: #f2f3f6; width: 40px; height: 30px; margin-left: 20px; border-radius: 20%;">취소</button>
-							&nbsp;&nbsp;
-						</form>
-
-						<!-- 파일 첨부 창 -->
-
-					</div>
-					<!-- submain -->
-				</div>
-				<!-- col-md-10 -->
-			</div>
-			<!-- row -->
-		</div>
-		<!-- mainContent -->
-
-	</div>
-</div>
-<!-- 모달창 끝 -->
 
 <%@ include file="../include/footer.jspf" %>
 
@@ -391,24 +361,90 @@ text-decoration: none;
 }
 
 
-.stores-business{
-background-color: #f7be6824;
-width: 100%;
-height:130px;
-margin-top:100px;
-margin-bottom:100px;
-align-items: center;
-}
+
+
+
+/* 카테고리 부분 시작*/
 .stores-caterory ul{
 text-align: center;
 }
 .stores-caterory ul li{
 display: inline-block;
 cursor: pointer;
+margin: 3px;
+padding-bottom: 20px;
 }
+
+.stores-caterory ul li input{
+
+	margin: 0;
+    padding: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
 .stores-caterory ul li label{
 cursor: pointer;
+    line-height: 1.5;
+    font-size: 14px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    box-sizing: border-box;
+    border-radius: 6.25rem;
+    border: 0.0625rem solid #eaebee;
+    cursor: pointer;
+    padding: 8px 16px;
+    min-height: 2rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
 }
+
+.stores-caterory ul li label:hover{
+background-color:  #eaebee;
+}
+/* 카테고리 부분 끝*/
+
+
+
+/* 비즈 프로필 만들기 시작*/
+
+
+.stores-business{
+
+   background-color: #f7be6824;
+   border-radius: 0.375rem;
+   overflow: hidden;
+   padding: 30px;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   margin-top:75px;
+   margin-bottom:75px;
+}
+
+.imgWrapDiv{
+	width: 4.5rem;
+    height: 4.5rem;
+    position: relative;
+}
+
+
+
+/* 비즈 프로필 만들기 끝*/
+
+
+
 
 .fixed-button {
 	width:50px;

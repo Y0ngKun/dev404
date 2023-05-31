@@ -56,13 +56,34 @@
 			<h1>개인/사장님 확인</h1>
 			<div class="w-75 form-check d-flex justify-content-between m-auto align-bottom" style="height : 60px">
 				<div>
-				 	<input class="form-check-input" type="radio" name="isbusiness" value="C" checked="checked" id="C">
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="C" checked="checked" id="C" onclick="toggleProfileSection(false)">
 				 	<label class="form-check-label ms-1" for="C"> 개인</label>
 			  	</div>
 			  	<div>
-				 	<input class="form-check-input" type="radio" name="isbusiness" value="B" id="B">
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="B" id="B" onclick="toggleProfileSection(true)">
 				 	<label class="form-check-label ms-1" for="B"> 사장님</label>
+	
 			  	</div>
+			</div>
+			<div id="profile-section" style="padding-top: 5px; width: 100%; margin: 0 auto; display: none; ">
+				<h1>프로필 사진 첨부</h1>
+				<input type="file" name="profile_picture" style="width: 100%; margin-bottom: 20px;"/>
+				<span id="profile_picture_error" style="font-size: 1.5rem; color: red;"></span>
+				
+				<h1>카테고리를 선택해주세요</h1>
+				<select name="dropbox_selection" style="padding:10px; width: 100%; font-size: 20px; margin-bottom: 15px;
+				-webkit-appearance: none;
+   				 border: solid 1px #CED4DA;
+   				 border-radius: 3px;
+				" >
+					<option value="">--카테고리를 선택해주세요--</option>
+					<option value="option1">식당</option>
+		        	<option value="option2">카페</option>
+		        	<option value="option3">용달/이사</option>
+		        	<option value="option4">뷰티/미용</option>
+		      		<option value="option5">헬스/필라테스</option>
+				</select>
+				<div id="category_error" style="font-size: 1.5rem; color: red;"></div>
 			</div>
 			
 			
@@ -71,44 +92,80 @@
 			<input type="button" id="join_reset" value="뒤로가기" onclick="history.back()" style="width: 100%;background-color : #ff6f0f; color: white;"/>
 	</form>
 </div>
-<script type="text/javascript" src="../js/member.js"></script>
 
-<script type="text/javascript">
-document.getElementById('B').addEventListener('change', function() {
-	  if (this.checked) {
-	    // 프로필 사진 첨부하는 창을 생성
-	    var profilePhotoDiv = document.createElement('div');
-	    profilePhotoDiv.innerHTML = `
-	      <h1>프로필 사진 첨부</h1>
-	      <input type="file" name="profilephoto" accept="image/*">
-	    `;
 
-	    // 드롭박스 창을 생성
-	    var dropboxDiv = document.createElement('div');
-	    dropboxDiv.innerHTML = `
-	      <h1>카테고리를 선택하세요</h1>
-	      <select name="dropbox">
-	        <option value="option1">식당</option>
-	        <option value="option2">카페</option>
-	        <option value="option3">용달/이사</option>
-	        <option value="option4">뷰티/미용</option>
-	        <option value="option5">헬스/필라테스</option>
-	      </select>
-	    `;
+<script>
+	// 프로필 사진 첨부 및 카테고리 선택 영역 토글 함수
+	function toggleProfileSection(show) {
+		const profileSection = document.getElementById('profile-section');
+		profileSection.style.display = show ? 'block' : 'none';
+	}
 
-	    // 생성한 창들을 폼에 추가
-	    var form = document.getElementById('join_form');
-	    form.insertBefore(profilePhotoDiv, form.lastElementChild);
-	    form.insertBefore(dropboxDiv, form.lastElementChild);
-	  }
+	// 초기 페이지 로딩 시 사장님 선택 여부에 따라 프로필 사진 첨부 및 카테고리 선택 영역 초기 설정
+	document.addEventListener('DOMContentLoaded', function() {
+		const isBusinessRadio = document.querySelector('input[name="isbusiness"]:checked');
+		toggleProfileSection(isBusinessRadio.value === 'B');
 	});
 
+	// 프로필 사진 첨부 시 에러 메시지 숨기기
+	document.getElementById('profile_picture').addEventListener('change', function() {
+		const profilePictureError = document.getElementById('profile_picture_error');
+		profilePictureError.textContent = '';
+	});
 
+	// 회원가입 버튼 클릭 시 폼 유효성 검사 및 에러 처리
+	document.getElementById('join_submit').addEventListener('click', function(e) {
+		// 폼 유효성 검사 함수 호출
+		const isValid = validateForm();
 
+		// 유효성 검사 통과 여부에 따라 처리
+		if (!isValid) {
+			e.preventDefault(); // 폼 전송 막기
 
+			// 에러 메시지 영역으로 스크롤 이동
+			const errorSection = document.getElementById('error_section');
+			errorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	});
 
+	// 폼 유효성 검사 함수
+	function validateForm() {
+		const isBusinessRadio = document.querySelector('input[name="isbusiness"]:checked');
+		const categorySelection = document.getElementById('category_selection');
+		const profilePictureInput = document.getElementsByName('profile_picture')[0];
+		const profilePictureError = document.getElementById('profile_picture_error');
+		const errorSection = document.getElementById('error_section');
 
+		// 에러 메시지 초기화
+		profilePictureError.textContent = '';
+		errorSection.style.display = 'none';
 
+		// 사장님인 경우 프로필 사진 첨부 유효성 검사
+		if (isBusinessRadio.value === 'B') {
+			if (profilePictureInput.value === '') {
+				profilePictureError.textContent = '프로필 사진을 첨부해주세요.';
+				profilePictureError.style.display = 'block';
+				profilePictureInput.focus();
+				return false;
+			}
+		}
+
+		// 사장님인 경우 카테고리 선택 유효성 검사
+		if (isBusinessRadio.value === 'B' && categorySelection.value === '') {
+			const categoryError = document.getElementById('category_error');
+			categoryError.textContent = '카테고리를 선택해주세요.';
+			errorSection.style.display = 'block';
+			categorySelection.focus();
+			return false;
+		}
+
+		return true;
+	}
 </script>
+
+
+	
+<script type="text/javascript" src="../js/member.js"></script>
+
 
 <%@ include file="../include/footer.jspf"%>

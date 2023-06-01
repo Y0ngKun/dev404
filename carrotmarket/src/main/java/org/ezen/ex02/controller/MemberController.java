@@ -30,9 +30,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -145,9 +147,12 @@ public class MemberController {
 			produces = "text/html;charset=UTF-8"
 			)
 	public String joinAction(MemberVO memberVO) {
-
+		
+		log.info("여기까지 왔냐??");
+		log.info("왔으면 VO 확인한다" + memberVO);
 		String hashPasswd = BCrypt.hashpw(memberVO.getUserpwd(), BCrypt.gensalt());
 		memberVO.setUserpwd(hashPasswd);
+		
 		
 		memberService.joinMember(memberVO);
 		
@@ -191,7 +196,7 @@ public class MemberController {
 	            attachDTO.setImage(true);
 
 	            FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-	            Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 48, 48);
+	            Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 144, 144);
 	            thumbnail.close();
 	        }
 	    } catch (Exception e) {

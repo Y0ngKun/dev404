@@ -23,7 +23,7 @@
 						
 					<div class='uploadResult mt-3'>
 						<!-- 업로드 파일 결과를 보여 주는 창 -->					
-						<div class='row' id='card'>
+						<div class='row card' id='card'>
 						
 						</div>  			
 					</div>					
@@ -91,12 +91,12 @@
 			<h1>개인/사장님 확인</h1>
 			<div class="w-75 form-check d-flex justify-content-between m-auto align-bottom" style="height : 60px">
 				<div>
-				 	<input class="form-check-input" type="radio" name="isbusiness" value="N" checked="checked" id="C" onclick="toggleProfileSection(false)">
 				 	<label class="form-check-label ms-1" for="C"> 개인</label>
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="N" checked="checked" id="C" onclick="toggleProfileSection(false)">
 			  	</div>
 			  	<div>
-				 	<input class="form-check-input" type="radio" name="isbusiness" value="Y" id="B" onclick="toggleProfileSection(true)">
 				 	<label class="form-check-label ms-1" for="B"> 사장님</label>
+				 	<input class="form-check-input" type="radio" name="isbusiness" value="Y" id="B" onclick="toggleProfileSection(true)">
 	
 			  	</div>
 			</div>
@@ -106,11 +106,11 @@
 			<!-- 사장님 일 때 보이는 메뉴 -->
 			<div id="profile-section" style="padding-top: 5px; width: 100%; margin: 0 auto; display: none; ">
 				
-				<h1>카테고리를 선택해주세요</h1>
+				<h1>업종을 선택해주세요</h1>
 				<select name="category dropbox_selection" style="
 				padding:10px; width: 100%; font-size: 20px; margin-bottom: 15px; -webkit-appearance: none; border: solid 1px #CED4DA; border-radius: 3px;
 				" >
-					<option>--카테고리를 선택해주세요--</option>
+					<option value="">--카테고리를 선택해주세요--</option>
 					<option value="식당">식당</option>
 		        	<option value="카페">카페</option>
 		        	<option value="용달/이사">용달/이사</option>
@@ -146,7 +146,7 @@ $(document).ready(function(){
 	    
 	    let str = "";
 	    
-	    $(".uploadResult .card  p").each(function(i, obj){
+	    $(".uploadResult .card").each(function(i, obj){
 	      
 	      let jobj = $(obj);
 	      
@@ -154,41 +154,34 @@ $(document).ready(function(){
 	      console.log("-------------------------");
 	      console.log(jobj.data("filename"));
 	      
-	      //List<BoardAttachVO> attachList;멤버변수로 수집됨
-	      /**/
-	      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-	      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-	      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+	     
+	      	
+	      /* */
+	      str += "<input type='hidden' name='uploadFile.fileName' value='"+jobj.data("filename")+"'>";
+	      str += "<input type='hidden' name='uploadFile.uuid' value='"+jobj.data("uuid")+"'>";
+	      str += "<input type='hidden' name='uploadFile.uploadPath' value='"+jobj.data("path")+"'>";
 	      
-	      /*
-	      str += "<input type='hidden' name='fileName' value='"+jobj.data("filename")+"'>";
-	      str += "<input type='hidden' name='uuid' value='"+jobj.data("uuid")+"'>";
-	      str += "<input type='hidden' name='uploadPath' value='"+jobj.data("path")+"'>";
-	     */
+	      console.log(str);
+	      
+	    
 	    });	    
 	   
-	    console.log(str);
+	   
 	    
 	    formObj.prepend(str).submit();
 	    
 	});
 	
-$("input[type='file']").change(function(e){	
+$("input[type='file']").change(function(e){
 	
 	let formData = new FormData(); //가상의 form엘리먼트 생성
 	let inputFile = $("input[name='uploadFile']");
-	let files = inputFile[0].files; 
+	let files = inputFile[0].files[0]; 
 	//첫번째 inputFile DOM의 files들 type이 file인경우 선택한 파일들(value값)
 	
 	console.log(files);
+	formData.append("uploadFile", files); 
 		
-	for(var i = 0; i < files.length; i++)  {
-		if (!checkExtension(files[i].name, files[i].size)) {
-			return false;
-		}			
-		formData.append("uploadFile", files[i]); 
-		 //선택한 파일들을 input type="file" name="uploadFile" value="files[i]"로 만들어 붙이기
-	}		
 	
 	
 	$.ajax({
@@ -213,6 +206,8 @@ $("input[type='file']").change(function(e){
 		}
 	});
 });
+
+
 
 	
 //ajax로 이미지 업로드 성공시 하단에 업로드된 이미지 보여주기
@@ -319,6 +314,20 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 	
 	
 });
+</script>
+
+<script>
+function toggleProfileSection(show) {
+  var profileSection = document.getElementById("profile-section");
+  var categoryDropdown = document.getElementsByName("category dropbox_selection")[0];
+  
+  if (show) {
+    profileSection.style.display = "block";
+  } else {
+    profileSection.style.display = "none";
+    categoryDropdown.selectedIndex = 0;
+  }
+}
 </script>
 
 

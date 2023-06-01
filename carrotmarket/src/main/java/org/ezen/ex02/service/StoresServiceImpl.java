@@ -32,7 +32,7 @@ public class StoresServiceImpl implements StoresService {
 		@Override
 		public void register(StoresVO board) {
 
-			log.info("register......" + board);
+			log.info("동네가게 게시판 등록 : " + board);
 
 			mapper.insertSelectKey(board);
 

@@ -8,20 +8,26 @@
 	
 	
 	<insert id="joinMember">
-		insert into carrot_member(id, userid, userpwd, username, usernickname, useraddress, isbusiness
+		insert into carrot_member(id, userid, userpwd, username, usernickname, useraddress, isbusiness,uuid,uploadPath,fileName
 		<if test="useremail != null">
 		, useremail
 		</if>
 		<if test="usergender != null">
 		, usergender
 		</if>
+		<if test="category != null">
+		, category
+		</if>
 		)
-		values(carr_mem_id_seq.nextval, #{userid},#{userpwd},#{username},#{usernickname},#{useraddress},#{isbusiness}
+		values(carr_mem_id_seq.nextval, #{userid},#{userpwd},#{username},#{usernickname},#{useraddress},#{isbusiness},#{uuid},#{uploadPath},#{fileName}
 		<if test="useremail != null">
 		, #{useremail}
 		</if>
 		<if test="usergender != null">
 		, #{usergender}
+		</if>
+		<if test="category != null">
+		, #{category}
 		</if>
 		)
 	</insert>
@@ -36,6 +42,7 @@
 		, usergender = #{usergender}
 		, useremail = #{useremail}
 		, useraddress = #{useraddress}
+		, isbusiness = #{isbusiness}
 		where id = #{id}
 	</update>
 	

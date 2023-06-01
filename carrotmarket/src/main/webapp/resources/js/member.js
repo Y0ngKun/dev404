@@ -6,18 +6,7 @@
  	
  $(document).ready(function(){
  
- //초기 페이지 로딩 시 사장님 선택 여부에 따라 프로필 사진 첨부 및 카테고리 선택 영역 초기 설정
-document.addEventListener('DOMContentLoaded', function() {
-	const isBusinessRadio = document.querySelector('input[name="isbusiness"]:checked');
-	toggleProfileSection(isBusinessRadio.value === 'B');
-});
-	
 
-	// 개인/사장님 카테고리 선택 영역 토글 함수
-function toggleProfileSection(show) {
-	const profileSection = document.getElementById('profile-section');
-	profileSection.style.display = show ? 'block' : 'none';
-}
  
  	
  

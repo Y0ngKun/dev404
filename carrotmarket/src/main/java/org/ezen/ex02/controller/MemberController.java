@@ -1,33 +1,50 @@
 package org.ezen.ex02.controller;
 
-import java.net.http.HttpHeaders;
+import java.io.File;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ezen.ex02.domain.MemberImageDTO;
 import org.ezen.ex02.domain.MemberVO;
 import org.ezen.ex02.service.MemberService;
 import org.ezen.ex02.util.JScript;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.AllArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @RequestMapping("/member")
+@Log4j
 public class MemberController {
 	
 	@Setter(onMethod_=@Autowired)
@@ -117,6 +134,11 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
+	
+	
+	
+	
+	
 	//회원가입 액션
 	@PostMapping(
 			value="/join",
@@ -131,6 +153,106 @@ public class MemberController {
 		
 		return "member/loginForm";
 	}
+	
+
+	//joinform 프로필 사진 업로드 액션
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<MemberImageDTO> uploadAjaxPost(MultipartFile uploadFile) {
+
+	    log.info("회원가입 프로필 이미지 첨부,  ajax 메소드 확인");
+
+	    MemberImageDTO attachDTO = new MemberImageDTO();
+
+	    String uploadFolder = "C:/uploads";
+	    String uploadFolderPath = getFolder();
+	    File uploadPath = new File(uploadFolder, uploadFolderPath);
+
+	    if (uploadPath.exists() == false) {
+	        uploadPath.mkdirs();
+	    }
+
+	    String uploadFileName = uploadFile.getOriginalFilename();
+	    uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("/") + 1);
+
+	    attachDTO.setFileName(uploadFileName);
+
+	    UUID uuid = UUID.randomUUID();
+	    uploadFileName = uuid.toString() + "_" + uploadFileName;
+	    File saveFile = new File(uploadPath, uploadFileName);
+
+	    try {
+	        uploadFile.transferTo(saveFile);
+
+	        attachDTO.setUuid(uuid.toString());
+	        attachDTO.setUploadPath(uploadFolderPath);
+
+	        if (checkImageType(saveFile)) {
+	            attachDTO.setImage(true);
+
+	            FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+	            Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 48, 48);
+	            thumbnail.close();
+	        }
+	    } catch (Exception e) {
+	        log.error(e.getMessage());
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+
+	    return new ResponseEntity<>(attachDTO, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	//글작성시 업로드한 이미지 미리보기 메서드
+		@GetMapping(value = "/display", produces = MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<byte[]> getFile(String fileName) {
+
+			// fileName은 전체 경로 보냄(YYYY/MM/DD/S_UUID/이름
+
+			File file = new File("C:/uploads/" + fileName);
+
+
+			ResponseEntity<byte[]> result = null;
+
+			try {
+				HttpHeaders header = new HttpHeaders();
+
+				header.add("Content-Type", Files.probeContentType(file.toPath()));
+				// header에 Content-Type에 MIME추가
+
+				result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+				// file객체를 byte배열로 변환하여 JSON으로 반환
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			return result;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//아이디 중복 확인
 	@GetMapping(
@@ -224,6 +346,8 @@ public class MemberController {
 			return JScript.href("비밀번호 변경 완료", "/ex02/member/logoutAction");			
 		}
 		
+		
+		
 		//회원탈퇴
 		@GetMapping("/remove")
 		public String removeForm() {
@@ -251,6 +375,92 @@ public class MemberController {
 			//3. 회원탈퇴 메세지 띄우고 로그아웃 처리(세션, 쿠키 삭제)
 			return JScript.href("회원탈퇴 완료", "/ex02/member/logoutAction");
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//삭제 예정 메소드들 !!!!!!!!!!
+		
+		
+		private String getFolder() {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Date date = new Date();
+
+			String str = sdf.format(date); // 날자를 yyyy-MM-dd형식의 문자열로 변환
+
+			return str.replace("-", File.separator); // 파일구분자로 -문자를 변경
+		}
+
+		//업로드 파일이 이미지 인치 체크
+		private boolean checkImageType(File file) {
+
+			try {
+				String contentType = Files.probeContentType(file.toPath());
+				// Path객체를 이용하여 파일의 content형식을 반환
+
+				return contentType.startsWith("image");
+				// image일시 true반환
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.info("첨부파일이 이미지 타입이 아님");
+			}
+
+			return false;
+		}
+		
+		
+		
+		
 		
 		
 }

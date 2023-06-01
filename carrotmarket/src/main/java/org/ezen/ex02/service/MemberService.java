@@ -1,6 +1,7 @@
 package org.ezen.ex02.service;
 
-import org.ezen.ex02.domain.MemberImageVO;
+
+
 import org.ezen.ex02.domain.MemberVO;
 
 public interface MemberService {
@@ -17,6 +18,8 @@ public interface MemberService {
 
 	void deleteMemberById(int id);
 	
-	public MemberImageVO getPfImg(long id);
+	MemberVO getPfImg (int id);
+	
+	
 
 }

@@ -1,9 +1,11 @@
 package org.ezen.ex02.service;
 
-import org.ezen.ex02.domain.MemberImageVO;
+
+
 import org.ezen.ex02.domain.MemberVO;
-import org.ezen.ex02.mapper.MemberImageVOMapper;
+
 import org.ezen.ex02.mapper.MemberMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -11,9 +13,15 @@ import lombok.AllArgsConstructor;
 @Service
 public class MemberServiceImpl implements MemberService{
 	
+	@Autowired
 	private MemberMapper memberMapper;
 	
-	private MemberImageVOMapper imgMemberMapper;
+	//회원가입
+	@Override
+	public void joinMember(MemberVO memberVO) {
+		memberMapper.joinMember(memberVO);
+	}
+	
 	
 	//로그인할때 맴버 가져오기
 	@Override
@@ -21,11 +29,6 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMember(userid);
 	}
 
-	//회원가입
-	@Override
-	public void joinMember(MemberVO memberVO) {
-		memberMapper.joinMember(memberVO);
-	}
 	//멤버 pk로 가져오기
 	@Override
 	public MemberVO getMemberId(int id) {
@@ -53,10 +56,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberImageVO getPfImg(long id) {
+	public MemberVO getPfImg(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+
+
 	
 	
 

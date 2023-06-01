@@ -98,7 +98,7 @@ public class StoresWriteController {
 		return "redirect:/stores/stores";
 	}
 	
-	
+	//동네가게 게시글 작성할 때 이미지 업로드 액션
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<StoresImageDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {

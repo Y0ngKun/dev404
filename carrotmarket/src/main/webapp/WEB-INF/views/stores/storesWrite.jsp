@@ -20,7 +20,7 @@
 					<div class="row">						
 						<div class="form-group uploadDiv col-md-12">
 							
-							<input type="file" class="form-control" id="upload" name="uploadFile" multiple /> 
+							<input type="file" class="form-control" id="upload" name="uploadFile" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	
@@ -88,7 +88,7 @@ $(document).ready(function(){
 	    
 	    e.preventDefault();
 	    
-	    console.log("submit clicked");
+	    console.log("회원 가입 창 submit 버튼 클릭함");
 	    
 	    let str = "";
 	    

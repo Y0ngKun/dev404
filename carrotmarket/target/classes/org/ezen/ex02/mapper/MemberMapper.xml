@@ -8,7 +8,7 @@
 	
 	
 	<insert id="joinMember">
-		insert into carrot_member(id, userid, userpwd, username, usernickname, useraddress
+		insert into carrot_member(id, userid, userpwd, username, usernickname, useraddress, isbusiness
 		<if test="useremail != null">
 		, useremail
 		</if>
@@ -16,7 +16,7 @@
 		, usergender
 		</if>
 		)
-		values(carr_mem_id_seq.nextval, #{userid},#{userpwd},#{username},#{usernickname},#{useraddress}
+		values(carr_mem_id_seq.nextval, #{userid},#{userpwd},#{username},#{usernickname},#{useraddress},#{isbusiness}
 		<if test="useremail != null">
 		, #{useremail}
 		</if>

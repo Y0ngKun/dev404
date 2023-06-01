@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 
 <c:set var="pageTitle" value="동네 이웃들이 자주가는 동네 가게"></c:set>
 <%@ include file="../include/header.jspf" %>
@@ -74,19 +75,25 @@
 			<div class="quick-menu-group">
 				<div class="call" style="width: 33.3%;">
 					<a href="#">
-						<i class="fa-light fa-phone"></i>
+					<span style="width: 24px; height:24px; margin-bottom: 6px; ">
+					<i class="fas fa-phone" style="font-size: 24px;"></i>
+					</span>
 						<span>전화 문의</span>
 					</a>
 				</div>
 				<div class="chat" style="width: 33.3%;">
 					<a href="#">
-						<i class="fa-sharp fa-light fa-comments"></i>
+						<span style="width: 24px; height:24px; margin-bottom: 6px;">
+						<i class="fas fa-comments" style="font-size: 24px;"></i>
+						</span>
 						<span>채팅 문의</span>
 					</a>
 				</div>
 				<div class="write-review" style="width: 33.3%;">
 					<a href="#">
-						<i class="fa-sharp fa-solid fa-pen-line"></i>
+						<span style="width: 24px; height:24px; margin-bottom: 6px;">
+						<i class="fas fa-pen" style="font-size: 24px;"></i>
+						</span>
 						<span>후기 작성</span>
 					</a>
 				</div>
@@ -97,75 +104,158 @@
 
 
 		<!-- 본문 내용 섹션 -->
-<section class="content">
-<div class="container align-items-center" style="max-width:768px margin: 0 auto; padding: 0; text-align: left;">
-<h3 style="text-align: left; font-size: 22px; font-weight: bold;">정보</h3>
-<span style="font-size: 18px;">
-<c:out value="${content}"></c:out>
-</span>
+		<section class="content">
+			<div class="container align-items-center" style="max-width: 768px margin: 0 auto; padding: 0; text-align: left;">
+				<article class="notice" style="margin-bottom: 15px; padding: 19px; border-radius: 10px;">
+					<div>
+						<span style="margin-right: 7px;"><i class="fas fa-bullhorn fa-lg" style=""></i></span>
+					</div>
+					
+					<div>
+					<span style="font-size: 18px; font-weight:700; ">알림</span>
+					<span style="font-size: 18px; display: block;">토요일 일요일은 택배사 휴무로 인해 예약주문시 월요일 순차적으로 발송합니다. 저녁,밤,주말 및 공휴일은 늦더라도 채팅남겨주시면 꼭 답장 드리겠습니다. ^^</span>
+					</div>
+					
+				</article>
+				
+				<h3 style="text-align: left; font-size: 22px; font-weight: bold;">정보</h3>
+				<span style="font-size: 18px;"> <c:out value="${content}"></c:out>
+				</span>
 
 
-</div>
-</section>
+			</div>
+		</section>
 
 
-<!-- 위치 섹션 -->
-<section class="map d-flex flex-column" style="margin-top: 30px;">
-<div style="text-align: left;">
-<i class="fa-sharp fa-regular fa-location-dot"></i> <span style="font-size: 20px;"><c:out value="${title}"></c:out> </span>
-</div>
+		<!-- 위치 섹션 -->
+		<section class="map d-flex flex-column" style="margin-top: 30px; margin-bottom: 20px;">
+			<div style="text-align: left; margin-bottom: 10px;" >
+				<span style="margin-right: 6px;"> <i class="fas fa-map-marker" style="font-size: 18px;"></i> </span> 
+				<span style="font-size: 20px;"> 위치정보 </span>
+			</div>
 
-<!-- 지도  -->
-<div class="item">
-<div id="map" class="item" style="margin: 0 auto; height: 194px;" >
+			<!-- 지도  -->
+			<div class="item">
+				<div id="map" class="item" style="margin: 0 auto; height: 194px;">
 
-</div>
-</div>
+				</div>
+			</div>
 
-</section>
-
-
-<section class="profile-footer d-flex flex-column" style="text-align: left;">
-
-<div class="item">
-<i class="fa-regular fa-clock"></i> 
-<span>
-09:30 - 17:30 <br/>
-11:40 - 13:00 휴게 시간
-</span>
-</div>
-
-<div>
-<i class="fa-regular fa-globe"></i><span>www.mrchon.com</span>
-</div>
-
-<div class="item" style="margin-top: 15px; height: 56px; background-color: #f2f3f6; line-height: 56px; text-align: center;">
-<span style="font-size: 20px; ">"당근마켓에서 보고 왔어요" 라고 말해보세요! 단골 등록시 무료배송입니다!^^</span>
-
-</div>
-
-<div class="item" style="margin-top: 15px; height: 38px; background-color: #f2f3f6; line-height: 38px; text-align: center;">
-<span style="font-size: 20px; ">공유하기</span>
-
-</div>
-
-</section>
+		</section>
 
 
+		<section class="profile-footer d-flex flex-column" style="text-align: left;">
 
-<!-- 후기 섹션 -->
-<section class="d-flex flex-column" style="margin-top: 50px;">
-<div class="item">Item1</div>
-    <div class="item">Item2</div>
-    <div class="item">Item3</div>
-    <div class="item">Item4</div>
-</section>
+			<div class="item" style="margin-bottom: 7px;">
+				<span style="margin-right: 10px;"> <i class="far fa-clock"
+					style="font-size: 18px;"></i>
+				</span> <span style="font-size: 18px;"> 09:30 - 17:30  <br /> 11:40 - 13:00 휴게 시간
+				</span>
+			</div>
 
+			<div>
+				<span style="margin-right: 10px;"> <i class="fas fa-globe"
+					style="font-size: 18px;"></i>
+				</span> <span style="font-size: 18px;">www.mrchon.com</span>
+			</div>
+
+			<div class="item"
+				style="margin-top: 15px; height: 56px; background-color: #f2f3f6; line-height: 56px; text-align: center;">
+				<span style="font-size: 18px; font-weight: bold;">"당근마켓에서 보고
+					왔어요" 라고 말해보세요! </span> <span style="font-size: 18px;">단골 등록시
+					무료배송입니다!^^</span>
+
+			</div>
+
+			<div class="item"
+				style="margin-top: 15px; height: 38px; background-color: #f2f3f6; line-height: 38px; text-align: center;">
+				<span style="font-size: 20px;"> <span><i
+						class="fas fa-share-alt-square"></i></span> 공유하기
+				</span>
+
+			</div>
+
+		</section>
 
 
 
+		<!-- 후기 섹션 -->
+		<section class="stores-reivew " style="margin-top: 50px; margin-bottom: 20px;">
+		<div class="container">
+		
+			<div style="display: flex; align-items: center;">
+				<div style="flex: 1 1;">
+				 <h3 style="font-weight: bold; font-size: 18px; text-align: left; margin: 0; ">후기</h3>
+				 </div>
+				 <div>
+				 	<button style="
+				 	    background-color: #ff6f0f;
+					    font-size: 14px;
+					    line-height: 1.4;
+					    padding: 6px 6px;
+					    color: #fff;
+					    border: 1px solid #ff6f0f;
+					    align-items: center;
+				 	"><span>+</span>후기 작성</button>
+				 </div>
+			</div>
+			
+			<ul style="list-style: none; margin: 0; padding: 0">
+				<li>
+					<div class="review-wraper" style="
+					display: flex;
+    				justify-content: flex-start;
+    				overflow: hidden;
+    				align-items: center;">
+    				
+						<div class="user-profile-img" 
+						style="
+						width: 36px; 
+						height: 36px; 
+						position: relative; 
+						border-radius: 50%;
+						overflow: hidden;
+						">
+							<img alt="#" src="https://dnvefa72aowie.cloudfront.net/origin/profile/202202/080f3524c2258cab147354677d6a04ef267a52182cd463f06312881fcb4df2b0.webp?q=82&s=640x640&t=crop" 
+							style="
+							    opacity: 1;
+							    transition: .2s;
+							    position: absolute;
+							    left: 0;
+							    top: 0;
+							    right: 0;
+							    bottom: 0;
+							    width: 100%;
+							    height: 100%;
+							    -o-object-fit: cover;
+							    object-fit: cover;
+							">
+						</div>
+						
+						<div class="user-info-wraper" style="margin-left: 8px;">
+							<span class="username" style="font-size: 16px; font-weight: bold;">깡미꼰맘</span>
+							<span class="badge-wraper">
+								<span class="badge" style="background-color: #ff6f0f">단골</span>
+							</span>
+						</div>
+					</div>
+					<p style="text-align: left; margin-top: 10px; font-size: 19px;">저번에 한번 주문해서 가격대비 괜찮다 생각해서 이번에 또 주문했는데 저장한지 오래된 사과를 보내신건지 이렇게 수분말라 쪼글한 사과가 10키로 한박스안에 
+이만큼이나 나오네요 채팅방에 문의드려도 답도 없으시고 담부턴 주문하지 말아야겠네요
+사과 상태가 너무 안좋네요 다른것도 겉은 멀쩡해도
+깍이니 멍든부분도 많고ㅜㅜ</p>
+				</li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</section>
 
-</div>
+
+
+
+
+	</div>
 </div>
 
 
@@ -320,6 +410,25 @@ flex: 1 1;
     overflow: hidden;
 }
 /*셀러 프로필 정보 섹션 끝*/
+
+.notice{
+    display: flex;
+    align-items: flex-start;
+    border-radius: 0.625rem;
+    padding: 1rem;
+    line-height: 1.35;
+    overflow: hidden;
+    background-color: #f7be6824;
+}
+.stores-reivew ul{
+margin: 0;
+padding: 0;
+}
+
+.stores-reivew ul li{
+margin: 0;
+padding: 0;
+}
 
 </style>
 

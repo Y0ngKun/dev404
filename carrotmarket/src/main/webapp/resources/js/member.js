@@ -1,7 +1,25 @@
 /**
  * 
  */
+ 
+
+ 	
  $(document).ready(function(){
+ 
+ //초기 페이지 로딩 시 사장님 선택 여부에 따라 프로필 사진 첨부 및 카테고리 선택 영역 초기 설정
+document.addEventListener('DOMContentLoaded', function() {
+	const isBusinessRadio = document.querySelector('input[name="isbusiness"]:checked');
+	toggleProfileSection(isBusinessRadio.value === 'B');
+});
+	
+
+	// 개인/사장님 카테고리 선택 영역 토글 함수
+function toggleProfileSection(show) {
+	const profileSection = document.getElementById('profile-section');
+	profileSection.style.display = show ? 'block' : 'none';
+}
+ 
+ 	
  
  	$("#join_button").on("click",function(e){
  		e.preventDefault();
@@ -10,6 +28,11 @@
  	
  	$("#join_submit").css("cursor","pointer");
  	$("#join_reset").css("cursor","pointer");
+ 	
+ 	
+ 	
+ 	
+ 	
  	
  	//아이디 중복 체크 후 아이디 수정하면 중복체크 확인 날리기
  	$("#join_form").find("input[name='userid']").on("keyup",function(){
@@ -65,6 +88,7 @@
  		
  		e.preventDefault();
  		
+ 		
  		//이름 작성 유무
  		if( $("#join_form").find("input[name='username']").val().length == 0 ){
  			alert("이름을 입력해 주세요");
@@ -105,6 +129,7 @@
 			
 			return false;
  		}
+ 		
  		//주소 입력 유무
  		if( $("#join_form").find("input[name='useraddress']").val().length == 0 ){
  			alert("주소를 입력해 주세요");

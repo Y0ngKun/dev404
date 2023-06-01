@@ -1,16 +1,19 @@
 package org.ezen.ex02.service;
 
+import org.ezen.ex02.domain.MemberImageVO;
 import org.ezen.ex02.domain.MemberVO;
+import org.ezen.ex02.mapper.MemberImageVOMapper;
 import org.ezen.ex02.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class MemberServiceImpl implements MemberService{
 	
 	private MemberMapper memberMapper;
+	
+	private MemberImageVOMapper imgMemberMapper;
 	
 	//로그인할때 맴버 가져오기
 	@Override
@@ -48,5 +51,13 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteMemberById(int id) {
 		memberMapper.deleteMemberById(id);
 	}
+
+	@Override
+	public MemberImageVO getPfImg(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

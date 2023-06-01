@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
 
 <c:set var="pageTitle" value="동네 이웃들이 자주가는 동네 가게"></c:set>
+
 <%@ include file="../include/header.jspf" %>
 
 <div class="top-banner">

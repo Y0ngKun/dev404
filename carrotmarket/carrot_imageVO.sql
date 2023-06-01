@@ -1,4 +1,4 @@
-create table CARROT_IMAGEVO ( 
+create table CARROT_PF_IMAGE ( 
   uuid varchar2(100) not null,
   uploadPath varchar2(200) not null,
   fileName varchar2(100) not null, 

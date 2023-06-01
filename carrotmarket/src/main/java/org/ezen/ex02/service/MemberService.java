@@ -1,5 +1,6 @@
 package org.ezen.ex02.service;
 
+import org.ezen.ex02.domain.MemberImageVO;
 import org.ezen.ex02.domain.MemberVO;
 
 public interface MemberService {
@@ -15,5 +16,7 @@ public interface MemberService {
 	void modifyPasswd(int id, String hashPasswd);
 
 	void deleteMemberById(int id);
+	
+	public MemberImageVO getPfImg(long id);
 
 }

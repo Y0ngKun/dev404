@@ -1,19 +1,21 @@
-create sequence carrot_seq_board;
 
 create table carrot_board (
   bno number(10,0),
-  title varchar2(200) not null,
+  notice varchar2(200),
   content varchar2(3000) not null,
-  writer varchar2(50) not null,
+  customBenefit varchar2(300),
+  StoresLocation varchar2(300),
+  writer varchar2(150) not null,
   regdate date default sysdate, 
   updatedate date default sysdate
 );
 
+create sequence carrot_seq_board;
 
 alter table carrot_board add constraint carrot_pk_board primary key (bno);
 
-insert into carrot_board (bno, title, content, writer) 
-values (carrot_seq_board.nextval, '테스트 제목','테스트 내용','당근유저');
+insert into carrot_board (bno, notice, content,customBenefit,StoresLocation, writer) 
+values (carrot_seq_board.nextval,'notice', '테스트 본문 내용',' 베네핏 ','가게 위치', '작성자');
 
 commit;
 

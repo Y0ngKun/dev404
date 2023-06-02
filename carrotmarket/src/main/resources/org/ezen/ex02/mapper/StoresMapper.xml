@@ -42,6 +42,7 @@
 		,customBenefit
 		</if>
 		,StoresLocation,writer)
+		
 		values (carrot_seq_board.nextval, #{notice}, #{content}
 		<if test="customBenefit != null">
 		, #{customBenefit}

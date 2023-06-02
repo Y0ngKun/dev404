@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.ChatMapper">
+	
+	<select id="getMyChatRoomList" resultType="org.ezen.ex02.domain.ChatRoomVO">
+		select 
+			room.*
+			,art.title ,art.cost ,art.sell 
+			,mem1.usernickname as chatUserNickName
+			,mem2.usernickname as targetUserNickName
+		from carrot_chatroom room 
+			left outer join carrot_secondhand_articles art on room.articleno = art.id
+			left outer join carrot_member mem1 on room.chatuser = mem1.id
+			left outer join carrot_member mem2 on room.targetuser = mem2.id
+		where 
+			room.chatuser = #{id} or room.targetuser = #{id}
+	</select>
+	
+	<select id="getMessage" resultType="org.ezen.ex02.domain.ChatVO">
+		select * from carrot_chat where roomid = #{roomId}
+	</select>
+	
+	<select id="findChatRoom" resultType="org.ezen.ex02.domain.ChatRoomVO">
+		select * from carrot_chatroom
+		where chatuser = #{id} and articleNo = #{articleNo}
+	</select>
+	
+	<insert id="createChatRoom">
+		insert into carrot_chatroom(roomid,chatuser,targetuser, articleNo)
+		values(#{roomId},#{chatUser},#{targetUser},#{articleNo})
+	</insert>
+	
+	<select id="getChatRoomByRoomId" resultType="org.ezen.ex02.domain.ChatRoomVO">
+		select * from carrot_chatroom
+		where roomId = #{roomId}
+	</select>
+	
+	<insert id="insertMessage">
+		insert into carrot_chat(roomid, message, sender, regdate)
+		values(#{roomId}, #{message}, #{sender}, #{regDate})
+	</insert>
+	
+	<update id="deleteMessage">
+		update carrot_chat
+		set message = '삭제된 메세지 입니다.'
+		where roomid = #{roomId} and regdate = #{regDate}
+	</update>
+	
+	<delete id="deleteAllMessage">
+		delete carrot_chat
+		where roomId = #{roomId}
+	</delete>
+	
+	<delete id="deleteChatRoom">
+		delete carrot_chatroom
+		where roomId = #{roomId}
+	</delete>
+	
+</mapper>

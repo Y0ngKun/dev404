@@ -118,7 +118,7 @@ public class MemberController {
 					for (Cookie cookie : cookies) {
 						if (cookie.getName().equals("userId")) {
 							cookie.setMaxAge(0);
-							cookie.setPath("/");
+							cookie.setPath("/ex02");
 							response.addCookie(cookie);
 						}
 					}

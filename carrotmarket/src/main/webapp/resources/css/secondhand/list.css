@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+img {
+	object-fit: cover;
+}
+
+#result .result-container .articles-wrap .flat-card {
+	position: relative;
+	text-align: left;
+	display: inline-block;
+	width: calc(33% - 23px);
+	margin-right: 38px;
+	margin-bottom: 40px;
+}
+
+#result .result-container .articles-wrap .flat-card:nth-child(3n-2) {
+	margin-right: 38px;
+}
+
+#result .result-container .articles-wrap .flea-market-article .article-sub-info
+	{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#result .result-container .articles-wrap .flea-market-article .article-sub-info .article-watch
+	{
+	color: #212529;
+	display: inline-block;
+	font-size: 14px;
+}
+
+#result .result-container .articles-wrap .flea-market-article .article-sub-info .article-watch .watch-icon
+	{
+	width: 13px;
+	margin: 0 4px 1px 4px;
+}
+
+#result .result-container .articles-wrap .flat-card:nth-child(3n) {
+	margin-right: 0px;
+}
+
+#result .result-container .articles-wrap .article-title {
+	display: block;
+	font-weight: 600;
+	color: #212529;
+	font-size: 19px;
+	line-height: 21px;
+	margin-top: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

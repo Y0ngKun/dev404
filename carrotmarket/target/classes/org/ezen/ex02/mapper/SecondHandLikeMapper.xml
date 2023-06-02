@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.SecondHandLikeMapper">
+	
+	
+	<insert id="likeArticle">
+		insert into carrot_secondhand_article_like(id, articleno, memberno)
+		values(carr_like_seq.nextval, #{articleNo}, #{memberNo})
+	</insert>
+
+	<delete id="unlikeArticle">
+		delete carrot_secondhand_article_like
+		where articleNo = #{articleNo} and memberNo = #{memberNo}
+	</delete>
+	
+	<select id="findLike" resultType="org.ezen.ex02.domain.SecondHandLikeVO">
+		select *
+		from carrot_secondhand_article_like
+		where articleno = #{articleNo} and memberno = #{memberNo}
+	</select>
+	
+</mapper>

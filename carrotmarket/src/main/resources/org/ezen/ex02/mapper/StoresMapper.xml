@@ -22,8 +22,8 @@
 		생략 이가능 -->
 	<insert id="insert">
 	<![CDATA[
-		insert into  carrot_board (bno,title,content,writer)
-		values (carrot_seq_board.nextval, #{title}, #{content}, #{writer})
+		insert into carrot_board (bno,notice,content,customBenefit,StoresLocation,writer)
+		values (carrot_seq_board.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
 	]]>
 	</insert>
 	
@@ -37,8 +37,16 @@
 			select carrot_seq_board.nextval from dual
 		</selectKey>
 
-		insert into carrot_board (bno,title,content, writer)
-		values (#{bno},#{title}, #{content}, #{writer})
+		insert into carrot_board (bno,notice,content
+		<if test="customBenefit != null">
+		,customBenefit
+		</if>
+		,StoresLocation,writer)
+		values (carrot_seq_board.nextval, #{notice}, #{content}
+		<if test="customBenefit != null">
+		, #{customBenefit}
+		</if>
+		, #{StoresLocation}, #{writer})
 	</insert>
 	
 	<!--
@@ -48,7 +56,7 @@
 	 -->
 	<update id="update">
 		update carrot_board
-		set title= #{title},
+		set notice= #{notice},
 		content=#{content},
 		writer = #{writer},
 		updateDate = sysdate

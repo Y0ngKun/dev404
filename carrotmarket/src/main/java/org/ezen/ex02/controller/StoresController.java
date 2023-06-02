@@ -82,14 +82,13 @@ public class StoresController {
 	@GetMapping("/business-profiles")
 	public String showBizProfiles(HttpServletRequest request, HttpServletResponse response){
 		
-		String title = request.getParameter("title");
+		String notice = request.getParameter("title");
         String content = request.getParameter("content");
         
-        request.setAttribute("title", title);
+        request.setAttribute("notice", notice);
         request.setAttribute("content", content);
 		
-        log.info(title);
-        log.info(content);
+        
         
 		return "stores/business-profiles";
 	}

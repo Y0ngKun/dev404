@@ -8,8 +8,6 @@
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 
 <div class="container" style= " margin-top:100px; max-width: 500px !important;">
-
-
 	
 	<!-- 파일 첨부 창 -->				
 				<div class="attach mt-4 ">
@@ -23,27 +21,16 @@
 						
 					<div class='uploadResult mt-3'>
 						<!-- 업로드 파일 결과를 보여 주는 창 -->					
-						<div class='row card' id='card'>
+						<div class='row' id='card'>
 						
 						</div>  			
 					</div>					
 				</div>
 	<!-- 파일 첨부 부분 끝 -->
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<form action="join" method="post" id="join_form"
+	<form action="join" method="post" id="join_form" role="form"
 	style = "padding-top: 3px; margin : 0 auto;"  >	
 			
-			
-	
 			<h1>이름</h1>
 			<input type="text" name="username"/>
 			
@@ -101,8 +88,6 @@
 			  	</div>
 			</div>
 			
-			
-			
 			<!-- 사장님 일 때 보이는 메뉴 -->
 			<div id="profile-section" style="padding-top: 5px; width: 100%; margin: 0 auto; display: none; ">
 				
@@ -120,8 +105,6 @@
 				<div id="category_error" style="font-size: 1.5rem; color: red;"></div>
 			</div>
 			
-			
-			
 			<input type="submit" id="join_submit" value="회원가입" style="width: 100%;background-color : #ff6f0f; color: white;"/>
 			<input type="button" id="join_reset" value="뒤로가기" onclick="history.back()" style="width: 100%;background-color : #ff6f0f; color: white; margin-bottom: 70px;"/>
 	</form>
@@ -131,147 +114,118 @@
 <!-- 프로필 사진 업로드 처리 스크립트 -->
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	let formObj = $("form[role='form']"); //게시글 작성 등록
 	let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); //확장자가 지정된 것은 업로드 제한
 	let maxSize = 25242880; //25MB 파일 최대 크기
-	
 	let uploadUL = $(".uploadResult #card");
 	
-	$("button[type='submit']").on("click", function(e){  //게시글작성 submit버튼
+	$("input[type='submit']").on("click", function(e){  //게시글작성 submit버튼
+		
+		e.preventDefault();	  
 	    
-	    e.preventDefault();
-	    
-	    console.log("회원 가입 창 submit 버튼 클릭함");
-	    
-	    let str = "";
-	    
-	    $(".uploadResult .card").each(function(i, obj){
+	    let str = "";	    
+	   
+	    $(".uploadResult .card p").each(function(i, obj){
 	      
 	      let jobj = $(obj);
-	      
-	      console.dir(jobj);
+	      console.log(jobj);
 	      console.log("-------------------------");
-	      console.log(jobj.data("filename"));
-	      
-	     
-	      	
-	      /* */
-	      str += "<input type='hidden' name='uploadFile.fileName' value='"+jobj.data("filename")+"'>";
-	      str += "<input type='hidden' name='uploadFile.uuid' value='"+jobj.data("uuid")+"'>";
-	      str += "<input type='hidden' name='uploadFile.uploadPath' value='"+jobj.data("path")+"'>";
-	      
-	      console.log(str);
-	      
-	    
-	    });	    
-	   
-	   
+	      console.log(jobj.data("filename"));		      	
+	      str += "<input type='text' name='fileName' value='"+jobj.data("filename")+"'>";	     
+	      str += "<input type='text' name='uuid' value='"+jobj.data("uuid")+"'>";
+	      str += "<input type='text' name='uploadPath' value='"+jobj.data("path")+"'>";
+	   		
+	    });	 	    
 	    
 	    formObj.prepend(str).submit();
 	    
 	});
 	
-$("input[type='file']").change(function(e){
+	$("input[type='file']").change(function(e){
 	
-	let formData = new FormData(); //가상의 form엘리먼트 생성
-	let inputFile = $("input[name='uploadFile']");
-	let files = inputFile[0].files[0]; 
-	//첫번째 inputFile DOM의 files들 type이 file인경우 선택한 파일들(value값)
-	
-	console.log(files);
-	formData.append("uploadFile", files); 
+		let formData = new FormData(); //가상의 form엘리먼트 생성
+		let inputFile = $("input[name='uploadFile']");
+		let files = inputFile[0].files[0]; 
+		//첫번째 inputFile DOM의 files들 type이 file인경우 선택한 파일들(value값)
 		
+		console.log(files);
+		formData.append("uploadFile", files); 
+		
+		$.ajax({
+			url: '../member/uploadAjaxAction',
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: 'POST',					
+		    dataType : 'json', //생략해도 무방		    
+			success : function(result) {
+				alert(result + "결과");
+				showUploadResult(result);
+				$("#upload").val(""); //파일 입력창 초기화
+			},
+			error : function() {
+				alert("ajax upload failed");
+			}
+		});
+	});	
 	
-	
-	$.ajax({
-		//url: '../upload/uploadAjaxAction?${_csrf.parameterName}=${_csrf.token}',
-		url: '../member/uploadAjaxAction',
-		processData: false,
-		contentType: false,
-		data: formData,
-		type: 'POST',					
-		//beforeSend: function(xhr) { 
-	    //      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	    //},		    
-	    dataType : 'json', //생략해도 무방		    
-		success : function(result) {
-			console.log(result);
-			//List<AttachFileDTO>가 결과로 옴
-			showUploadResult(result);
-			$("#upload").val(""); //파일 입력창 초기화
-		},
-		error : function() {
-			alert("ajax upload failed");
-		}
-	});
-});
+	function showUploadResult(uploadResultArr) {
+		
+		if(!uploadResultArr || uploadResultArr.length == 0) {
+			alert("uploadResultArr result");
+			return;
+		}		
+				
+		$(uploadResultArr).each(function(i, obj) {
+			let str ="";
+			
+			if(obj.image) {
+				let fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);				
+				str += "<div class='card col-md-3'>";
+				str += "<div class='card-body'>";
+				str += "<p class='mx-auto' style='width:90%;' title='"+ obj.fileName + "'" ;
+				str +=  "data-path='"+obj.uploadPath +"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'>";						
+				str += "<img class='mx-auto d-block' src='../member/display?fileName="+fileCallPath+"'>";						
 
+				str += "</p>";
+				str += "<h4><span class='d-block w-50 mx-auto badge badge-danger badge-pill' data-file='"+fileCallPath+"' data-type='image'> &times; </span></h4>";				
+				str += "</div></div>";				
+			}
+			else {
+				
+				let fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);
+				let fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");				
+				str += "<div class='card col-md-3'>";
+				str += "<div class='card-body'>";	
+				str += "<p class='mx-auto' style='width:90%;' title='"+ obj.fileName + "'" ;
+				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' >";
+				str += "<img class='mx-auto d-block' src='../images/attach.png' >";				
+				str += "</p>";
+				str += "<h4><span class='d-block w-50 mx-auto badge badge-danger badge-pill' data-file='"+fileCallPath+"' data-type='file'> &times; </span></h4>";
+				str += "</div></div>";		
+			}
+			uploadUL.append(str);
+		});		
+	}
+	
+	function checkExtension(fileName, fileSize) {
+		
+		if(fileSize >= maxSize) {
+			alert("파일 사이즈 초과");
+		    return false;
+		}
+		if(regex.test(fileName)) {
+			 alert("해당 종류의 파일은 업로드할 수 없습니다.");
+		     return false;
+		}
+		return true;
+	}
+});
 
 
 	
 //ajax로 이미지 업로드 성공시 하단에 업로드된 이미지 보여주기
-function showUploadResult(uploadResultArr) {
-	
-	if(!uploadResultArr || uploadResultArr.length == 0)
-		return;		
-			
-	$(uploadResultArr).each(function(i, obj) {
-		let str ="";
-		if(obj.image) {
-			
-			let fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);				
-			str += "<div class='card col-md-3'>";
-			str += "<div class='card-body'>";
-			str += "<p class='mx-auto' style='width:90%;' title='"+ obj.fileName + "'" ;
-			str +=  "data-path='"+obj.uploadPath +"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'>";						
-			str += "<img class='mx-auto d-block' src='../member/display?fileName="+fileCallPath+"'>";						
-			str += "</p>";
-			str += "<h4><span class='d-block w-50 mx-auto badge badge-danger badge-pill' data-file='"+fileCallPath+"' data-type='image'> &times; </span></h4>";				
-			str += "</div></div>";				
-		}
-		else {
-			
-			let fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);
-			let fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");				
-			str += "<div class='card col-md-3'>";
-			str += "<div class='card-body'>";	
-			str += "<p class='mx-auto' style='width:90%;' title='"+ obj.fileName + "'" ;
-			str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' >";
-			str += "<img class='mx-auto d-block' src='../images/attach.png' >";				
-			str += "</p>";
-			str += "<h4><span class='d-block w-50 mx-auto badge badge-danger badge-pill' data-file='"+fileCallPath+"' data-type='file'> &times; </span></h4>";
-			str += "</div></div>";		
-							
-		}
-		
-		uploadUL.append(str);
-	});		
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	/*
 $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
@@ -299,21 +253,6 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 	
 	*/
 	
-	function checkExtension(fileName, fileSize) {
-		
-		if(fileSize >= maxSize) {
-			alert("파일 사이즈 초과");
-		    return false;
-		}
-		if(regex.test(fileName)) {
-			 alert("해당 종류의 파일은 업로드할 수 없습니다.");
-		     return false;
-		}
-		return true;
-	}
-	
-	
-});
 </script>
 
 <script>

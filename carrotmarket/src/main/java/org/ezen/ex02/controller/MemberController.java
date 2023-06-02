@@ -137,10 +137,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
-	
 	//회원가입 액션
 	@PostMapping(
 			value="/join",
@@ -148,8 +144,8 @@ public class MemberController {
 			)
 	public String joinAction(MemberVO memberVO) {
 		
-		log.info("여기까지 왔냐??");
-		log.info("왔으면 VO 확인한다" + memberVO);
+		System.out.println(memberVO.getUuid());
+		log.info("VO 확인 ::: " + memberVO);
 		String hashPasswd = BCrypt.hashpw(memberVO.getUserpwd(), BCrypt.gensalt());
 		memberVO.setUserpwd(hashPasswd);
 		
@@ -164,8 +160,6 @@ public class MemberController {
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<MemberImageDTO> uploadAjaxPost(MultipartFile uploadFile) {
-
-	    log.info("회원가입 프로필 이미지 첨부,  ajax 메소드 확인");
 
 	    MemberImageDTO attachDTO = new MemberImageDTO();
 
@@ -196,7 +190,7 @@ public class MemberController {
 	            attachDTO.setImage(true);
 
 	            FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-	            Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 144, 144);
+	            Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 80, 80);
 	            thumbnail.close();
 	        }
 	    } catch (Exception e) {

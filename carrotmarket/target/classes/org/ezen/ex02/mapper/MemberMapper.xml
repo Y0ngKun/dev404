@@ -32,6 +32,8 @@
 		)
 	</insert>
 	
+	
+	
 	<select id="getMemberId" resultType="org.ezen.ex02.domain.MemberVO">
 		select * from carrot_member where id = #{id}
 	</select>

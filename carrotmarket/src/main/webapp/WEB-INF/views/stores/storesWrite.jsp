@@ -5,22 +5,17 @@
 
 
 <!-- register 메인화면 -->
-<div class="container mt-4 mb-4" id="mainContent" >
-	<div class="row">
-		<div class="col-md-2">
-		
-		</div>
-		<div class="col-md-10">
+<div class="container" id="mainContent" >
+		<div>
 			<div id="submain">
-				<h4 class="text-center wordArtEffect text-success">게시물 등록</h4>
-				
-				
+				<h4 class="text-center wordArtEffect text-success"> <strong style="color: #ff6f0f; font-size: 21px; font-weight: bolder;"> 우리가게 등록하기</strong></h4>
+				 
 				<!-- 파일 첨부 창 -->				
 				<div class="attach mt-4">
 					<div class="row">						
-						<div class="form-group uploadDiv col-md-12">
-							
-							<input type="file" class="form-control" id="upload" name="uploadFile" /> 
+						<div class="form-group uploadDiv">
+							<label for="upload"><strong>상점 이미지를 등록해주세요</strong> </label>
+							<input type="file" class="form-control" id="upload" name="uploadFile" multiple="multiple" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	
@@ -32,44 +27,44 @@
 					</div>					
 				</div>
 				<!-- 파일 첨부 부분 끝 -->
-				
-				
+								
 				<form action="/ex02/storesWrite" method="post" id="freg" name="freg" role="form">
 					
-					<!--  
-					시큐리티 부분
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					-->
+					<div class="form-group" style="margin-top: 7px;">
+						<label for="notice"><strong>알림 사항 : </strong></label>
+						<input type="text" class="form-control" id="notice" placeholder="안내 사항이나 전달 사항을 알려주세요" 
+							name="notice" required />		
+					</div>
+			
+					<div class="form-group">
+					<label for="content" style="margin-top: 5px;"><strong>가게 정보 : </strong></label><textarea class="form-control" id="content" placeholder="우리 가게를 소개해주세요" name="content" rows="20" style="width: 100%; margin-bottom: 15px;" required></textarea>
 					
-					<!-- 토큰 정보를 숨겨서 보냄 -->
 					<div class="form-group">
-						<label for="title">제목:</label>
-						<input type="text" class="form-control" id="title" placeholder="Enter Title" 
-							name="title" required />		
+						<label for="custom"><strong>단골 혜택 : </strong></label>
+						<input type="text" class="form-control" id="custom" name="custom" placeholder="당근 마켓을 보고 왔을 때 혜택을 알려주세요!" />		
 					</div>
-					<div class="form-group"><label for="content">내용:</label><textarea class="form-control" id="content" placeholder="Enter Content" name="content" rows="10" required></textarea>		
+					
+					
+					<div class="form-group">
+						<label for="StoresLocation"><strong>가게 위치 : </strong></label>
+						<input type="text" class="form-control" id="StoresLocation" name="StoresLocation" />		
+					</div>	
 </div>
-<!-- textarea 버그때문에 줄 당김 -->
-					<!--시큐리티 적용전  
+					
+					
+					
+					
 					<div class="form-group">
-						<label for="writer">작성자:</label>
-						<input type="text" class="form-control" id="writer" name="writer" />		
-					</div>
-					-->
-					<div class="form-group">
-						<label for="writer">작성자:</label>
-						<input type="text" class="form-control" id="writer" name="writer" />		
+						<label for="writer"><strong>작성자 : </strong></label>
+						<input type="text" class="form-control" id="writer" name="writer"  />		
 					</div>
 					
 					<button type="submit" class="btn btn-success">작성</button>&nbsp;&nbsp;
 					<button type="reset" class="btn btn-danger">취소</button>	&nbsp;&nbsp;
-					<a id="listLink" href="list" class="btn btn-primary">목록보기</a>
+					<a id="listLink" href="/ex02/stores/stores" class="btn btn-primary">목록 보기</a>
 				</form>
-				
-				
 			</div><!-- submain -->
 		</div><!-- col-md-10 -->
-	</div> <!-- row -->
 </div><!-- mainContent -->
 
 <%@include file="../include/footer.jspf"%>
@@ -197,29 +192,7 @@ function showUploadResult(uploadResultArr) {
 }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 	console.log("delete file");
@@ -231,7 +204,7 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 	
 	$.ajax({
 		//url: '../upload/deleteFile?${_csrf.parameterName}=${_csrf.token}',
-		url : '../ex02/storesWrite/deleteFile',
+		url : '../member/deleteFile',
 	    data: {fileName: targetFile, type:type},
 	    dataType:'text',
 	    type: 'POST',		    
@@ -261,6 +234,15 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 });
 </script>
 </body>
+<style type="text/css">
 
-</body>
+.container{
+max-width: 768px !important;
+font-size: 15px;
+}
+input{
+padding: 14px !important; 
+}
+
+</style>
 </html>

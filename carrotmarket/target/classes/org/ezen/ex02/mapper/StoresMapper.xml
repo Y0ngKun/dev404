@@ -7,14 +7,14 @@
 	<!-- 게시글 리스트 전부 불러오기 -->
 	<select id="getList" resultType="org.ezen.ex02.domain.StoresVO">
 	<![CDATA[
-	select * from carrot_board where bno > 0 ORDER BY BNO DESC
+	select * from carrot_stores where bno > 0 ORDER BY BNO DESC
 	]]>
 	</select>
 	
 	<!--  bno번호에 해당 하는 거 불러오기 -->
 	<select id="read" resultType="org.ezen.ex02.domain.StoresVO">
 	<![CDATA[
-		select * from carrot_board where bno = #{bno}
+		select * from carrot_stores where bno = #{bno}
 	]]>
 	</select>
 	
@@ -22,8 +22,8 @@
 		생략 이가능 -->
 	<insert id="insert">
 	<![CDATA[
-		insert into carrot_board (bno,notice,content,customBenefit,StoresLocation,writer)
-		values (carrot_seq_board.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
+		insert into carrot_stores (bno, notice, content, customBenefit, StoresLocation, writer)
+		values (seq_carrot_stores.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
 	]]>
 	</insert>
 	
@@ -33,22 +33,23 @@
 	bno속성에 매핑
 	-->
 	<insert id="insertSelectKey">
+	
 		<selectKey keyProperty="bno" order="BEFORE"	resultType="Long">
-			select carrot_seq_board.nextval from dual
+			select seq_carrot_stores.nextval from dual
 		</selectKey>
 
-		insert into carrot_board (bno,notice,content
-		<if test="customBenefit != null">
-		,customBenefit
-		</if>
-		,StoresLocation,writer)
+		insert into carrot_stores (bno,notice,content,customBenefit,StoresLocation,writer)
+		values (seq_carrot_stores.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
 		
-		values (carrot_seq_board.nextval, #{notice}, #{content}
-		<if test="customBenefit != null">
-		, #{customBenefit}
-		</if>
-		, #{StoresLocation}, #{writer})
 	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!--
 	Bean클래스형인 객체는 parameterType 생략 가능
@@ -56,17 +57,20 @@
 	update시는 default값이 적용 안되므로 updateDate도 변경 처리
 	 -->
 	<update id="update">
-		update carrot_board
-		set notice= #{notice},
-		content=#{content},
+		update carrot_stores
+		set 
+		notice= #{notice},
+		content = #{content},
+		customBenefit = #{customBenefit},
+		StoresLocation = #{StoresLocation},
 		writer = #{writer},
-		updateDate = sysdate
+		updateDate = sysdate,
 		where bno = #{bno}
 	</update>
 	
 	<!-- bno번호로 찾아서 삭제 하기 -->
 	<delete id="delete">
-		delete carrot_board where bno = #{bno}
+		delete carrot_stores where bno = #{bno}
 	</delete>
 	
 	

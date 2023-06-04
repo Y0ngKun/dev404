@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.ezen.ex02.domain.StoresImageVO;
 import org.ezen.ex02.domain.StoresVO;
-import org.ezen.ex02.mapper.StoresImageVOMapper;
+import org.ezen.ex02.mapper.StoresImagesMapper;
 import org.ezen.ex02.mapper.StoresMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class StoresServiceImpl implements StoresService {
 	private StoresMapper mapper;
 	
 	@Setter(onMethod_= {@Autowired})
-	private StoresImageVOMapper imageMapper;
+	private StoresImagesMapper imageMapper;
 
 	
 	//BoardMapper와 BoardAttachMapper 동시 처리하므로 트랜젝션 처리
@@ -41,10 +41,11 @@ public class StoresServiceImpl implements StoresService {
 			}
 
 			board.getAttachList().forEach(attach -> {
-
-				attach.setBno(board.getBno()); //bno가 TBL_ATTACH테이블에 필요하므로 지정 해줌
+				
+				attach.setBno(board.getBno());
 				imageMapper.insert(attach);
 			});
+			
 		}
 
 		@Override

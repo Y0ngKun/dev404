@@ -144,7 +144,6 @@
  		   
  		    $(".uploadResult .card p").each(function(i, obj){
  		    
- 		    alert("1111111111111111111111111111");
  		      
  		      let jobj = $(obj);
  		      console.log(jobj);

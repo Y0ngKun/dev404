@@ -9,6 +9,7 @@ import lombok.Data;
 public class StoresVO {
 	
 	  private Long bno;
+	  
 	  private String notice;
 	  private String content;
 	  private String customBenefit;

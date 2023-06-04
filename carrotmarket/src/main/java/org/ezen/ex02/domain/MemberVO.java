@@ -16,7 +16,6 @@ public class MemberVO {
 	private String useremail;
 	private String usergender;
 	
-
 	private String isbusiness;
 	private String category;
 	
@@ -24,7 +23,5 @@ public class MemberVO {
 	private String uploadPath;
 	private String fileName;
 	private String filePath;
-	
-	
 	
 }

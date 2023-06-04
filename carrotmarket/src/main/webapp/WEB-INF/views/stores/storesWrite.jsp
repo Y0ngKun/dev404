@@ -39,6 +39,7 @@
 					<div class="form-group">
 					<label for="content" style="margin-top: 5px;"><strong>가게 정보 : </strong></label><textarea class="form-control" id="content" placeholder="우리 가게를 소개해주세요" name="content" rows="20" style="width: 100%; margin-bottom: 15px;" required></textarea>
 					
+</div>
 					<div class="form-group">
 						<label for="customBenefit"><strong>단골 혜택 : </strong></label>
 						<input type="text" class="form-control" id="customBenefit" name="customBenefit" placeholder="당근 마켓을 보고 왔을 때 혜택을 알려주세요!" />		
@@ -49,7 +50,6 @@
 						<label for="StoresLocation"><strong>가게 위치 : </strong></label>
 						<input type="text" class="form-control" id="StoresLocation" name="StoresLocation" />		
 					</div>	
-</div>
 					
 					
 					

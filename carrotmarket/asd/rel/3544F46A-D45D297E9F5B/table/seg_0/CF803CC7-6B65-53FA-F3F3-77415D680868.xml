@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CF803CC7-6B65-53FA-F3F3-77415D680868" schemaObject="BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD" name="CARROT_BOARD">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>C215666C-36A8-F4AA-2F99-EE1223CE6602</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BNO" id="AD91A29B-50F6-258C-B005-569625E08159">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>659D5650-02A2-B2E9-3B0D-B749E548A99B</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTICE" id="87A6F88F-37E7-7887-FA0A-4412DDD23462">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>52821E83-0E50-563E-D7F0-B911003F2CF0</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTENT" id="BB21665B-69AA-98C7-0810-34035ABC462F">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>24E5D7AD-72E5-EF2A-595D-BC1EA5F89335</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3000 BYTE</dataTypeSize>
+<ownDataTypeParameters>3000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WRITER" id="A0AA019D-F960-FC7E-6360-C24DA9BC7D43">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>2AA0D1F0-7D20-B4EF-D251-FC62EF01D01B</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REGDATE" id="18A8EB43-030C-10D4-03E9-97EDA4F2F7E6">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>E1450FCC-EA0B-0729-709C-4E74296D15C2</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>sysdate</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPDATEDATE" id="888726EE-0FB4-E9B2-03C1-B37FE8522CDF">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>B4FE8F52-08BC-8632-8AD3-C3B9CF58E571</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>sysdate</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CUSTOMBENEFIT" id="32AD0B65-983A-5875-5367-48516D920CF9">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>2D8D69E4-E9EF-BCC2-1958-A9BC1853CFA6</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STORESLOCATION" id="94BE56DC-9E12-9957-8146-51395D5F1B7C">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>8C154A6D-07CD-A79B-649E-BFABD05CF338</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C0C6D3D5-2F56-74EE-3F54-EC535174084B" name="CARROT_PK_BOARD">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>535BD980-4880-C7E4-3BBA-50F029A9F402</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AD91A29B-50F6-258C-B005-569625E08159"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="539FE211-CA1B-6CEA-FCDD-C90EBAABFA00" schemaObject="BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD" name="CARROT_PK_BOARD">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>7A0971EE-0E2A-B1C5-9D26-D3CBB0ECA248</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AD91A29B-50F6-258C-B005-569625E08159"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="CARROT_BOARD" directorySegmentName="seg_0" id="CF803CC7-6B65-53FA-F3F3-77415D680868">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<schemaObject>BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>81082F43-54E2-622B-3B04-69418C3A0141</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="REGDATE" id="18A8EB43-030C-10D4-03E9-97EDA4F2F7E6">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<defaultValue>sysdate</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="CUSTOMBENEFIT" id="32AD0B65-983A-5875-5367-48516D920CF9">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NOTICE" id="87A6F88F-37E7-7887-FA0A-4412DDD23462">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UPDATEDATE" id="888726EE-0FB4-E9B2-03C1-B37FE8522CDF">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<defaultValue>sysdate</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="STORESLOCATION" id="94BE56DC-9E12-9957-8146-51395D5F1B7C">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WRITER" id="A0AA019D-F960-FC7E-6360-C24DA9BC7D43">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BNO" id="AD91A29B-50F6-258C-B005-569625E08159">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONTENT" id="BB21665B-69AA-98C7-0810-34035ABC462F">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CARROT_PK_BOARD" id="539FE211-CA1B-6CEA-FCDD-C90EBAABFA00">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<schemaObject>BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD</schemaObject>
+<segment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CARROT_PK_BOARD" id="C0C6D3D5-2F56-74EE-3F54-EC535174084B">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<segment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+<existingIndex>539FE211-CA1B-6CEA-FCDD-C90EBAABFA00</existingIndex>
+<indexSegment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

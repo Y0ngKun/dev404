@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="78FB7893-2577-C50B-8735-D9D89054B8DB" schemaObject="BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD" name="CARROT_IMAGEVO">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>5B06837A-DD5A-CA26-411A-4E7D503B1A68</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UUID" id="1204B354-8F1D-11A8-3ECA-0427AEABCB1C">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>1F14C314-4D56-2395-F564-8702CF629BD4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPLOADPATH" id="CAB9553C-1B7F-7CDF-BA57-BEFB6FB5ABF1">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>230F3866-774A-09B5-2220-4EB63DA26329</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FILENAME" id="D83CA3B2-29BC-CB21-528D-6178F086D130">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>D5F76067-1339-FAEC-7CAE-405690D5AB79</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FILETYPE" id="0F59299A-D222-B62C-D5D2-6AA291D683FA">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>0F914088-181C-3F9D-0243-2FB1FD8AACF4</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;I&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BNO" id="0B6185FB-B557-D09D-7A97-E072D9114685">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>2DDA855E-5D58-E408-B2BD-2D423EF4B213</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3E3DFA68-354B-32EC-F0D0-02D4C128405A" referredColumn="AD91A29B-50F6-258C-B005-569625E08159"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F106BF24-FD3A-915F-4BC6-3DDB0333FE27" name="CR_IMAGE_PK">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>2E980919-75CA-721A-FFD0-E61ABA5039A9</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1204B354-8F1D-11A8-3ECA-0427AEABCB1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="720F49D5-9A07-727F-1613-81A68E9113F9" schemaObject="BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD" name="CR_IMAGE_PK">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<importedID>605B922D-19B9-BF86-F467-33B7C184710C</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1204B354-8F1D-11A8-3ECA-0427AEABCB1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3274044D-48C5-3F71-8EA7-5028D2B3B6CA" name="FK_CARROT_BOARD_IMAGE">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0B6185FB-B557-D09D-7A97-E072D9114685"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -2,8 +2,8 @@ package org.ezen.ex02.service;
 
 import java.util.List;
 
-
-import org.ezen.ex02.domain.StoresImageVO;
+import org.ezen.ex02.domain.MemberVO;
+import org.ezen.ex02.domain.StoresImagesVO;
 import org.ezen.ex02.domain.StoresVO;
 
 public interface StoresService {
@@ -23,7 +23,12 @@ public interface StoresService {
 //	
 //	public int getTotal(Criteria cri);
 	
-	public List<StoresImageVO> getAttachList(Long bno);
+	//게시판 bno에 해당하는 이미지 한장 가져오기
+	public StoresImagesVO getAttachList(Long bno);
+	
+	public List <StoresImagesVO> getAllImages();
+	
+	public MemberVO getWriterPfImg(int id);
 
 
 }

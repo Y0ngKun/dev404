@@ -32,11 +32,15 @@
 		)
 	</insert>
 	
-	
-	
 	<select id="getMemberId" resultType="org.ezen.ex02.domain.MemberVO">
 		select * from carrot_member where id = #{id}
 	</select>
+	
+	<select id="getWriterPfImg" resultType="MemberVO">
+	
+	select bno, uuid, uploadpath, filename from carrot_member
+	</select>
+	
 	
 	<update id="modifyMember">
 		update carrot_member

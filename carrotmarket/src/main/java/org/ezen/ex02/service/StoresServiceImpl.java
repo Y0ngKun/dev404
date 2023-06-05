@@ -2,9 +2,10 @@ package org.ezen.ex02.service;
 
 import java.util.List;
 
-
-import org.ezen.ex02.domain.StoresImageVO;
+import org.ezen.ex02.domain.MemberVO;
+import org.ezen.ex02.domain.StoresImagesVO;
 import org.ezen.ex02.domain.StoresVO;
+import org.ezen.ex02.mapper.MemberMapper;
 import org.ezen.ex02.mapper.StoresImagesMapper;
 import org.ezen.ex02.mapper.StoresMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class StoresServiceImpl implements StoresService {
 	
-	
-	
 	@Setter(onMethod_= {@Autowired})
 	private StoresMapper mapper;
 	
 	@Setter(onMethod_= {@Autowired})
 	private StoresImagesMapper imageMapper;
-
+	
+	private MemberMapper memberMapper;
 	
 	//BoardMapper와 BoardAttachMapper 동시 처리하므로 트랜젝션 처리
 		@Transactional
@@ -45,7 +45,6 @@ public class StoresServiceImpl implements StoresService {
 				attach.setBno(board.getBno());
 				imageMapper.insert(attach);
 			});
-			
 		}
 
 		@Override
@@ -142,15 +141,28 @@ public class StoresServiceImpl implements StoresService {
 //			return mapper.getTotalCount(cri);
 //		}
 		
-		
-		
 		@Override
-		public List<StoresImageVO> getAttachList(Long bno) {
+		public StoresImagesVO getAttachList(Long bno) {
 
-			log.info("get Attach list by bno" + bno);
 
 			return imageMapper.findByBno(bno);
 		}
+		
+		@Override
+		public MemberVO getWriterPfImg(int id) {
+
+
+			return memberMapper.getWriterPfImg(id);
+		}
+
+		@Override
+		public List<StoresImagesVO> getAllImages() {
+			
+			return imageMapper.getAllImages();
+			
+		}
+		
+		
 
 
 }

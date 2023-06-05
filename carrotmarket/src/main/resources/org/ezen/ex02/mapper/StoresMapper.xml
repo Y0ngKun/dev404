@@ -39,7 +39,7 @@
 		</selectKey>
 
 		insert into carrot_stores (bno,notice,content,customBenefit,StoresLocation,writer)
-		values (seq_carrot_stores.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
+		values (#{bno}, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer})
 		
 	</insert>
 	

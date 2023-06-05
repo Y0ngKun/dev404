@@ -23,6 +23,6 @@ public class StoresVO {
 	  
 	  
 	  //이미지 VO 추가
-	  private List<StoresImageVO> attachList;
+	  private List<StoresImagesVO> attachList;
 
 }

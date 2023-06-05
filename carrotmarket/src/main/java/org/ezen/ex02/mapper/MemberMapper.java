@@ -19,6 +19,6 @@ public interface MemberMapper {
 
 	void deleteMemberById(int id);
 
-	MemberVO getPfImg (int id);
+	MemberVO getWriterPfImg (int id);
 
 }

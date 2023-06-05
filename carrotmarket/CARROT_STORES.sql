@@ -9,19 +9,15 @@ create table CARROT_STORES(
   updatedate date default sysdate
 );
 
---ìë™ ì¦ê°€ ì‹œí€€ìŠ¤ ë§Œë“¤ê¸°
+--??™ ì¦ê? ?‹œ???Š¤ ë§Œë“¤ê¸?
 CREATE SEQUENCE seq_carrot_stores START WITH 1 INCREMENT BY 1;
 
---ì‹œí€€ìŠ¤ ìºì‹œ ì—†ì•° 
-ALTER SEQUENCE seq_carrot_stores NOCACHE;
-
-
---bnoë¥¼ pkë¡œ ë§Œë“¦
+--bnoë¥? pkë¡? ë§Œë“¦
 alter table carrot_stores add constraint pk_carrot_stores primary key (bno);
 
---ë°ì´í„° ì‚½ì… í…ŒìŠ¤íŠ¸
+--?°?´?„° ?‚½?… ?…Œ?Š¤?Š¸
 insert into carrot_stores (bno, notice, content, customBenefit,StoresLocation, writer) 
-values (seq_carrot_stores.nextval, 'TestNotice', 'í…ŒìŠ¤íŠ¸ ë³¸ë¬¸ ë‚´ìš©', ' ë² ë„¤í•', 'ê°€ê²Œ ìœ„ì¹˜', 'ì‘ì„±ì');
+values (seq_carrot_stores.nextval, 'TestNotice', '?…Œ?Š¤?Š¸ ë³¸ë¬¸ ?‚´?š©', ' ë² ë„¤?•', 'ê°?ê²? ?œ„ì¹?', '?‘?„±?');
 
 commit;
 

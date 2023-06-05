@@ -45,7 +45,6 @@ public class StoresWriteController {
 	@Autowired
 	private StoresService service;
 	
-	
 	private String getFolder() {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

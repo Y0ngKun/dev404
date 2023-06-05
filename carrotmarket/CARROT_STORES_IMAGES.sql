@@ -7,16 +7,19 @@ create table CARROT_STORES_IMAGES (
 );
 
 
---PKë¡œ UUID ì§€ì •
+--PKë¡? UUID ì§?? •
 alter table CARROT_STORES_IMAGES add constraint PK_CARROT_STORES_IMAGES primary key (uuid);
 
---FK(ì™¸ë˜í‚¤)ë¡œ ê²Œì‹œíŒ(CARROT_STORES) ì§€ì •
+--FK(?™¸?˜?‚¤)ë¡? ê²Œì‹œ?Œ(CARROT_STORES) ì§?? •
 alter table CARROT_STORES_IMAGES add constraint FK_CARROT_STORES_IMAGES foreign key (bno) references CARROT_STORES(bno);
 
 
 commit;
 
 
+SELECT id, uuid, uploadpath, filename
+FROM carrot_member
+WHERE uuid IS NOT NULL AND uploadpath IS NOT NULL AND filename IS NOT NULL;
 
 
 
@@ -36,12 +39,12 @@ commit;
 
 
 
---ë°ì´í„° ì‚½ì… í…ŒìŠ¤íŠ¸
+--?°?´?„° ?‚½?… ?…Œ?Š¤?Š¸
 INSERT INTO CARROT_STORES_IMAGES (bno,uuid, uploadPath, fileName, filetype)
 VALUES ('1', 'uuidTest', '/uploadPath/test','TestfileName','I');
 
 
---xxxxxxì‹œí€€ìŠ¤ ìë™ ì¦ê°€ íŠ¸ë¦¬ê±° (ê¸°ë¡ìš© ì‚¬ìš©ì•ˆí•¨!!) xxxxxxxx
+--xxxxxx?‹œ???Š¤ ??™ ì¦ê? ?Š¸ë¦¬ê±° (ê¸°ë¡?š© ?‚¬?š©?•ˆ?•¨!!) xxxxxxxx
 CREATE OR REPLACE TRIGGER stores_image_trigger
 BEFORE INSERT ON stores_image
 FOR EACH ROW

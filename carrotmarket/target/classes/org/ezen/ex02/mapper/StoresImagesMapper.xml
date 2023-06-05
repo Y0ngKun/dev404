@@ -2,38 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.ezen.ex02.mapper.StoresImagesMapper">
 
-<!-- java의 boolean인 fileType은 문자 '0'이나 '1'로 처리(true는 '1') -->
+
+	<!-- 이미지 리스트 전체 가져오기 -->
+	<select id="getAllImages" resultType="org.ezen.ex02.domain.StoresImagesVO">
+		select * from carrot_stores_images
+	</select>
+	
+	
+	
+	<!-- bno로 하나 가져오기 -->
+	<select id="findByBno"
+		resultType="org.ezen.ex02.domain.StoresImagesVO">
+
+		select * from CARROT_STORES_IMAGES where bno = #{bno}
+
+	</select>
+
+	<!-- 어제 날자로 경로가 된 첨부파일 데이터 반환 -->
+	<select id="getOldFiles"
+		resultType="org.ezen.ex02.domain.StoresImagesVO">
+
+		select * from CARROT_STORES_IMAGES where uploadpath = to_char(sysdate
+		-1 ,'yyyy/mm/dd')
+
+	</select>
+
+
 	<insert id="insert">
-	
-		insert into CARROT_STORES_IMAGES ( bno, uuid, uploadpath, filename, filetype)
-		values ( #{bno} , #{uuid}, #{uploadPath}, #{fileName}, #{fileType})
-		
+
+		insert into CARROT_STORES_IMAGES ( bno, uuid, uploadpath, filename,
+		filetype)
+		values ( #{bno} , #{uuid}, #{uploadPath}, #{fileName},
+		#{fileType})
+
 	</insert>
-	
+
 	<!-- 첨부 파일 하나 지우기,uuid가 PK임 -->
 	<delete id="delete">
 
 		delete from CARROT_STORES_IMAGES where uuid = #{uuid}
 
 	</delete>
-	
-	<select id="findByBno" resultType="org.ezen.ex02.domain.StoresImageVO">
-	
-		select * from CARROT_STORES_IMAGES where bno = #{bno}
-		
-	</select>
-	
+
+
 	<delete id="deleteAll">
 
 		delete CARROT_STORES_IMAGES where bno = #{bno}
 
 	</delete>
-	
-	<select id="getOldFiles" resultType="org.ezen.ex02.domain.StoresImageVO">
 
-		select * from CARROT_STORES_IMAGES where uploadpath = to_char(sysdate -1 ,'yyyy/mm/dd')
-		<!-- 어제 날자로 경로가 된 첨부파일 데이터 반환 -->
-
-	</select>
 
 </mapper>

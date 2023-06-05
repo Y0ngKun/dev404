@@ -39,13 +39,6 @@
 			</ul>
 		</div>
 
-
-
-
-
-
-
-
 		<div class="stores-list">
 			
 			<ul>
@@ -53,7 +46,7 @@
 				<a href="/ex02/stores/business-profiles?title=${list[0].notice}&content=${list[0].content}">
 					<div class="thumb-wrap">
 						<img
-							src="https://dnvefa72aowie.cloudfront.net/businessPlatform/bizPlatform/profile/center_biz_5863590/1677722646074/e956d3d9f7a89abd32a1c13a79476d7290aa53d05f2b2e40c79490551994c6d4.jpeg?q=82&s=640x640&t=crop"
+							src="images/${list[0].bno}"
 							class="card-img-top" alt="Card image cap">
 					</div>
 					<div class="info-wrap">
@@ -67,7 +60,7 @@
 				<li>
 					<a href="/ex02/stores/business-profiles?title=${list[1].notice}&content=${list[1].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/50472096/1639685484756/16c5996beb2c0bc90ebdde18b6095516ad067e0f57a06197b2b4228a9cfc7ac9.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[1].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[1].notice}"></c:out> </h5>
@@ -80,7 +73,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[2].notice}&content=${list[2].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/17969333/1648446564196/4eb8d7c682d7d31440333a7a5f4f1895721eee1b32e06993d625d9f669800d86.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[2].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[2].notice}"></c:out> </h5>
@@ -92,7 +85,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[3].notice}&content=${list[3].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/50095049/1638929787569/978227fd2caa69a520f7169a35af8a740319cfa5896a8173b08f12044632c757.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[3].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[3].notice}"></c:out> </h5>
@@ -104,7 +97,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[4].notice}&content=${list[4].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/21709505/1653454688660/ZjZmYTViYWMzMWRkMjhlNjg0NGIxOGRhM2UzOGNiMDBlNTY1ZThmOWRkYTYyMTFiZDA0MzhjMGY2NzI3N2M1NC5qcGc=.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[4].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[4].notice}"></c:out> </h5>
@@ -116,7 +109,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[5].notice}&content=${list[5].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/businessPlatform/bizPlatform/profile/center_biz_3568585/1669188796548/f0640532c68de863ea734e2349ff0379a759e345ffd71b1fe68ba22108914459.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[5].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[5].notice}"></c:out> </h5>
@@ -128,7 +121,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[6].notice}&content=${list[6].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/31657420/1678103289195/NzBhN2U2NGZhN2RlOTlmYjM2YmYxODcxZjBhYjQ5ZGMzNzU3MWNhNmMzM2FlOTA0NTE3YjM0N2FjNjY1NDhiNC5qcGc=.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[6].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[6].notice}"></c:out> </h5>
@@ -140,7 +133,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[7].notice}&content=${list[7].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/26101884/1667193649988/Yzg0M2MyOTMxZDkwNWRjYTM1YzQ1MjMzODM3ZWU2MTVmNjhmMzc4Y2MzNTc5MzdlZDIxODM1OTA0MzI0MWM3Mi5qcGc=.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[7].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[7].notice}"></c:out> </h5>
@@ -152,7 +145,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[8].notice}&content=${list[8].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/62513827/1681877485666/NWY3OTVkNGNlOGIyZjg2MTgyMGJmNzYzYjliNzQ4Y2ZkOTRhZjIxNjUyNWYwNDBkMGExYjY5MThjYTc1YTAyOS5qcGc=.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[8].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 								<h5 class="storename"><c:out value="${list[8].notice}"></c:out> </h5>
@@ -164,7 +157,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[9].notice}&content=${list[9].content}">
 					<div class="thumb-wrap">
-						<img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/57582287/1650809858473/676ed7c2c6e0b675c51eecfa8b5dc954bb4235ced59f754d0f120243330af9e7.jpeg?q=82&amp;s=640x640&amp;t=crop" class="thumbnail-image qudd1g9">
+						<img src="images/${list[9].bno}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[9].notice}"></c:out> </h5>

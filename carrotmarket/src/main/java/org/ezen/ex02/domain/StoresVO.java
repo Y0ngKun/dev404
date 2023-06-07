@@ -13,9 +13,10 @@ public class StoresVO {
 	  private String notice;
 	  private String content;
 	  private String customBenefit;
-	  private String StoresLocation;
-	  private String writer;
+	  private String storesLocation;
+	  private String storeName;
 	  
+	  private long writer;
 	  
 	  private Date regdate;
 	  private Date updateDate;

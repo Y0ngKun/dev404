@@ -43,10 +43,10 @@
 			
 			<ul>
 				<li style="margin-right: 20px;">
-				<a href="/ex02/stores/business-profiles?title=${list[0].notice}&content=${list[0].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[0].bno}">
 					<div class="thumb-wrap">
 						<img
-							src="images/${list[0].bno}"
+							src="images/${list[0].writer}"
 							class="card-img-top" alt="Card image cap">
 					</div>
 					<div class="info-wrap">
@@ -56,11 +56,11 @@
 					</div>
 				</a>
 				</li>
-				
+				<!--  -->
 				<li>
-					<a href="/ex02/stores/business-profiles?title=${list[1].notice}&content=${list[1].content}">
+					<a href="/ex02/biz/business-profiles?title=${list[1].notice}&content=${list[1].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[1].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[1].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[1].notice}"></c:out> </h5>
@@ -73,7 +73,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[2].notice}&content=${list[2].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[2].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[2].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[2].notice}"></c:out> </h5>
@@ -85,7 +85,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[3].notice}&content=${list[3].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[3].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[3].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[3].notice}"></c:out> </h5>
@@ -97,7 +97,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[4].notice}&content=${list[4].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[4].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[4].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[4].notice}"></c:out> </h5>
@@ -109,7 +109,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[5].notice}&content=${list[5].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[5].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[5].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[5].notice}"></c:out> </h5>
@@ -121,7 +121,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[6].notice}&content=${list[6].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[6].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[6].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[6].notice}"></c:out> </h5>
@@ -133,7 +133,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[7].notice}&content=${list[7].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[7].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[7].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[7].notice}"></c:out> </h5>
@@ -145,7 +145,7 @@
 				<li style="margin-right: 20px;">
 				<a href="/ex02/stores/business-profiles?title=${list[8].notice}&content=${list[8].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[8].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[8].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 								<h5 class="storename"><c:out value="${list[8].notice}"></c:out> </h5>
@@ -157,7 +157,7 @@
 				<li>
 				<a href="/ex02/stores/business-profiles?title=${list[9].notice}&content=${list[9].content}">
 					<div class="thumb-wrap">
-						<img src="images/${list[9].bno}" class="thumbnail-image qudd1g9">
+						<img src="images/${list[9].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
 							<h5 class="storename"><c:out value="${list[9].notice}"></c:out> </h5>

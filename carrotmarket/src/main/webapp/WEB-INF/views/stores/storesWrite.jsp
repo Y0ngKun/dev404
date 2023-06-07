@@ -56,7 +56,11 @@
 					
 					<div class="form-group">
 						<label for="writer"><strong>작성자 : </strong></label>
-						<input type="text" class="form-control" id="writer" name="writer"  />		
+						<input type="text" name="storeName" value="${usernickname}" class="form-control" id=storeName readonly="readonly"  />		
+					</div>
+					
+					<div>
+					<input type="hidden" name="writer" value="${loginUser}">
 					</div>
 					
 					<button type="submit" class="btn btn-success">작성</button>&nbsp;&nbsp;

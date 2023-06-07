@@ -4,7 +4,7 @@ create table CARROT_STORES(
   content varchar2(3000) not null,
   customBenefit varchar2(300),
   StoresLocation varchar2(300),
-  writer varchar2(150),
+  writer number(10,0),
   regdate date default sysdate, 
   updatedate date default sysdate
 );
@@ -17,7 +17,7 @@ alter table carrot_stores add constraint pk_carrot_stores primary key (bno);
 
 --?ç∞?ù¥?Ñ∞ ?ÇΩ?ûÖ ?Öå?ä§?ä∏
 insert into carrot_stores (bno, notice, content, customBenefit,StoresLocation, writer) 
-values (seq_carrot_stores.nextval, 'TestNotice', '?Öå?ä§?ä∏ Î≥∏Î¨∏ ?Ç¥?ö©', ' Î≤†ÎÑ§?ïè', 'Í∞?Í≤? ?úÑÏπ?', '?ûë?Ñ±?ûê');
+values (seq_carrot_stores.nextval, 'TestNotice', 'TestContent', ' benefit', 'location', '1');
 
 commit;
 

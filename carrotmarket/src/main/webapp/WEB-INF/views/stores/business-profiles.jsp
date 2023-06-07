@@ -55,8 +55,8 @@
 							<img alt="#" src="https://dnvefa72aowie.cloudfront.net/businessPlatform/bizPlatform/profile/center_biz_5863590/1677722646074/e956d3d9f7a89abd32a1c13a79476d7290aa53d05f2b2e40c79490551994c6d4.jpeg?q=82&s=640x640&t=crop">
 						</a>
 						<div class="d5c2h82">
-						 	<a href="#">시골청년</a>
-						 	<span>남평읍 ∙ 농산물 ∙ 단골 36,716</span>
+						 	<a href="#">${storesVO.storeName}</a>
+						 	<span>${storesVO.storesLocation}</span>
 						</div>
 					</div>
 				</div><!-- aa2 -->

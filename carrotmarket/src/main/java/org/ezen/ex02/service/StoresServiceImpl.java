@@ -20,11 +20,12 @@ import lombok.extern.log4j.Log4j;
 public class StoresServiceImpl implements StoresService {
 	
 	@Setter(onMethod_= {@Autowired})
-	private StoresMapper mapper;
+	private StoresMapper storesMapper;
 	
 	@Setter(onMethod_= {@Autowired})
 	private StoresImagesMapper imageMapper;
 	
+	@Setter(onMethod_= {@Autowired})
 	private MemberMapper memberMapper;
 	
 	//BoardMapper와 BoardAttachMapper 동시 처리하므로 트랜젝션 처리
@@ -34,7 +35,7 @@ public class StoresServiceImpl implements StoresService {
 
 			log.info("동네가게 게시판 등록 : " + board);
 
-			mapper.insertSelectKey(board);
+			storesMapper.insertSelectKey(board);
 
 			if (board.getAttachList() == null || board.getAttachList().size() <= 0) {
 				return;
@@ -45,6 +46,7 @@ public class StoresServiceImpl implements StoresService {
 				attach.setBno(board.getBno());
 				imageMapper.insert(attach);
 			});
+			
 		}
 
 		@Override
@@ -52,7 +54,7 @@ public class StoresServiceImpl implements StoresService {
 		public StoresVO get(Long bno) {		
 			log.info("get......" + bno);
 
-			return mapper.read(bno);
+			return storesMapper.read(bno);
 		}
 		
 		/*
@@ -84,7 +86,7 @@ public class StoresServiceImpl implements StoresService {
 
 			imageMapper.deleteAll(board.getBno()); //기존 특정 게시물에 대한 첨부물은 모두 삭제
 
-			boolean modifyResult = mapper.update(board) == 1; //일반게시물은 업데이트
+			boolean modifyResult = storesMapper.update(board) == 1; //일반게시물은 업데이트
 			
 			//시큐리티 관련 적용전이라 임시처리
 			if(board.getAttachList() == null) {
@@ -112,7 +114,7 @@ public class StoresServiceImpl implements StoresService {
 
 			imageMapper.deleteAll(bno);
 
-			return mapper.delete(bno) == 1;
+			return storesMapper.delete(bno) == 1;
 		}
 		
 		
@@ -121,7 +123,7 @@ public class StoresServiceImpl implements StoresService {
 		//목록보기(select all)
 		public List<StoresVO> getList() {		
 			log.info("getList..........");
-			return mapper.getList();
+			return storesMapper.getList();
 		}
 		
 		
@@ -148,13 +150,16 @@ public class StoresServiceImpl implements StoresService {
 			return imageMapper.findByBno(bno);
 		}
 		
+		
 		@Override
-		public MemberVO getWriterPfImg(int id) {
+		public MemberVO getWriterImg(long id) {
 
-
-			return memberMapper.getWriterPfImg(id);
+			return memberMapper.getWriterImg(((int)id));
 		}
-
+		
+		
+		
+		
 		@Override
 		public List<StoresImagesVO> getAllImages() {
 			

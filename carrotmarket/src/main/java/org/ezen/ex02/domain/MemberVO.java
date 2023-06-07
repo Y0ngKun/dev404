@@ -23,5 +23,6 @@ public class MemberVO {
 	private String uploadPath;
 	private String fileName;
 	private String filePath;
+	private String bno;
 	
 }

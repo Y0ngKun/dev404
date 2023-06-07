@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.ezen.ex02.domain.StoresImageDTO;
 import org.ezen.ex02.domain.StoresVO;
 import org.ezen.ex02.service.StoresService;
@@ -76,21 +78,26 @@ public class StoresWriteController {
 	
 	//시큐리티로 처리하던지, 권한 없으면 get 막기
 	@GetMapping() 
-	public String storesWriteUp() {
+	public String storesWriteUp(Model model, HttpSession session) {
+		
+		session.getAttribute("usernickname");
+		
 		log.info("스토어 글쓰기 페이지 진입");
 		return "stores/storesWrite";
 	}
 	
 	//동네가게 게시글 등록 작업 처리
 	@PostMapping()
-	public String register(StoresVO storesVO, RedirectAttributes rttr) {
+	public String register(StoresVO storesVO, RedirectAttributes rttr, HttpSession session, Model model) {
 
 		log.info("register: " + storesVO);
+		
+		
 		
 		if (storesVO.getAttachList() != null) {
 			storesVO.getAttachList().forEach(attach -> log.info(attach));
 		}
-
+		
 		service.register(storesVO); //service 실행
 		rttr.addFlashAttribute("result", storesVO.getBno());
 

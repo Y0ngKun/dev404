@@ -28,7 +28,7 @@ public interface StoresService {
 	
 	public List <StoresImagesVO> getAllImages();
 	
-	public MemberVO getWriterPfImg(int id);
+	public MemberVO getWriterImg(long id);
 
 
 }

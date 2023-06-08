@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.MemberMapper">
+	
+	<select id="getMember" resultType="org.ezen.ex02.domain.MemberVO">
+		select * from carrot_member where userid = #{userid}
+	</select>
+	
+	<select id="getMemberId" resultType="org.ezen.ex02.domain.MemberVO">
+		select * from carrot_member where id = #{id}
+	</select>
+	
+		<select id="getWriterImg" resultType="org.ezen.ex02.domain.MemberVO">
+	
+	select uuid, uploadpath, filename from carrot_member where id = #{id}
+	
+	</select>
+	
+	
+	<insert id="joinMember">
+		insert into carrot_member(id, userid, userpwd, username, usernickname, useraddress, isbusiness
+		
+		<if test="uuid != null">
+		,uuid
+		</if>
+		<if test="uploadPath != null">
+		,uploadPath
+		</if>
+		<if test="fileName != null">
+		,fileName
+		</if>
+		
+		
+		<if test="useremail != null">
+		, useremail
+		</if>
+		<if test="usergender != null">
+		, usergender
+		</if>
+		<if test="category != null">
+		, category
+		</if>
+		)
+		values(carr_mem_id_seq.nextval, #{userid},#{userpwd},#{username},#{usernickname},#{useraddress},#{isbusiness}
+		
+		<if test="uuid != null">
+		, #{uuid}
+		</if>
+		<if test="uploadPath != null">
+		, #{uploadPath}
+		</if>
+		<if test="fileName != null">
+		, #{fileName}
+		</if>
+		
+		
+		<if test="useremail != null">
+		, #{useremail}
+		</if>
+		<if test="usergender != null">
+		, #{usergender}
+		</if>
+		<if test="category != null">
+		, #{category}
+		</if>
+		)
+	</insert>
+	
+	
+	  
+
+	
+	
+	
+	<update id="modifyMember">
+		update carrot_member
+		set usernickname = #{usernickname}
+		, usergender = #{usergender}
+		, useremail = #{useremail}
+		, useraddress = #{useraddress}
+		, isbusiness = #{isbusiness}
+		where id = #{id}
+	</update>
+	
+	<update id="modifyPasswd">
+		update carrot_member
+		set userpwd = #{userpwd}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteMemberById">
+		delete from carrot_member
+		where id = #{id}
+	</delete>
+</mapper>

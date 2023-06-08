@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.SecondHandAttachMapper">
+	
+	<insert id="registerImg">
+		insert into carrot_secondhand_img(articleno, filepath, filename)
+		values(#{articleNo},#{filePath},#{fileName}) 
+	</insert>
+	
+	<select id="getArticleImage" resultType="org.ezen.ex02.domain.SecondHandAttachVO">
+		select * from carrot_secondhand_img where articleno = #{id}
+	</select>
+	
+	<delete id="deleteArticleAllImage">
+		delete carrot_secondhand_img
+		where articleNo = #{id}
+	</delete>
+	
+	<delete id="deleteArticleImageDB">
+		delete carrot_secondhand_img
+		where filename = #{fileName}
+	</delete>
+
+</mapper>

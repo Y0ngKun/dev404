@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ezen.ex02.mapper.RealestateAttachMapper">
+
+	<!-- java의 boolean인 fileType은 문자 '0'이나 '1'로 처리(true는 '1') -->
+	<insert id="insert">
+	
+		insert into carrot_re_attach (uuid, uploadpath, filename,filetype, bno)
+		values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno} )
+		
+	</insert>
+	
+	<!-- 첨부 파일 하나 지우기,uuid가 PK임 -->
+	<delete id="delete">
+
+		delete from carrot_re_attach where uuid = #{uuid}
+
+	</delete>
+	
+	<delete id="deleteAll">
+
+		delete carrot_re_attach where bno = #{bno}
+
+	</delete>
+	
+	<select id="findByBno" resultType="org.ezen.ex02.domain.RealestateAttachVO">
+	
+		select * from carrot_re_attach where bno = #{bno}
+		
+	</select>
+	
+
+
+</mapper>  

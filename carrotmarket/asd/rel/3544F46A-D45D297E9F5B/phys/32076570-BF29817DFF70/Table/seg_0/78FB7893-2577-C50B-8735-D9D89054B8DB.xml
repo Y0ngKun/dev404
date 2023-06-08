@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="CARROT_IMAGEVO" directorySegmentName="seg_0" id="78FB7893-2577-C50B-8735-D9D89054B8DB">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<schemaObject>BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>81082F43-54E2-622B-3B04-69418C3A0141</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="BNO" id="0B6185FB-B557-D09D-7A97-E072D9114685">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FILETYPE" id="0F59299A-D222-B62C-D5D2-6AA291D683FA">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<defaultValue>&apos;I&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="UUID" id="1204B354-8F1D-11A8-3ECA-0427AEABCB1C">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UPLOADPATH" id="CAB9553C-1B7F-7CDF-BA57-BEFB6FB5ABF1">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FILENAME" id="D83CA3B2-29BC-CB21-528D-6178F086D130">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CR_IMAGE_PK" id="720F49D5-9A07-727F-1613-81A68E9113F9">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<schemaObject>BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD</schemaObject>
+<segment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_CARROT_BOARD_IMAGE" id="3274044D-48C5-3F71-8EA7-5028D2B3B6CA">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CR_IMAGE_PK" id="F106BF24-FD3A-915F-4BC6-3DDB0333FE27">
+<createdBy>404-22</createdBy>
+<createdTime>2023-06-05 00:18:09 UTC</createdTime>
+<ownerDesignName>asd</ownerDesignName>
+<segment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</segment>
+<tableSpace>C6A6CB71-3056-DF58-BB69-D6333DF9A23C</tableSpace>
+<existingIndex>720F49D5-9A07-727F-1613-81A68E9113F9</existingIndex>
+<indexSegment>B4DB93B8-FF91-E036-6BBD-8318C16D3710</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

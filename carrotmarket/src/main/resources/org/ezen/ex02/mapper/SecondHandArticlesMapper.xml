@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.SecondHandArticlesMapper">
+	
+	<select id="getArticles" resultType="org.ezen.ex02.domain.SecondHandArticleVO">
+		<![CDATA[
+		select 
+			*
+		from
+			(select /*+ INDEX(carrot_secondhand_articles carr_sec_art_ind)*/ 
+			c.*
+			,m.usernickname as nickname
+			,m.useraddress as address
+		from 
+			carrot_secondhand_articles c left outer join carrot_member m on(c.memberno = m.id)
+			where sell < 2
+			order by updatedate desc)
+		where rownum <= #{page} *6
+		]]>
+	</select>
+	
+	
+	<insert id="registerArticles">
+		insert into carrot_secondhand_articles(
+			id, memberno, title, body
+			<if test="cost != null">,cost</if>
+			<if test="costOffer != null">,costOffer</if>
+			<if test="lng != null">,lng</if>
+			<if test="lat != null">,lat</if>
+			<if test="locationInfo != null">,locationInfo</if>
+			)
+		values(
+			carr_art_id_seq.nextval, #{memberNo}, #{title}, #{body}
+			<if test="cost != null">,#{cost}</if>
+			<if test="costOffer != null">,#{costOffer}</if>
+			<if test="lng != null">,#{lng}</if>
+			<if test="lat != null">,#{lat}</if>
+			<if test="locationInfo != null">,#{locationInfo}</if>
+			)
+	</insert>
+	
+	<select id="getLastId" resultType="int">
+		select carr_art_id_seq.currval from dual
+	</select>
+	
+	<select id="getArticle" resultType="org.ezen.ex02.domain.SecondHandArticleVO">
+		select     
+			c.*
+			,m.usernickname as nickname
+			,m.useraddress as address
+		from 
+			carrot_secondhand_articles c left outer join carrot_member m on(c.memberno = m.id)  
+		where c.id = #{id}
+	</select>
+	
+	<select id="getMyArticles" resultType="org.ezen.ex02.domain.SecondHandArticleVO">
+		select *
+		from carrot_secondhand_articles
+		where memberno = #{id}
+	</select>
+	
+	<update id="setSell">
+		update carrot_secondhand_articles
+		set sell = #{sell}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteArticle">
+		delete carrot_secondhand_articles
+		where id = #{id}
+	</delete>
+	
+	<update id="hitCountModify">
+		update carrot_secondhand_articles
+		set hitcount = (select hitcount
+						from carrot_secondhand_articles
+						where id = #{id}) + 1
+		where id = #{id}
+	</update>
+	
+	<update id="chatCountModify">
+		update carrot_secondhand_articles
+		set chatcount = (select chatcount
+						from carrot_secondhand_articles
+						where id = #{id}) + 1
+		where id = #{id}
+	</update>
+	
+	<update id="modifyArticle">
+		update carrot_secondhand_articles
+		set title = #{title}
+		, body = #{body}
+		<if test="cost != null">,cost = #{cost}</if>
+		<if test="costOffer != null">,costOffer = #{costOffer}</if>
+		<if test="lng != null">,lng = #{lng}</if>
+		<if test="lat != null">,lat = #{lat}</if>
+		<if test="locationInfo != null">,locationInfo = #{locationInfo}</if>
+		,updatedate = sysdate
+		where id = #{id}
+	</update>
+	
+	<update id="updateLikeCnt">
+		update carrot_secondhand_articles
+		set likecount = (select likecount from carrot_secondhand_articles where id = #{id}) + #{amount}
+		where id = #{id}
+	</update>
+	
+</mapper>

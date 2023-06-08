@@ -102,7 +102,7 @@ public class MemberController {
 		session.setAttribute("username", memberVO.getUsername());
 		session.setAttribute("usernickname", memberVO.getUsernickname());
 		if(url.contains("member")) {
-			url = "/ex02";
+			url = "";
 		}
 		
 		System.out.println("url 로그인 창 : " + url);

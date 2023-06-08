@@ -22,8 +22,8 @@
 		생략 이가능 -->
 	<insert id="insert">
 	<![CDATA[
-		insert into carrot_stores (bno, notice, content, customBenefit, StoresLocation, writer,storeName)
-		values (seq_carrot_stores.nextval, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer},#{storeName})
+		insert into carrot_stores (bno, notice, content, customBenefit, storesLocation, writer,storeName)
+		values (seq_carrot_stores.nextval, #{notice}, #{content}, #{customBenefit}, #{storesLocation}, #{writer},#{storeName})
 	]]>
 	</insert>
 	
@@ -38,8 +38,8 @@
 			select seq_carrot_stores.nextval from dual
 		</selectKey>
 
-		insert into carrot_stores (bno,notice,content,customBenefit,StoresLocation,writer,storeName)
-		values (#{bno}, #{notice}, #{content}, #{customBenefit}, #{StoresLocation}, #{writer},#{storeName})
+		insert into carrot_stores (bno,notice,content,customBenefit,storesLocation,writer,storeName)
+		values (#{bno}, #{notice}, #{content}, #{customBenefit}, #{storesLocation}, #{writer}, #{storeName})
 		
 	</insert>
 	

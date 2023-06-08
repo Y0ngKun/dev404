@@ -97,10 +97,10 @@ public class MemberController {
 
 			response.addCookie(cookie);
 		}
-		//sql pk(carrot_member id) 세션 등록
 		session.setAttribute("loginUser", memberVO.getId());
 		session.setAttribute("username", memberVO.getUsername());
 		session.setAttribute("usernickname", memberVO.getUsernickname());
+		
 		if(url.contains("member")) {
 			url = "";
 		}

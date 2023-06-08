@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ezen.ex02.mapper.RealestateMapper">
+
+	<!-- ============select============ -->
+	<select id="getList" resultType="org.ezen.ex02.domain.RealestateVO">
+		select * from carrot_realestate
+		order by bno desc
+	</select>
+
+
+	<select id="read" resultType="org.ezen.ex02.domain.RealestateVO">
+		select * from carrot_realestate
+		where bno = #{bno}
+	</select>
+
+	<!-- 페이징 -->
+	<select id="getListWithPaging" resultType="org.ezen.ex02.domain.RealestateVO">
+		<![CDATA[
+		select * from
+		(
+		select /*+INDEX_DESC(carrot_realestate pk_carrot) */ rownum ro, bno, title, town, roomType, regDate, updateDate
+	
+		from carrot_realestate
+		where bno > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where ro > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- 총게시물 수 -->
+	<select id="getTotalCount" resultType="int">
+		select count(bno) from carrot_realestate
+	</select>
+	<!-- ============insert============ -->
+	<insert id="insert">
+		insert into carrot_realestate( bno, title,
+		town,writer,roomtype)
+		values(carr_realestate_seq.nextval,
+		#{title},#{town},#{writer},#{roomType})
+	</insert>
+
+	<insert id="insertSelectKey">
+		<selectKey order="BEFORE" keyProperty="bno"
+			resultType="long">
+			select carr_realestate_seq.nextval from dual
+		</selectKey>
+
+		insert into carrot_realestate(bno, title, town,writer,roomtype)
+		values(#{bno}, #{title},#{town},#{writer},#{roomType})
+	</insert>
+
+
+	<!-- ============delete============ -->
+	<delete id="delete">
+		delete from carrot_realestate where bno = #{bno}
+	</delete>
+
+	<!-- ============update============ -->
+	<update id="update">
+		update carrot_realestate
+		set title = #{title},
+		town =
+		#{town},
+		writer = #{writer},
+		roomtype = #{roomType},
+		updatedate = sysdate
+		where bno = #{bno}
+	</update>
+</mapper>

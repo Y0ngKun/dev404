@@ -41,7 +41,7 @@ public class SecondHandAttachController {
 			value="/get"
 			)
 	public Resource showImage(String fileName) throws MalformedURLException{
-		StringBuilder fileFullPath = new StringBuilder("C:\\Users\\82104\\Desktop\\spring_ex\\teamproject\\carrotmarket\\src\\main\\webapp\\resources\\");
+		StringBuilder fileFullPath = new StringBuilder("C:\\upload\\");
 		if(fileName.equals("non")) {
 			fileFullPath.append("images/DaangnMarket_logo.png");
 		}else {
@@ -57,7 +57,7 @@ public class SecondHandAttachController {
 		
 		List<SecondHandAttachVO> list = secondHandAttachService.getArticleImage(articleNo);
 		
-		StringBuilder fileFullPath = new StringBuilder("C:\\Users\\82104\\Desktop\\spring_ex\\teamproject\\carrotmarket\\src\\main\\webapp\\resources\\");
+		StringBuilder fileFullPath = new StringBuilder("C:\\upload\\");
 		//만약 이미지가 없으면 고유 사진 한장 띄우기
 		if(list == null || list.size() == 0) {
 			fileFullPath.append("images/DaangnMarket_logo.png");

@@ -47,8 +47,8 @@
 					
 					
 					<div class="form-group">
-						<label for="StoresLocation"><strong>가게 위치 : </strong></label>
-						<input type="text" class="form-control" id="StoresLocation" name="StoresLocation" />		
+						<label for="storesLocation"><strong>가게 위치 : </strong></label>
+						<input type="text" class="form-control" id="storesLocation" name="storesLocation" />		
 					</div>	
 					
 					

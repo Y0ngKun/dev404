@@ -4,7 +4,7 @@ package org.ezen.ex02.service;
 import java.util.List;
 
 import org.ezen.ex02.domain.SecondHandArticleVO;
-import org.ezen.ex02.domain.Criteria;
+import org.ezen.ex02.domain.SecondHandCriteria;
 import org.ezen.ex02.mapper.SecondHandArticlesMapper;
 import org.ezen.ex02.mapper.SecondHandAttachMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class SecondHandArticlesServiceimpl implements SecondHandArticlesService{
 	
 	//게시글 리스트 불러오기
 	@Override
-	public List<SecondHandArticleVO> getArticles(Criteria cri) {
+	public List<SecondHandArticleVO> getArticles(SecondHandCriteria cri) {
 		List<SecondHandArticleVO> list = secondHandArticlesMapper.getArticles(cri);
 		return list;
 	}

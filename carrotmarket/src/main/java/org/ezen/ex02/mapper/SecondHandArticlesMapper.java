@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.ezen.ex02.domain.SecondHandArticleVO;
-import org.ezen.ex02.domain.Criteria;
+import org.ezen.ex02.domain.SecondHandCriteria;
 
 @Mapper
 public interface SecondHandArticlesMapper {
@@ -16,7 +16,7 @@ public interface SecondHandArticlesMapper {
 
 	SecondHandArticleVO getArticle(int id);
 
-	List<SecondHandArticleVO> getArticles(Criteria cri);
+	List<SecondHandArticleVO> getArticles(SecondHandCriteria cri);
 
 	List<SecondHandArticleVO> getMyArticles(int id);
 

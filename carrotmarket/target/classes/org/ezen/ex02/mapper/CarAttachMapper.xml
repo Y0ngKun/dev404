@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ezen.ex02.mapper.CarAttachMapper">
+
+<!-- java의 boolean인 fileType은 문자 '0'이나 '1'로 처리(true는 '1') -->
+<insert id="insert">
+	insert into carrot_attach(uuid,uploadpath,filename,filetype,cno)
+	values(#{uuid},#{uploadPath},#{fileName},#{fileType},#{cno})
+</insert>
+
+<!-- uuid가 pk인 첨부 파일 하나를 지우기 -->
+<delete id="delete">
+	delete from carrot_attach where uuid = #{uuid}
+</delete>
+
+<!-- 게시물 번호를 이용해서 첨부파일 목록을 조회 해주는 쿼리 -->
+<select id="findByCno" resultType="org.ezen.ex02.domain.CarAttachVO">
+	select * from carrot_attach where cno = #{cno}
+</select>
+
+<!-- 게시물 번호를 이용해서 이미지 1개를 가져올 쿼리 -->
+<select id="getImage" resultType="org.ezen.ex02.domain.CarAttachVO">
+	<![CDATA[
+		select * from carrot_attach where cno = #{cno} and rownum <= 1
+	]]> 
+</select>
+
+<!-- 게시물 번호에 해당하는 cno 번호 모두 삭제하는 쿼리 -->
+<delete id="deleteAll">
+	delete carrot_attach where cno = #{cno}
+</delete>
+
+<!-- 어제 날짜로 등록된 경로를 찾아 첨부파일 데이터를 반환해주는 쿼리 -->
+<select id="getOldFiles" resultType="org.ezen.ex02.domain.CarAttachVO">
+	select * from carrot_attach where uploadpath = to_char(sysdate -1,'yyyy/mm/dd')
+</select>
+
+</mapper>

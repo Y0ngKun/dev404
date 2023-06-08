@@ -1,0 +1,48 @@
+create sequence carr_realestate_seq;
+
+create table carrot_realestate (
+bno number(10,0),
+title varchar2(200) not null, /*제목*/
+town varchar2(200), /*지역*/ 
+writer varchar2(50) not null, /*판매자  | 라디오*/
+roomType varchar2(50), /*룸개수 | 셀렉트*/
+
+regdate date default sysdate,  
+updatedate date default sysdate
+);
+
+alter table carrot_realestate add constraint pk_carrot primary key(bno);
+
+insert into carrot_realestate( bno, title, town,writer,roomtype)
+values (carr_realestate_seq.nextval, '테스트 제목','마곡','user','3룸');
+
+commit;
+
+select * from  carrot_realestate order by bno desc;
+
+/*페이징*/
+select * from
+(select /*+INDEX_DESC(carrot_realestate pk_carrot) */rownum ro, bno, title, town
+from carrot_realestate
+where bno > 0 and rownum > 0 and rownum <= (2 * 10)
+)
+
+where ro > (2-1) * 10;
+
+
+/*첨부파일*/
+create table carrot_re_attach(
+uuid varchar2(100) not null,
+uploadPath varchar2(200) not null,
+fileName varchar2(100) not null,
+filetype char(1) default 'I',
+bno number(10,0)
+);
+
+alter table carrot_re_attach add constraint carrot_re_pk_attach primary key (uuid);
+
+alter table carrot_re_attach add constraint carrot_re_fk_board_attach foreign key (bno) references carrot_realestate(bno);
+
+commit;
+
+select * from carrot_re_attach;

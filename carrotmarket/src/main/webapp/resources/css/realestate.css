@@ -1,0 +1,291 @@
+html, body {
+	padding: 0;
+	margin: 0
+}
+
+a {
+	text-decoration: none !important
+}
+
+a:hover {
+	text-decoration: none !important
+}
+
+p {
+	margin: 0!important;
+	padding: 0!important;
+}
+
+li {
+	list-style: none
+}
+h2{
+	margin:0;
+	padding:0
+}
+button{
+	cursor:pointer;
+	
+}
+input{
+	-webkit-appearance: auto!important;
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active,
+.btn-check:checked+.btn:focus-visible, .btn.active:focus-visible, .btn.show:focus-visible, 
+.btn:first-child:active:focus-visible, :not(.btn-check)+.btn:active:focus-visible,
+.btn:focus-visible
+{
+	border:none!important
+}
+button>a{
+	color:#fff!important;
+}
+
+input{
+-webkit-appearance: checkbox;
+	
+}
+
+body > div.board > div.board_list_wrap > div.pull-right > ul > li{
+	margin:0
+}
+
+.material-icons{
+	font-size:15px!important
+}
+
+/*top_banner*/
+.top_banner {
+	background: rgb(210, 237, 250);
+	padding: 50px;
+	margin-top: 6.4rem;
+}
+
+.top_banner_wrap {
+	width: 1000px;
+	margin: 0 auto
+}
+
+.top_banner_text {
+	width: 45%;
+	display: flex;
+	align-items: center;
+	height: 280px;
+	float: left;
+}
+
+span.text1 {
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: -2px;
+}
+
+span.text2 {
+	font-size: 20px;
+	padding-top: 30px;
+	display: inline-block;
+}
+
+.top_banner_img {
+	width: 54%;
+	display: inline-block;
+}
+
+.top_banner_img>img {
+	width: 100%;
+}
+
+/*pagination*/
+.active>.page-link, .page-link.active{
+	background:#ff6f0f!important;
+	border-color:#ff6f0f!important;
+	color:#fff!important;
+}
+.page-link{
+	color:#ff6f0f!important;
+}
+.page-link:focus{
+	box-shadow:none!important
+}
+
+body > div.board > div.board_list_wrap > div.pull-right > ul > li.page-item > a{
+	font-size:14px;
+	padding: 5px 10px
+}
+
+/*list*/
+.board,.member {
+	width: 800px;
+	margin: 80px auto;
+}
+
+.board>h2 {
+	display: inline-block;
+	width: 70%;
+}
+
+.btn_list {
+	display: inline-block;
+	width: 29%;
+
+}
+
+.btn_list>button {
+	padding: 10px 20px;
+	font-size: 17px;
+	border: 0;
+	background: #fff;
+	border: 2px solid #ff6f0f;
+	color: #ff6f0f;
+	font-weight: bold;
+}
+
+.btn_list>button:hover {
+	background: #ff6f0f;
+	color: #fff
+}
+
+.board_list_wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 50px
+}
+
+.item {
+	padding: 1.25rem 0;
+	flex-basis: 48%;
+}
+
+aticle {
+	flex-direction: row;
+}
+
+.room_img {
+	float: left;
+	margin-right: 20px;
+}
+
+.room_img>img {
+	width: 110px;
+	height: 110px;
+	border-radius: 10px;
+}
+
+.con {
+	color: #000
+}
+
+.tit {
+	padding-top: 10px;
+	font-size: 20px;
+}
+
+.town {
+	font-size: 15px;
+	color: #777
+}
+
+.price {
+	font-size: 15px;
+	font-weight: bold;
+}
+.regdate{
+	font-size:13px;
+	font-weight:nomal;
+	color:#777
+}
+.pull-right{
+	margin:0 auto;
+	margin-top: 30px;
+	text-align:center;
+}
+
+
+/*registar*/
+.sub_txt {
+	font-size: 13px;
+	margin-top: 5px;
+	color: #999
+}
+
+#freg {
+	margin-top: 30px
+}
+
+#freg>div.form-group {
+	margin-bottom: 10px
+}
+
+#freg>div>label {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 5px;
+	font-size: 15px
+}
+
+.form_name{
+	font-size: 15px;
+	margin-top:20px
+}
+.form-control{
+	padding:10px!important;
+	margin-top:5px!important
+}
+
+#freg>div>input {
+	width: 100%;
+	height: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+#content {
+	width: 100%;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.btn_write_wrap {
+	width: 100%;
+	margin-top: 40px;
+	text-align: center
+}
+
+.btn_write {
+	width: 20%;
+	background: #ff6f0f;
+	color: #fff;
+	height: 40px;
+	font-size: 15px;
+	font-weight: bold;
+	border: 0;
+	padding-top:3px
+}
+
+.btn_writer:hover {
+	box-shadow: 2px 2px 2px #333;
+}
+#freg > div> label{
+	margin-top:10px
+}
+
+#roomType{
+	width: 100%;
+	height: 40px;
+	padding: 0;
+	box-sizing: border-box;
+}
+.material-icons {
+	font-size: 15px
+}
+
+/*첨부파일 모달창*/
+.row{
+margin:0!important
+}
+
+/*썸네일 클릭시 나타나는 모달 이미지*/
+body > div.imageModal.modal.fade.in > div > div > div.modal-body > img{
+width:100%
+}

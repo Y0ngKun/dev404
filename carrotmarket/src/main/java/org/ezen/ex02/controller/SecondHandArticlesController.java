@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.ezen.ex02.domain.SecondHandArticleVO;
 import org.ezen.ex02.domain.SecondHandAttachVO;
-import org.ezen.ex02.domain.Criteria;
+import org.ezen.ex02.domain.SecondHandCriteria;
 import org.ezen.ex02.service.SecondHandArticlesService;
 import org.ezen.ex02.service.SecondHandAttachService;
 import org.ezen.ex02.util.ApiKey;
@@ -45,7 +45,7 @@ public class SecondHandArticlesController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<SecondHandArticleVO>> getArticles(@PathVariable("page") int page) {
-		Criteria cri = new Criteria(page);
+		SecondHandCriteria cri = new SecondHandCriteria(page);
 		
 		List<SecondHandArticleVO> list = secondHandArticlesService.getArticles(cri);
 		

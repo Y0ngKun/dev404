@@ -2,13 +2,29 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="../include/header.jspf"%>
+ <style type="text/css">
+    .container {
+      max-width: 768px !important;
+      font-size: 15px;
+    }
+
+    input {
+      padding: 14px !important;
+    }
+
+  input::placeholder,
+  textarea::placeholder {
+  	font-size:15px;
+    color: #eaebee !important; 
+  }
+  </style>
 
 
 <!-- register 메인화면 -->
 <div class="container" id="mainContent" >
 		<div>
 			<div id="submain">
-				<h4 class="text-center wordArtEffect text-success"> <strong style="color: #ff6f0f; font-size: 21px; font-weight: bolder;"> 우리가게 등록하기</strong></h4>
+				<h4 class="text-center wordArtEffect text-success"> <strong style="color: #ff6f0f; font-size: 31px; font-weight: bolder;"> 우리가게 등록하기</strong></h4>
 				 
 				<!-- 파일 첨부 창 -->				
 				<div class="attach mt-4">
@@ -63,10 +79,14 @@
 					<input type="hidden" name="writer" value="${loginUser}">
 					</div>
 					
-					<button type="submit" class="btn btn-success">작성</button>&nbsp;&nbsp;
-					<button type="reset" class="btn btn-danger">취소</button>	&nbsp;&nbsp;
-					<a id="listLink" href="/ex02/stores/stores" class="btn btn-primary">목록 보기</a>
+					<!-- 버튼 영역 -->
+					<div class="container text-center">
+					<button type="submit" class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px;">작성</button>&nbsp;&nbsp;
+					<button type="reset" class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px;margin-left: 10px;">취소</button>	&nbsp;&nbsp;
+					<a id="listLink" href="/ex02/stores/stores" class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px; margin-left: 50px;">목록 보기</a>
+					</div>
 				</form>
+				
 			</div><!-- submain -->
 		</div><!-- col-md-10 -->
 </div><!-- mainContent -->
@@ -238,15 +258,5 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 });
 </script>
 </body>
-<style type="text/css">
 
-.container{
-max-width: 768px !important;
-font-size: 15px;
-}
-input{
-padding: 14px !important; 
-}
-
-</style>
 </html>

@@ -21,15 +21,42 @@
     </div>
   
     <div class="carousel-inner">
+    
       <div class="carousel-item active">
-        <img src="../images/susan1.jpeg" class="d-block" alt="image1">
+	      <c:choose>
+		      <c:when test="${not empty fileList[0]}">
+		      	<img src="${fileList[0]}" class="d-block" alt="image1">
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
       </div>
+      
       <div class="carousel-item">
-        <img src="../images/susan2.jpeg" class="d-block" alt="image2">
+              <c:choose>
+		      <c:when test="${not empty fileList[1]}">
+		      	<img src="${fileList[1]}" class="d-block" alt="image1">
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
       </div>
+      
+      
       <div class="carousel-item">
-        <img src="../images/susan3.jpeg" class="d-block" alt="image3">
+              <c:choose>
+		      <c:when test="${not empty fileList[2]}">
+		      	<img src="${fileList[2]}" class="d-block" alt="image3">
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
       </div>
+      
+      <!-- carousel-item 끝 -->
     </div>
   
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -119,6 +146,7 @@
 				</article>
 				
 				<h3 style="text-align: left; font-size: 22px; font-weight: bold;">정보</h3>
+				
 				<span style="font-size: 18px;"> <c:out value="${content}"></c:out>
 				</span>
 
@@ -243,21 +271,20 @@
 이만큼이나 나오네요 채팅방에 문의드려도 답도 없으시고 담부턴 주문하지 말아야겠네요
 사과 상태가 너무 안좋네요 다른것도 겉은 멀쩡해도
 깍이니 멍든부분도 많고ㅜㅜ</p>
-				</li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
-	</section>
-
-
-
-
-
+					</li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</section>
 	</div>
 </div>
 
+<!-- 수정하기 버튼 -->
+<div class="fixed-button text-center">
+  <a href="/ex02/biz/storesModify"><span><i class="far fa-edit fa-xs"></i>  </span></a>
+</div>
 
 
 
@@ -429,6 +456,35 @@ padding: 0;
 margin: 0;
 padding: 0;
 }
+
+/*글 수정, 삭제 버튼*/
+.fixed-button {
+	width:50px;
+ 	height:50px;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    align-items: center;
+    
+ }
+.fixed-button a{
+ text-decoration: none;
+ }
+.fixed-button a span{
+font-size:37px;
+text-align: center;
+margin: 0 auto;
+color: #ffffff;
+display: block;
+
+width: 70px;
+height: 70px;
+padding-left: 4px;
+background-color: #ff6f0f;
+border-radius: 50%;
+
+}
+
 
 </style>
 

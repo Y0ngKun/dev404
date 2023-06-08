@@ -1,6 +1,7 @@
 package org.ezen.ex02.controller;
 
 import java.io.File;
+
 import java.nio.file.Files;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ezen.ex02.domain.MemberVO;
 import org.ezen.ex02.domain.StoresImagesVO;
+import org.ezen.ex02.domain.StoresVO;
 import org.ezen.ex02.service.MemberService;
 import org.ezen.ex02.service.StoresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.Setter;
@@ -44,12 +48,9 @@ public class StoresController {
 	public String storeMain(Model model, ServletRequest servletRequest, HttpSession session, RedirectAttributes rttr,StoresImagesVO imagesVO, HttpServletRequest request) {
 		
 		String username = (String)session.getAttribute("username");
-		
-		
+
 		List<?> boardList = storesService.getList();
-		
-		
-		
+
 		//List<?> images = service.getAllImages();
 		
 		model.addAttribute("list", boardList);
@@ -66,10 +67,7 @@ public class StoresController {
 		return "stores/stores";
 	};
 	
-	
-	
-	
-	
+
 	@GetMapping("images/{loginUser}")
 	public ResponseEntity<byte []> storesImg (@PathVariable("loginUser") int loginUser){
 	
@@ -79,52 +77,34 @@ public class StoresController {
 		String fileName;
 		String uuid;
 		
-		
 			if(memberVO == null) {
 			
-			
-			
 			uploadPath = "";
-			
 			fileName = "default_profile.png";
-			
 			uuid = "";
-			
-			
 			
 			String imgPath = fileName; 
 			
-			
 			File file = new File ("C:/uploads/" + imgPath);
 			
-			System.out.println("file!!!!!!!!!!!!!"+file);
 			
 			ResponseEntity<byte []> result = null;
 			
 			try {
 				HttpHeaders header = new HttpHeaders();
-				
 				header.add("Content-Type", Files.probeContentType(file.toPath()));
-				
 				result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-				
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 			return result;
 		}
-			
 			
 		uploadPath  = memberVO.getUploadPath();
 		fileName  = memberVO.getFileName();
 		uuid  = memberVO.getUuid();
 		
-		
 		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
-		
 		
 		File file = new File ("C:/uploads/" + imgPath);
 		
@@ -132,62 +112,15 @@ public class StoresController {
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
-			
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			
-			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
-	
-	
-	
-	
-	
-	
-	
-	/*
-	@GetMapping("/images/{bno}")
-	public ResponseEntity<byte []> storesImg (@PathVariable("bno") Long bno){
-		
-		StoresImagesVO imageVO = service.getAttachList(bno);
-		
-		String uploadPath  = imageVO.getUploadPath();
-		String fileName  = imageVO.getFileName();
-		String uuid  = imageVO.getUuid();
-		
-		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
-		
-		
-		File file = new File ("C:/upload/" + imgPath);
-		
-		ResponseEntity<byte []> result = null;
-		
-		try {
-			HttpHeaders header = new HttpHeaders();
-			
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			
 			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
-*/	
-	
-	
-	
 	
 
-	
 //	@PostMapping("/stores")
 //	public String register(MultipartFile[] uploadFile,Model model,HttpServletRequest request, HttpSession session,StoresVO storesVO,String title, String content) {
 //		String writer = (String)session.getAttribute("username");

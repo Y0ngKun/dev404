@@ -58,7 +58,7 @@
 				</li>
 				<!--  -->
 				<li>
-					<a href="/ex02/biz/business-profiles?title=${list[1].notice}&content=${list[1].content}">
+					<a href="/ex02/biz/business-profiles?bno=${list[1].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[1].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -71,7 +71,7 @@
 				</li>
 				
 				<li style="margin-right: 20px;">
-				<a href="/ex02/stores/business-profiles?title=${list[2].notice}&content=${list[2].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[2].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[2].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -83,7 +83,7 @@
 					</a>
 				</li>
 				<li>
-				<a href="/ex02/stores/business-profiles?title=${list[3].notice}&content=${list[3].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[3].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[3].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -95,7 +95,7 @@
 					</a>
 				</li>
 				<li style="margin-right: 20px;">
-				<a href="/ex02/stores/business-profiles?title=${list[4].notice}&content=${list[4].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[4].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[4].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -107,7 +107,7 @@
 					</a>
 				</li>
 				<li>
-				<a href="/ex02/stores/business-profiles?title=${list[5].notice}&content=${list[5].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[5].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[5].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -119,7 +119,7 @@
 					</a>
 				</li>
 				<li style="margin-right: 20px;">
-				<a href="/ex02/stores/business-profiles?title=${list[6].notice}&content=${list[6].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[6].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[6].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -131,7 +131,7 @@
 					</a>
 				</li>
 				<li>
-				<a href="/ex02/stores/business-profiles?title=${list[7].notice}&content=${list[7].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[7].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[7].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -143,7 +143,7 @@
 					</a>
 				</li>
 				<li style="margin-right: 20px;">
-				<a href="/ex02/stores/business-profiles?title=${list[8].notice}&content=${list[8].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[8].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[8].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -155,7 +155,7 @@
 					</a>
 				</li>
 				<li>
-				<a href="/ex02/stores/business-profiles?title=${list[9].notice}&content=${list[9].content}">
+				<a href="/ex02/biz/business-profiles?bno=${list[9].bno}">
 					<div class="thumb-wrap">
 						<img src="images/${list[9].writer}" class="thumbnail-image qudd1g9">
 					</div>
@@ -325,7 +325,7 @@ border-radius: 5px;
 <!-- 글쓰기 등록 버튼 -->
 <c:if test="${message == 1}">
 <div class="fixed-button text-center">
-  <a href="/ex02/storesWrite"><span>+ 글쓰기</span></a>
+  <a href="/ex02/storesWrite"><span><i class="fas fa-plus"></i></span></a>
 </div>
 </c:if>
 
@@ -647,13 +647,14 @@ border-radius: 40%;
  text-decoration: none;
  }
 .fixed-button a span{
-font-size:44px;
+font-size:36px;
 text-align: center;
 margin: 0 auto;
 color: #ffffff;
 display: block;
 width: 70px;
 height: 70px;
+padding-top:7px;
 background-color: #ff6f0f;
 border-radius: 50%;
 }

@@ -122,7 +122,6 @@ public class StoresServiceImpl implements StoresService {
 		@Override
 		//목록보기(select all)
 		public List<StoresVO> getList() {		
-			log.info("getList..........");
 			return storesMapper.getList();
 		}
 		
@@ -144,7 +143,7 @@ public class StoresServiceImpl implements StoresService {
 //		}
 		
 		@Override
-		public StoresImagesVO getAttachList(Long bno) {
+		public List<StoresImagesVO> getAttachList(Long bno) {
 
 
 			return imageMapper.findByBno(bno);

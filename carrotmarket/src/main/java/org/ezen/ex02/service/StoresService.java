@@ -24,7 +24,7 @@ public interface StoresService {
 //	public int getTotal(Criteria cri);
 	
 	//게시판 bno에 해당하는 이미지 한장 가져오기
-	public StoresImagesVO getAttachList(Long bno);
+	public List<StoresImagesVO> getAttachList(Long bno);
 	
 	public List <StoresImagesVO> getAllImages();
 	

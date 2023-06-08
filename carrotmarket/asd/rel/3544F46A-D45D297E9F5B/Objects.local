@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="SchemaObject" objectID="BC0FF916-6E42-EDD4-D676-2A42B7EE1AFD" name="SCOTT" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.SchemaObject" propertyParentId="3544F46A-5E46-3976-2722-D45D297E9F5B" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="CF803CC7-6B65-53FA-F3F3-77415D680868" name="CARROT_BOARD" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="3544F46A-5E46-3976-2722-D45D297E9F5B" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="78FB7893-2577-C50B-8735-D9D89054B8DB" name="CARROT_IMAGEVO" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="3544F46A-5E46-3976-2722-D45D297E9F5B" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="3E3DFA68-354B-32EC-F0D0-02D4C128405A" name="FK_CARROT_BOARD_IMAGE" seqName="seg_0" containerID="78FB7893-2577-C50B-8735-D9D89054B8DB" refContainerID="CF803CC7-6B65-53FA-F3F3-77415D680868" propertyClassName="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" propertyParentId="3544F46A-5E46-3976-2722-D45D297E9F5B" propertySourceId="CF803CC7-6B65-53FA-F3F3-77415D680868" propertyTargetId="78FB7893-2577-C50B-8735-D9D89054B8DB"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

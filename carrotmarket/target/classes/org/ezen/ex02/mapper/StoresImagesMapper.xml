@@ -8,19 +8,15 @@
 		select * from carrot_stores_images
 	</select>
 	
-	
-	
 	<!-- bno로 하나 가져오기 -->
-	<select id="findByBno"
-		resultType="org.ezen.ex02.domain.StoresImagesVO">
+	<select id="findByBno" resultType="org.ezen.ex02.domain.StoresImagesVO">
 
 		select * from CARROT_STORES_IMAGES where bno = #{bno}
 
 	</select>
 
 	<!-- 어제 날자로 경로가 된 첨부파일 데이터 반환 -->
-	<select id="getOldFiles"
-		resultType="org.ezen.ex02.domain.StoresImagesVO">
+	<select id="getOldFiles" resultType="org.ezen.ex02.domain.StoresImagesVO">
 
 		select * from CARROT_STORES_IMAGES where uploadpath = to_char(sysdate
 		-1 ,'yyyy/mm/dd')

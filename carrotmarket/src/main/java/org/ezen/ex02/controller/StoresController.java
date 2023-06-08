@@ -44,12 +44,9 @@ public class StoresController {
 	public String storeMain(Model model, ServletRequest servletRequest, HttpSession session, RedirectAttributes rttr,StoresImagesVO imagesVO, HttpServletRequest request) {
 		
 		String username = (String)session.getAttribute("username");
-		
-		
+
 		List<?> boardList = storesService.getList();
-		
-		
-		
+
 		//List<?> images = service.getAllImages();
 		
 		model.addAttribute("list", boardList);
@@ -66,10 +63,7 @@ public class StoresController {
 		return "stores/stores";
 	};
 	
-	
-	
-	
-	
+
 	@GetMapping("images/{loginUser}")
 	public ResponseEntity<byte []> storesImg (@PathVariable("loginUser") int loginUser){
 	
@@ -79,21 +73,13 @@ public class StoresController {
 		String fileName;
 		String uuid;
 		
-		
 			if(memberVO == null) {
 			
-			
-			
 			uploadPath = "";
-			
 			fileName = "default_profile.png";
-			
 			uuid = "";
 			
-			
-			
 			String imgPath = fileName; 
-			
 			
 			File file = new File ("C:/uploads/" + imgPath);
 			
@@ -103,28 +89,19 @@ public class StoresController {
 			
 			try {
 				HttpHeaders header = new HttpHeaders();
-				
 				header.add("Content-Type", Files.probeContentType(file.toPath()));
-				
 				result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-				
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 			return result;
 		}
-			
 			
 		uploadPath  = memberVO.getUploadPath();
 		fileName  = memberVO.getFileName();
 		uuid  = memberVO.getUuid();
 		
-		
 		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
-		
 		
 		File file = new File ("C:/uploads/" + imgPath);
 		
@@ -132,24 +109,13 @@ public class StoresController {
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
-			
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			
 			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
-	
-	
-	
-	
-	
 	
 	
 	/*

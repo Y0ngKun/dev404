@@ -3,6 +3,7 @@ package org.ezen.ex02.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ezen.ex02.domain.StoresImagesVO;
 import org.ezen.ex02.domain.StoresVO;
 import org.ezen.ex02.service.MemberService;
 import org.ezen.ex02.service.StoresService;
@@ -31,6 +32,14 @@ public class BusinessProfilesController {
 	public String showBizProfiles(HttpServletRequest request, HttpServletResponse response,Long bno, Model model){
 		
 		StoresVO storesVO = storesService.get(bno);
+		
+		StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
+		
+		
+		
+		System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
+		
+		
 		
 		model.addAttribute(storesVO);
 		

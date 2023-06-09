@@ -24,10 +24,6 @@ filePath varchar2(200)
 create sequence carr_mem_id_seq;
 
 
-
-
-
-
 --중고거래 게시글
 drop table carrot_secondhand_articles CASCADE CONSTRAINTS;
 drop sequence carr_art_id_seq;

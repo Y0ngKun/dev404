@@ -75,6 +75,8 @@ aside li {
 
 aside li:hover {
 	background-color: #5e616a;
+	text-decoration: none;
+	color : white;
 }
 
 h2, h3 {
@@ -103,6 +105,11 @@ aside li a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 125px;
+}
+
+aside li a:hover{
+	text-decoration: none;
+	color : white;
 }
 
 aside .chatListItem {
@@ -134,7 +141,9 @@ aside li h3 {
 }
 
 .green {
-	background-color: #a4a4a4;
+	width: 30px;
+    height: 30px;
+    background-size: contain;
 }
 
 .orange {
@@ -163,13 +172,13 @@ main header>* {
 }
 
 main header div {
-	margin-left: 60px;
+	margin-left: 30px;
 	width: 100%;
 }
 
 main header h2 {
 	width: 300px;
-	font-size: 23px;
+	font-size: 20px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -181,11 +190,11 @@ main header span {
 }
 
 main header h3 {
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: normal;
 	color: #7e818a;
 	text-align: left;
-	margin-top: 8px;
+	margin-top: 5px;
 }
 
 .chatroomInfo {

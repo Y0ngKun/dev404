@@ -3,11 +3,12 @@ let switchingRoom = false;
 let socket = null;
 
 //상대방이 보낸 메세지
-function targetMessage(msg, regDate,targetnickname){
+function targetMessage(msg, regDate,targetnickname, id){
 	let str = '';
 	str+= '<li class="you">';
 	str+= '<div class="entete">';
-	str+= '<span class="status green"></span>';
+	str+= '<span class="status green" style="background:url(../stores/images/'+id+'); background-size: cover;"></span>';
+	
 	str+= '<h2>'+ targetnickname+'</h2>';
 	str+= '<h3>'+regDate+'</h3></div>';
 	str+= '<div class="message">';
@@ -205,7 +206,7 @@ $(document).ready(function() {
 		$("#chatInfo").empty();
 		
 		let str = '';
-		str+= '<div id="chatroom"><img style="height:106px; width: 120px" src="../shattach/thumbnail/';
+		str+= '<div id="chatroom"><img style="height:80px; width: 120px" src="../shattach/thumbnail/';
 		str+= articleno;
 		str+= '" style="width : 140px;border-radius: 10px;"/>';
 	    str+= '<div class="chatroomInfo"><div>'
@@ -292,7 +293,7 @@ $(document).ready(function() {
  					if(value.sender == id){
  						str+= myMessage(value.message, value.regDate, mynickname);
  					}else{
- 						str+= targetMessage(value.message,value.regDate,targetnickname);
+ 						str+= targetMessage(value.message,value.regDate,targetnickname, value.sender);
  					}
  				});
  				$("#chat").empty();

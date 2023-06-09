@@ -152,7 +152,7 @@ max-width:130rem
 										d="M3 19C3 18.6687 3.26863 18.4 3.6 18.4H20.4C20.7314 18.4 21 18.6687 21 19C21 19.3314 20.7314 19.6 20.4 19.6H3.6C3.26863 19.6 3 19.3314 3 19Z"
 										fill="#212124"></path></svg>
 							</button>
-							<button type="button"
+							<button type="button" onclick="location.href='/ex02/chat/list'"
 								class="karrot-button r14vym0 _1s38h9c3 _1s38h9c4 r14vym4 r14vym7 _1knjz49j">채팅하기</button></span>
 
 								<c:if test="${loginUser != null }">

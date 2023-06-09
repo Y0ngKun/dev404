@@ -112,6 +112,38 @@ public class StoresController {
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
+<<<<<<< HEAD
+=======
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	/*
+	@GetMapping("/images/{bno}")
+	public ResponseEntity<byte []> storesImg (@PathVariable("bno") Long bno){
+		
+		StoresImagesVO imageVO = service.getAttachList(bno);
+		
+		String uploadPath  = imageVO.getUploadPath();
+		String fileName  = imageVO.getFileName();
+		String uuid  = imageVO.getUuid();
+		
+		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
+		
+		
+		File file = new File ("C:/upload/" + imgPath);
+		
+		ResponseEntity<byte []> result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			
+>>>>>>> kwon
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (Exception e) {

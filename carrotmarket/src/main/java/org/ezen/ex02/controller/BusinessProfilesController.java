@@ -39,6 +39,14 @@ public class BusinessProfilesController {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
+		StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
+		
+		
+		
+		System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
+		
+		
+		
 		model.addAttribute(storesVO);
 		
 		model.addAttribute("bno", bno);

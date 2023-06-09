@@ -39,11 +39,10 @@ public class BusinessProfilesController {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
-		StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
+		//StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
 		
 		
-		
-		System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
+		//System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
 		
 		
 		

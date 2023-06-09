@@ -112,8 +112,6 @@ public class StoresController {
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
-<<<<<<< HEAD
-=======
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (Exception e) {

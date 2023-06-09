@@ -9,6 +9,7 @@ import org.ezen.ex02.mapper.CarMapper;
 import org.ezen.ex02.mapper.CarReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -23,6 +24,7 @@ public class CarReplyServiceImpl implements CarReplyService {
 	@Setter(onMethod_= @Autowired)
 	private CarMapper carMapper;
 	
+	@Transactional
 	@Override
 	public int register(CarReplyVO vo) {
 		log.info("register 호출!" + vo);
@@ -47,6 +49,7 @@ public class CarReplyServiceImpl implements CarReplyService {
 		return mapper.update(vo);
 	}
 
+	@Transactional
 	@Override
 	public int remove(Long rno) {
 		log.info("remove 호출!" + rno);

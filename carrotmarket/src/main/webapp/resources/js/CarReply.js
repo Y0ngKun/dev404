@@ -4,7 +4,7 @@
  
  console.log("CarReply Module START!");
  
- let CarReplyService = (function() {
+ let replyService = (function() {
  	
  	function add(reply, callback, error) {
  		console.log("add CarReply!");

@@ -20,6 +20,8 @@ public class CarVO {
 	private Date regDate; //게시글 등록 날짜
 	private Date updateDate; //게시글 수정일
 	
+	private int replyCnt; //댓글 조회수 
+	
 	//게시판에서 특정 게시글에 첨부되는 첨부파일 리스트(여러개의 첨부 파일을 가져올수 있도록 List로 등록 한다.)
 	private List<CarAttachVO> attachList; 
 	

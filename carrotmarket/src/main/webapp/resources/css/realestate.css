@@ -286,6 +286,6 @@ margin:0!important
 }
 
 /*썸네일 클릭시 나타나는 모달 이미지*/
-body > div.imageModal.modal.fade.in > div > div > div.modal-body > img{
+body > div.imageModal_car.modal.fade.in > div > div > div.modal-body > img{
 width:100%
 }

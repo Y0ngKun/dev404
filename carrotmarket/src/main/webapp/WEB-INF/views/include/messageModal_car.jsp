@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div class="modal fade" id="messageModal">
+<div class="modal fade" id="messageModal_car">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-info">

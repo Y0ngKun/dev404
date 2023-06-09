@@ -160,9 +160,31 @@
 						value='<c:out value="${cri.amount}"/>'>
 					
 					<div id="map" style="width:500px;height:400px;"></div>
-					<p><em>지도를 클릭해주세요!</em></p> 
+						<p><em>지도를 클릭해주세요!</em></p> 
 					<div id="clickLatlng"></div>
+					
+					<!-- 댓글 창 추가-->
+					<div class="row mt-4">
+						<div class="col-md-12 clearfix">
+							<i class="fas fa-reply fa-2x">댓글</i>
+							<button id='addReplyBtn' class='btn btn-outline-primary fload-right'>
+								새 댓글
+							</button>
+						</div>
+					</div>
+					
+					<div class="row mt-2">
+						<div class="col-md-12">
+							<ul class="chat list-group">
+							
+							</ul>
+						</div>
+					</div>
 				
+					<!-- 댓글용 페이지 표시하기 -->
+					<div id='replyPage'>
+					
+					</div> <!-- 댓글 페이지 -->
 				</div>
 			</div>
 		</div>

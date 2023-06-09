@@ -34,7 +34,7 @@
 			<h3 class="hide">프로필</h3>
 			<c:if test="${loginUser == article.memberNo }">
 			<div class="dropdown mt-3 mb-3">
-			  <button class="common-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			  <button class="common-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 			    내 글 수정하기
 			  </button>
 			  <ul class="dropdown-menu myArticle">

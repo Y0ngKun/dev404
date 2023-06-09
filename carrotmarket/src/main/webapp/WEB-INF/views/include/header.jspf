@@ -27,10 +27,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
-
-
 <link rel="stylesheet" media="all" href="https://d1unjqcospf8gs.cloudfront.net/assets/home/home-7e9fc452073ad363e156388e1ddf522db37ba9cd56962e1399ecc7f6ec94337b.css" />
 <script
 	src="https://d1unjqcospf8gs.cloudfront.net/assets/home/home-68e54a691402d81339d12d882793d2682ef8c32b7eb22b53d7a80f4c7a8f617b.js"></script>
@@ -48,8 +44,8 @@ $(function() {
 
 			$(this).addClass('active'); // 활성 링크 클래스 'active' 추가
 
-		}
-
+		}	
+	
 	});
 
 });
@@ -120,10 +116,10 @@ max-width:130rem
 									fill="#FF7E36"></path></svg></span></a>
 					<nav class="_1knjz49k _1s38h9c0">
 						<ul class="_1knjz49m _1s38h9c5">
-							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2 _1knjz49q" href="/ex02/sharticle/list">중고거래</a></li>
-							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2" href="/ex02/stores/stores">동네가게</a></li>
-							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2" href="/ex02/realestate/list">부동산</a></li>
-							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2" href="/ex02/car/list_car">중고차 직거래</a></li>
+							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2 _1knjz49q main_nav" href="/ex02/sharticle/list">중고거래</a></li>
+							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2 main_nav" href="/ex02/stores/stores">동네가게</a></li>
+							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2 main_nav" href="/ex02/realestate/list">부동산</a></li>
+							<li class="_1knjz49o"><a class="_1knjz49p _1s38h9c4 _1s38h9c2 main_nav" href="/ex02/car/list_car">중고차 직거래</a></li>
 						</ul>
 					</nav>
 					<div class="_1s38h9c1 _1s38h9c0">

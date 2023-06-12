@@ -100,6 +100,7 @@ public class MemberController {
 		session.setAttribute("loginUser", memberVO.getId());
 		session.setAttribute("username", memberVO.getUsername());
 		session.setAttribute("usernickname", memberVO.getUsernickname());
+		session.setAttribute("category", memberVO.getCategory());
 		
 		if(url.contains("member")) {
 			url = "";

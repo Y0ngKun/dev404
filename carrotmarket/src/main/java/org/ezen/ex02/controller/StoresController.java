@@ -47,18 +47,15 @@ public class StoresController {
 	@GetMapping("/stores")
 	public String storeMain(Model model, ServletRequest servletRequest, HttpSession session, RedirectAttributes rttr,StoresImagesVO imagesVO, HttpServletRequest request) {
 		
-		String username = (String)session.getAttribute("username");
+		String category = (String)session.getAttribute("category");
 
 		List<?> boardList = storesService.getList();
 
 		
 		model.addAttribute("list", boardList);
 		
-		if(!(username==null)) {
+		if(!(category==null)) {
 			model.addAttribute("message","1");
-			return "stores/stores";
-		}
-		if(username == null) {
 			return "stores/stores";
 		}
 		

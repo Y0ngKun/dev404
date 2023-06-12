@@ -283,11 +283,12 @@
 	</div>
 </div>
 
-<!-- 수정하기 버튼 -->
+<!-- 수정/삭제 페이지 진입 버튼 -->
+<c:if test="${message == 1}">
 <div class="fixed-button text-center">
   <a href="/ex02/biz/storesModify?bno=${bno}"><span><i class="far fa-edit fa-xs"></i>  </span></a>
 </div>
-
+</c:if>
 
 
 

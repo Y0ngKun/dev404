@@ -118,10 +118,10 @@ $(document).ready(function() {
 
 	    if (operation == "remove") {
 	    	 formObj.attr("action", "/ex02/biz/delete?bno=" + <%= request.getAttribute("bno") %>);
-	    	alert("게시글 삭제 성공");
+	    	alert("게시글을 삭제했습니다");
 	    } else {
 	    	formObj.attr("action", "/ex02/biz/storesModify?bno=" + <%= request.getAttribute("bno") %>);
-	    	alert("게시글 수정 성공");
+	    	alert("게시글을 수정했습니다");
 	    }
 	  });
 	});

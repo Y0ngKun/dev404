@@ -52,9 +52,16 @@ public class BusinessProfilesController {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
-		//StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
-		//System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
+		String loginUser = (String)session.getAttribute("username");
 		
+		String articleWriter = (String)storesVO.getStoreName();
+		
+		if(loginUser.equals(articleWriter)) {
+			model.addAttribute("message","1");
+		}
+		
+		System.out.println("loginUser"+loginUser);
+		System.out.println("articleWriter"+articleWriter);
 		
 		model.addAttribute(storesVO);
 		model.addAttribute("bno", bno);

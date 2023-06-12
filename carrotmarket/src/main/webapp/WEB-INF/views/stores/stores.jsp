@@ -7,8 +7,12 @@
 
 <%@ include file="../include/header.jspf" %>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
 <div class="top-banner">
-<h5 style="font-size: 30px; position: absolute; top: 28%; left: 34%; bottom: 30%; right: 30%; text-align: left; ">
+<h5 style="font-size: 30px; position: absolute; top: 28%; left: 34%; bottom: 30%; right: 30%; text-align: left; font-weight: bold; ">
 동네 이웃들이 <br/>
 자주 가는 동네 가게</h5>
 
@@ -20,7 +24,7 @@
 <!-- 동네 가게 리스트 섹션 -->
 <section>
 	<div class="container align-items-center" style="max-width:768px margin: 0 auto; padding: 0;">
-	<h1 class="text-center" style="font-size: 32px; padding: 40px 0 40px 0;">다양한 동네가게를 볼 수 있어요</h1>
+	<h1 class="text-center" style="font-size: 32px; padding: 40px 0 40px 0; font-weight: bold;">다양한 동네가게를 볼 수 있어요</h1>
 		<div class="stores-caterory">
 			<ul>
 				<li role="listitem"><label>전체<input name="" type="radio">
@@ -49,7 +53,7 @@
 							src="images/${list[0].writer}" class="card-img-top" alt="Card image cap">
 					</div>
 					<div class="info-wrap">
-						<h5 class="storename" > <c:out value="${list[0].notice}"></c:out> </h5>
+						<h5 class="storename" > <c:out value="${list[0].storeName}"></c:out> </h5>
 						<p class="card-text"><c:out value="${list[0].content}"></c:out></p>
 						<span class="smb-list-item-infos _1o1a6ke8">후기 802 ∙ 단골 36,961 ∙ 농산물</span>
 					</div>
@@ -62,7 +66,7 @@
 						<img src="images/${list[1].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[1].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[1].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[1].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,743 ∙ 단골 26,421 ∙ 수산물</span>
 						</div>
@@ -75,7 +79,7 @@
 						<img src="images/${list[2].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[2].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[2].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[2].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,793 ∙ 단골 26,162 ∙ 식자재판매</span>
 						</div>
@@ -87,7 +91,7 @@
 						<img src="images/${list[3].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[3].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[3].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[3].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,442 ∙ 단골 22,893 ∙ 식육판매업</span>
 						</div>
@@ -99,7 +103,7 @@
 						<img src="images/${list[4].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[4].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[4].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[4].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 682 ∙ 단골 22,046 ∙ 정육점</span>
 						</div>
@@ -111,7 +115,7 @@
 						<img src="images/${list[5].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[5].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[5].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[5].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,239 ∙ 단골 21,901 ∙ 수산물</span>
 						</div>
@@ -123,7 +127,7 @@
 						<img src="images/${list[6].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[6].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[6].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[6].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,570 ∙ 단골 21,158 ∙ 수산물</span>
 						</div>
@@ -135,7 +139,7 @@
 						<img src="images/${list[7].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[7].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[7].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[7].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 722 ∙ 단골 19,277 ∙ 정수기판매</span>
 						</div>
@@ -147,7 +151,7 @@
 						<img src="images/${list[8].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-								<h5 class="storename"><c:out value="${list[8].notice}"></c:out> </h5>
+								<h5 class="storename"><c:out value="${list[8].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[8].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 818 ∙ 단골 19,206 ∙ 식품판매</span>
 						</div>
@@ -159,7 +163,7 @@
 						<img src="images/${list[9].writer}" class="thumbnail-image qudd1g9">
 					</div>
 						<div class="info-wrap">
-							<h5 class="storename"><c:out value="${list[9].notice}"></c:out> </h5>
+							<h5 class="storename"><c:out value="${list[9].storeName}"></c:out> </h5>
 							<p class="card-text"><c:out value="${list[9].content}"></c:out></p>
 							<span class="smb-list-item-infos _1o1a6ke8">후기 1,434 ∙ 단골 18,369 ∙ 수산물</span>
 						</div>
@@ -180,7 +184,7 @@
 <!-- 이용자 후기 섹션 -->
 <section class="stores-review">
 <div class="container stores-review-list">
-<h1 class="text-center" style="font-size:30px; padding:40px 0 40px 0;">동네 이웃이 남긴 후기를 찾아보세요</h1>
+<h1 class="text-center" style="font-size:30px; padding:40px 0 40px 0; font-weight: bold;">동네 이웃이 남긴 후기를 찾아보세요</h1>
 
   <ul>
     <li>

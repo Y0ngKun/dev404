@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.ezen.ex02.domain.MemberVO;
 import org.ezen.ex02.domain.StoresImagesVO;
@@ -47,30 +48,21 @@ public class BusinessProfilesController {
 	
 	//비즈프로필 보여주기
 	@GetMapping("/business-profiles")
-	public String showBizProfiles(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("bno")  long bno) throws MalformedURLException {
+	public String showBizProfiles(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("bno")  long bno, HttpSession session) throws MalformedURLException {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
 		//StoresImagesVO storesImagesVO = storesService.getAttachList(bno);
-		
-		
 		//System.out.println("storesImagesVO 확인!!!! :"+storesImagesVO);
 		
 		
-		
 		model.addAttribute(storesVO);
-		
 		model.addAttribute("bno", bno);
-		
 		request.setAttribute("bno", bno);
-		
 		List<StoresImagesVO> storesImagesVO = storesService.getAttachList(bno);
 		
-		
 		List<UrlResource> aa = new ArrayList<>();
-		
-		
-		
+	
 		for (int i =0; i < storesImagesVO.size(); i++ ) {
 			
 			
@@ -78,14 +70,9 @@ public class BusinessProfilesController {
 			String uuid = storesImagesVO.get(i).getUuid();
 			String fileName = storesImagesVO.get(i).getFileName();
 			
-			
 			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
-			
 			UrlResource imgs = new UrlResource ("file:///C:/upload/" + imgPath);
-			
-			System.out.println(imgs);
-			
-			
+			System.out.println("imgs = "+imgs);
 			aa.add(imgs);
 			
 		}
@@ -95,6 +82,60 @@ public class BusinessProfilesController {
         
 		return "stores/business-profiles";
 	}
+	
+	//게시물 상세보기시 회원 프로필 이미지 불러오기
+	@GetMapping("images/{writer}")
+	public ResponseEntity<byte []> storesImg (@PathVariable("writer") int writer){
+	
+		MemberVO memberVO =  storesService.getWriterImg(writer);
+		
+		String uploadPath;
+		String fileName;
+		String uuid;
+		
+			if(memberVO == null) {
+			
+			uploadPath = "";
+			fileName = "default_profile.png";
+			uuid = "";
+			
+			String imgPath = fileName; 
+			
+			File file = new File ("C:/uploads/" + imgPath);
+			
+			
+			ResponseEntity<byte []> result = null;
+			
+			try {
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", Files.probeContentType(file.toPath()));
+				result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+			
+		uploadPath  = memberVO.getUploadPath();
+		fileName  = memberVO.getFileName();
+		uuid  = memberVO.getUuid();
+		
+		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
+		
+		File file = new File ("C:/uploads/" + imgPath);
+		
+		ResponseEntity<byte []> result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	
 	/*
 	@GetMapping("images/{bno}")
@@ -129,13 +170,9 @@ public class BusinessProfilesController {
 	
 	*/
 	
-	
-	
-	
-	//게시물 수정하기 페이지
+	//게시물 수정하기 페이지 진입
 	@GetMapping("/storesModify")
-	public String articleModify(Model model,HttpServletRequest request, @RequestParam("bno") Long bno, ServletRequest sRequest) {
-		
+	public String articleModify(Model model,HttpServletRequest request, @RequestParam("bno") Long bno) {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
@@ -143,12 +180,9 @@ public class BusinessProfilesController {
 		model.addAttribute("customBenefit", storesVO.getCustomBenefit());
 		model.addAttribute("content", storesVO.getContent());
 		model.addAttribute("notice", storesVO.getNotice());
-		model.addAttribute("bno",bno);
-		sRequest.setAttribute("bno", bno);
+		model.addAttribute("storesName",storesVO.getStoreName());
 		
-		
-		System.out.println("수정페이지 storesService.get(bno) 확인 "+storesService.get(bno));
-		
+		request.setAttribute("bno", bno);
 		
 		return "stores/storesModify";
 	}
@@ -157,6 +191,7 @@ public class BusinessProfilesController {
 	//게시물 수정하기 액션
 	@PostMapping("/storesModify")
 	public String ModifyAction(Model model, HttpServletRequest request, StoresVO storesVO, @RequestParam("bno") Long bno) {
+		
 		
 	    storesService.modify(storesVO);
 	    
@@ -167,7 +202,6 @@ public class BusinessProfilesController {
 	@PostMapping("/delete")
 	public String deleteAction(Model model, @RequestParam("bno") Long bno) {
 		
-		System.out.println("삭제하기 진입헀고, bno 확인 :" + bno);
 		
 		storesService.remove(bno);
 		

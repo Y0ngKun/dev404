@@ -7,8 +7,8 @@
 <%@ include file="../include/header.jspf" %>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
 <div class="container align-items-center" style="max-width:768px margin: 100px 0 0 0 auto; padding: 0;">
@@ -16,19 +16,20 @@
 
 <!-- 이미지 영역 시작 -->
 <div class="container mt-3 mb-5 p-0 m-0 mx-auto d-flex justify-content-center">
+
+  <!-- carousel 시작 -->
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-  
-    <div class="carousel-inner">
     
+    <div class="carousel-inner">
       <div class="carousel-item active">
 	      <c:choose>
 		      <c:when test="${not empty urlResourceList[0]}">
-		      	<img src="images/${list[0].writer}" class="d-block" alt="image1">
+		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image1">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
@@ -39,28 +40,26 @@
       <div class="carousel-item">
               <c:choose>
 		      <c:when test="${not empty urlResourceList[1]}">
-		      	<img src="${urlResourceList[1]}" class="d-block" alt="image1">
+		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image2">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
 		      </c:otherwise>
 	      </c:choose>
       </div>
-      
       
       <div class="carousel-item">
               <c:choose>
 		      <c:when test="${not empty urlResourceList[2]}">
-		      	<img src="${urlResourceList[2]}" class="d-block" alt="image3">
+		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image3">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
 		      </c:otherwise>
 	      </c:choose>
       </div>
-      
-      <!-- carousel-item 끝 -->
     </div>
+    <!-- carousel 끝 -->
   
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -82,7 +81,7 @@
 				<div class="aa2">
 					<div class="d5c2h80 ">
 						<a href="#" class="d5c2h81 ">
-							<img alt="#" src="https://dnvefa72aowie.cloudfront.net/businessPlatform/bizPlatform/profile/center_biz_5863590/1677722646074/e956d3d9f7a89abd32a1c13a79476d7290aa53d05f2b2e40c79490551994c6d4.jpeg?q=82&s=640x640&t=crop">
+							<img alt="#" src="images/${storesVO.writer}">
 						</a>
 						<div class="d5c2h82">
 						 	<a href="#">${storesVO.storeName}</a>
@@ -294,8 +293,11 @@
 
 <%@ include file="../include/footer.jspf" %>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=787053e4ea44893735697779f0b00441"></script>
-	<script>
+<!-- 카카오맵 공식 스크립트  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=787053e4ea44893735697779f0b00441">
+</script>
+<!-- 카카오맵 커스텀 스크립트 -->
+<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.5164947, 129.1164823), // 지도의 중심좌표
@@ -332,13 +334,12 @@
 </style>
 
 <script type="text/javascript">
-/*
 $(document).ready(function(){
 $('.carousel').carousel({
     touch: true
   });
 })
-*/
+
 </script>
 </body>
 

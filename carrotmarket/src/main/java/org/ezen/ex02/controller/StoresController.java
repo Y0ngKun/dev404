@@ -51,10 +51,8 @@ public class StoresController {
 
 		List<?> boardList = storesService.getList();
 
-		//List<?> images = service.getAllImages();
 		
 		model.addAttribute("list", boardList);
-		//model.addAttribute("images",images);
 		
 		if(!(username==null)) {
 			model.addAttribute("message","1");

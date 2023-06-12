@@ -84,7 +84,7 @@
 					
 					<div class="form-group">
 						<label for="writer"><strong>작성자 : </strong></label>
-						<input type="text" name="storeName" value="${usernickname}" class="form-control" id=storeName readonly="readonly"  />		
+						<input type="text" name="storeName" value="${storesName}" class="form-control" id=storeName readonly="readonly"  />		
 					</div>
 					
 					<div>
@@ -105,27 +105,25 @@
 
 <%@include file="../include/footer.jspf"%>
 
+<!-- 게시글 수정 혹은 삭제 버튼에 따라서 action을 구분 하기 위한 스크립트 -->
 <script type="text/javascript">
+$(document).ready(function() {
+	  let formObj = $("#modifyForm");
+	// JSP 변수로부터 bno 값을 가져옴
 
+	  $("button").on("click", function(event) {
+	    event.preventDefault();
 
-	$(document).ready(function() {
+	    let operation = $(this).data("oper");
 
-		let formObj = $("#modifyForm");
-
-		$("button").on("click", function() {
-			e.preventDefault();
-
-			let operation = $(this).data("oper");
-
-			if (operation == "remove") {
-				alert("삭제하기");
-				formObj.attr("action", "/ex02/biz/delete?bno=${bno}");
-
-			} else {
-				formObj.attr("action", "/ex02/biz/storesModify?bno=${bno}");
-			}
-
-		});
+	    if (operation == "remove") {
+	    	 formObj.attr("action", "/ex02/biz/delete?bno=" + <%= request.getAttribute("bno") %>);
+	    	alert("게시글 삭제 성공");
+	    } else {
+	    	formObj.attr("action", "/ex02/biz/storesModify?bno=" + <%= request.getAttribute("bno") %>);
+	    	alert("게시글 수정 성공");
+	    }
+	  });
 	});
 </script>
 
@@ -293,6 +291,7 @@ $(".uploadResult").on("click", "span", function(e) { // 삭제 x클릭
 	
 });
 </script>
+
 </body>
 
 </html>

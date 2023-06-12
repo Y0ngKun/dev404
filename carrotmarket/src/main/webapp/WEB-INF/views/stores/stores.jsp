@@ -46,8 +46,7 @@
 				<a href="/ex02/biz/business-profiles?bno=${list[0].bno}">
 					<div class="thumb-wrap">
 						<img
-							src="images/${list[0].writer}"
-							class="card-img-top" alt="Card image cap">
+							src="images/${list[0].writer}" class="card-img-top" alt="Card image cap">
 					</div>
 					<div class="info-wrap">
 						<h5 class="storename" > <c:out value="${list[0].notice}"></c:out> </h5>

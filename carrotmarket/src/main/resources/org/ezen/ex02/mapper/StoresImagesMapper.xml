@@ -8,7 +8,7 @@
 		select * from carrot_stores_images
 	</select>
 	
-	<!-- bno로 하나 가져오기 -->
+	<!-- bno로 이미지들 가져오기 -->
 	<select id="findByBno" resultType="org.ezen.ex02.domain.StoresImagesVO">
 
 		select * from CARROT_STORES_IMAGES where bno = #{bno}

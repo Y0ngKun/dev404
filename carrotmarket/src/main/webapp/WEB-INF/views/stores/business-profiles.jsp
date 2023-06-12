@@ -3,10 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
-
 <c:set var="pageTitle" value="동네 이웃들이 자주가는 동네 가게"></c:set>
 <%@ include file="../include/header.jspf" %>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
 
 <div class="container align-items-center" style="max-width:768px margin: 100px 0 0 0 auto; padding: 0;">
 <div class="row text-center justify-content-md-center">
@@ -24,8 +27,8 @@
     
       <div class="carousel-item active">
 	      <c:choose>
-		      <c:when test="${not empty fileList[0]}">
-		      	<img src="${fileList[0]}" class="d-block" alt="image1">
+		      <c:when test="${not empty urlResourceList[0]}">
+		      	<img src="images/${list[0].writer}" class="d-block" alt="image1">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
@@ -35,8 +38,8 @@
       
       <div class="carousel-item">
               <c:choose>
-		      <c:when test="${not empty fileList[1]}">
-		      	<img src="${fileList[1]}" class="d-block" alt="image1">
+		      <c:when test="${not empty urlResourceList[1]}">
+		      	<img src="${urlResourceList[1]}" class="d-block" alt="image1">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
@@ -47,8 +50,8 @@
       
       <div class="carousel-item">
               <c:choose>
-		      <c:when test="${not empty fileList[2]}">
-		      	<img src="${fileList[2]}" class="d-block" alt="image3">
+		      <c:when test="${not empty urlResourceList[2]}">
+		      	<img src="${urlResourceList[2]}" class="d-block" alt="image3">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
@@ -283,7 +286,7 @@
 
 <!-- 수정하기 버튼 -->
 <div class="fixed-button text-center">
-  <a href="/ex02/biz/storesModify"><span><i class="far fa-edit fa-xs"></i>  </span></a>
+  <a href="/ex02/biz/storesModify?bno=${bno}"><span><i class="far fa-edit fa-xs"></i>  </span></a>
 </div>
 
 
@@ -329,9 +332,13 @@
 </style>
 
 <script type="text/javascript">
+/*
+$(document).ready(function(){
 $('.carousel').carousel({
     touch: true
   });
+})
+*/
 </script>
 </body>
 

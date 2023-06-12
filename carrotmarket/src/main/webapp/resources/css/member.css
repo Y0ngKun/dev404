@@ -14,7 +14,10 @@ a:hover{
 	text-decoration: underline;
 }
 
-@charset "UTF-8";
+h1{
+	font-size : 2rem;
+	padding-top : 20px;
+}
 
 .common_button {
 	width: 100%;
@@ -45,8 +48,10 @@ a:hover{
 }
 
 .form-check-input{
+	position : relative;
 	padding : 7px;
-	margin : 0;
+	margin-left: 7px;
+	
 }
 .card{
 	border : 0px;

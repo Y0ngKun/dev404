@@ -142,15 +142,15 @@
 					</div>
 					
 					<div>
-					<span style="font-size: 18px; font-weight:700; ">알림</span>
-					<span style="font-size: 18px; display: block;">토요일 일요일은 택배사 휴무로 인해 예약주문시 월요일 순차적으로 발송합니다. 저녁,밤,주말 및 공휴일은 늦더라도 채팅남겨주시면 꼭 답장 드리겠습니다. ^^</span>
+					<span style="font-size: 18px;">알림</span>
+					<span style="font-size: 18px; display: block;"><c:out value="${storesVO.notice}"></c:out></span>
 					</div>
 					
 				</article>
 				
-				<h3 style="text-align: left; font-size: 22px; font-weight: bold;">정보</h3>
+				<h3 style="text-align: left; font-size: 22px; font-weight:bold; margin-top: 43px;">정보</h3>
 				
-				<span style="font-size: 18px;"> <c:out value="${content}"></c:out>
+				<span style="font-size: 18px;"> <c:out value="${storesVO.content}"></c:out>
 				</span>
 
 
@@ -162,7 +162,7 @@
 		<section class="map d-flex flex-column" style="margin-top: 30px; margin-bottom: 20px;">
 			<div style="text-align: left; margin-bottom: 10px;" >
 				<span style="margin-right: 6px;"> <i class="fas fa-map-marker" style="font-size: 18px;"></i> </span> 
-				<span style="font-size: 20px;"> 위치정보 </span>
+				<span style="font-size: 20px;"> <c:out value="${storesVO.storesLocation }"></c:out> </span>
 			</div>
 
 			<!-- 지도  -->

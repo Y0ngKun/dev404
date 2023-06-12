@@ -13,9 +13,13 @@ public interface StoresService {
 
 	public StoresVO get(Long bno); //Read
 
-	public boolean modify(StoresVO board); //Update
+	public boolean modify(StoresVO storesVO); //Update
 
 	public boolean remove(Long bno); //delete
+	
+	
+	
+	
 
 	public List<StoresVO> getList(); //목록 select
 	

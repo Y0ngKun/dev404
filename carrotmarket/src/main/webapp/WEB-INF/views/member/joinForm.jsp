@@ -5,6 +5,10 @@
 
 <c:set var="pageTitle" value="회원가입"></c:set>
 <%@ include file="../include/header.jspf" %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 
 <div class="container" style= " margin-top:100px; max-width: 500px !important;">
@@ -14,7 +18,7 @@
 					<div>						
 						<div class="form-group uploadDiv">
 							<label for="upload"><h1>프로필 사진 첨부</h1></label>
-							<input type="file" class="form-control" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px" /> 
+							<input type="file" class="form-control" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 19px 20px; font-size: 19px" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	
@@ -126,18 +130,6 @@ function toggleProfileSection(show) {
   }
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-	
-
 
 
 <%@ include file="../include/footer.jspf"%>

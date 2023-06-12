@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="../include/header.jspf"%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+
  <style type="text/css">
+ 	body{
+ 	font-size: 15px;
+ 	}
+ 
     .container {
       max-width: 768px !important;
       font-size: 15px;
@@ -48,27 +56,27 @@
 				</div>
 				<!-- 파일 첨부 부분 끝 -->
 								
-				<form action="/ex02/storesWrite" method="post" id="freg" name="freg" role="form">
+				<form action="/ex02/biz/storesModify?bno=${bno}" method="post" id="modifyForm" name="modifyForm" role="form">
 					
 					<div class="form-group" style="margin-top: 7px;">
 						<label for="notice"><strong>알림 사항 : </strong></label>
 						<input type="text" class="form-control" id="notice" placeholder="안내 사항이나 전달 사항을 알려주세요" 
-							name="notice" required />		
+							name="notice" value="${notice}" required />		
 					</div>
 			
 					<div class="form-group">
-					<label for="content" style="margin-top: 5px;"><strong>가게 정보 : </strong></label><textarea class="form-control" id="content" placeholder="우리 가게를 소개해주세요" name="content" rows="20" style="width: 100%; margin-bottom: 15px;" required></textarea>
+					<label for="content" style="margin-top: 5px;"><strong>가게 정보 : </strong></label><textarea class="form-control" id="content" name="content" rows="20" style="width: 100%; margin-bottom: 15px;" required>${content}</textarea>
 					
 </div>
 					<div class="form-group">
 						<label for="customBenefit"><strong>단골 혜택 : </strong></label>
-						<input type="text" class="form-control" id="customBenefit" name="customBenefit" placeholder="당근 마켓을 보고 왔을 때 혜택을 알려주세요!" />		
+						<input type="text" class="form-control" id="customBenefit" name="customBenefit" value="${customBenefit}"/>		
 					</div>
 					
 					
 					<div class="form-group">
 						<label for="storesLocation"><strong>가게 위치 : </strong></label>
-						<input type="text" class="form-control" id="storesLocation" name="storesLocation" />		
+						<input type="text" class="form-control" id="storesLocation" name="storesLocation" value="${storesLocation}" />		
 					</div>	
 					
 					
@@ -85,7 +93,8 @@
 					
 					<!-- 버튼 영역 -->
 					<div class="container text-center">
-					<button type="submit" class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px;">수정하기</button>&nbsp;&nbsp;
+					<button type="submit" data-oper='modify' class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px;">수정하기</button>&nbsp;&nbsp;
+					<button type="submit" data-oper='remove' class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px;">삭제하기</button>&nbsp;&nbsp;
 					<a id="listLink" href="/ex02/stores/stores" class="btn" style="color:#fff; ; font-size: 15px; background-color: #ff6f0f; padding: 9px; margin-left: 50px;">돌아가기</a>
 					</div>
 				</form>
@@ -95,6 +104,30 @@
 </div><!-- mainContent -->
 
 <%@include file="../include/footer.jspf"%>
+
+<script type="text/javascript">
+
+
+	$(document).ready(function() {
+
+		let formObj = $("#modifyForm");
+
+		$("button").on("click", function() {
+			e.preventDefault();
+
+			let operation = $(this).data("oper");
+
+			if (operation == "remove") {
+				alert("삭제하기");
+				formObj.attr("action", "/ex02/biz/delete?bno=${bno}");
+
+			} else {
+				formObj.attr("action", "/ex02/biz/storesModify?bno=${bno}");
+			}
+
+		});
+	});
+</script>
 
 
 <script type="text/javascript">

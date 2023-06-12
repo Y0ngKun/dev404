@@ -57,28 +57,29 @@ public class StoresServiceImpl implements StoresService {
 			return storesMapper.read(bno);
 		}
 		
-		/*
-		@Override
-		public boolean modify(BoardVO board) {
-
-			log.info("modify......" + board);
-
-			return mapper.update(board) == 1;
-		}
-		*/
 		
-		/*
+		@Override
+		public boolean modify(StoresVO storesVO) {
+
+			log.info("modify......" + storesVO);
+
+			return storesMapper.modify(storesVO) == 1;
+		}
+		
+		
+		
 		@Override
 		public boolean remove(Long bno) {
 
 			log.info("remove...." + bno);
 
-			return mapper.delete(bno) == 1;
+			return storesMapper.delete(bno) == 1;
 		}
-		*/
 		
-		//첨부물 고려
-		@Transactional //두개 테이블 처라하므로 트랜젝션
+		
+		//첨부물 고려할때 수정
+		/*
+		@Transactional //두개 테이블 처리하므로 트랜젝션
 		@Override
 		public boolean modify(StoresVO board) {
 
@@ -103,7 +104,10 @@ public class StoresServiceImpl implements StoresService {
 
 			return modifyResult;
 		}
+		*/
 		
+		//첨부물 고려할 때 삭제
+		/*
 		@Transactional
 		@Override
 		public boolean remove(Long bno) {
@@ -116,6 +120,7 @@ public class StoresServiceImpl implements StoresService {
 
 			return storesMapper.delete(bno) == 1;
 		}
+		*/
 		
 		
 		//댓글 작업 전이라서 활성화

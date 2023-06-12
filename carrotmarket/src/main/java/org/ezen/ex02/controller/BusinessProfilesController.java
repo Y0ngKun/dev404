@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,8 +26,10 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -129,17 +132,50 @@ public class BusinessProfilesController {
 	
 	
 	
-	//게시물 수정하기
+	//게시물 수정하기 페이지
 	@GetMapping("/storesModify")
-	public String articleModify(Model model, StoresVO storesVO,HttpServletRequest request,@RequestParam("bno") long bno) {
+	public String articleModify(Model model,HttpServletRequest request, @RequestParam("bno") Long bno, ServletRequest sRequest) {
 		
 		
+		StoresVO storesVO = storesService.get(bno);
+		
+		model.addAttribute("storesLocation", storesVO.getStoresLocation());
+		model.addAttribute("customBenefit", storesVO.getCustomBenefit());
+		model.addAttribute("content", storesVO.getContent());
+		model.addAttribute("notice", storesVO.getNotice());
+		model.addAttribute("bno",bno);
+		sRequest.setAttribute("bno", bno);
 		
 		
-		
+		System.out.println("수정페이지 storesService.get(bno) 확인 "+storesService.get(bno));
 		
 		
 		return "stores/storesModify";
 	}
 	
-}
+	
+	//게시물 수정하기 액션
+	@PostMapping("/storesModify")
+	public String ModifyAction(Model model, HttpServletRequest request, StoresVO storesVO, @RequestParam("bno") Long bno) {
+		
+	    storesService.modify(storesVO);
+	    
+	    return "redirect:/stores/stores";
+	}
+	
+	//게시글 삭제하기 액션
+	@PostMapping("/delete")
+	public String deleteAction(Model model, @RequestParam("bno") Long bno) {
+		
+		System.out.println("삭제하기 진입헀고, bno 확인 :" + bno);
+		
+		storesService.remove(bno);
+		
+		System.out.println("삭제하기 수행했음");
+		
+		return "redirect:/stores/stores";
+	}
+	
+	
+	
+}//BusinessProfilesController;

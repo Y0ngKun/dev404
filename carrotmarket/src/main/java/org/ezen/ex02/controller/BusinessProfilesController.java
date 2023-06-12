@@ -1,6 +1,7 @@
 package org.ezen.ex02.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -21,10 +22,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,23 +56,25 @@ public class BusinessProfilesController {
 		
 		StoresVO storesVO = storesService.get(bno);
 		
-		String loginUser = (String)session.getAttribute("username");
+		//로그인 유저와 게시글 작성자 비교해서 수정 버튼 보이게 model에 값 넘겨주기
+		Integer loginUserInteger = (Integer) session.getAttribute("loginUser");
+		String loginUser = loginUserInteger.toString();
 		
-		String articleWriter = (String)storesVO.getStoreName();
+		long writer = storesVO.getWriter();
+		String articleWriter = String.valueOf(writer);
+	
 		
-		if(loginUser.equals(articleWriter)) {
+		if(loginUser != null && loginUser.equals(articleWriter)) {
 			model.addAttribute("message","1");
 		}
-		
-		System.out.println("loginUser"+loginUser);
-		System.out.println("articleWriter"+articleWriter);
 		
 		model.addAttribute(storesVO);
 		model.addAttribute("bno", bno);
 		request.setAttribute("bno", bno);
+		
 		List<StoresImagesVO> storesImagesVO = storesService.getAttachList(bno);
 		
-		List<UrlResource> aa = new ArrayList<>();
+		List<File> aa = new ArrayList<>();
 	
 		for (int i =0; i < storesImagesVO.size(); i++ ) {
 			
@@ -78,14 +84,11 @@ public class BusinessProfilesController {
 			String fileName = storesImagesVO.get(i).getFileName();
 			
 			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
-			UrlResource imgs = new UrlResource ("file:///C:/upload/" + imgPath);
+			File imgs = new File ("file:///C:/upload/" + imgPath);
 			System.out.println("imgs = "+imgs);
 			aa.add(imgs);
-			
 		}
-		//System.out.println("모델 model.addAttribute(aa) 확인 : "+model.addAttribute(aa));
-		
-        //System.out.println(model);
+	
         
 		return "stores/business-profiles";
 	}
@@ -93,26 +96,25 @@ public class BusinessProfilesController {
 	//게시물 상세보기시 회원 프로필 이미지 불러오기
 	@GetMapping("images/{writer}")
 	public ResponseEntity<byte []> storesImg (@PathVariable("writer") int writer){
-	
+
 		MemberVO memberVO =  storesService.getWriterImg(writer);
-		
+
 		String uploadPath;
 		String fileName;
 		String uuid;
-		
-			if(memberVO == null) {
-			
+
+		if(memberVO == null) {
+
 			uploadPath = "";
 			fileName = "default_profile.png";
 			uuid = "";
-			
+
 			String imgPath = fileName; 
-			
+
 			File file = new File ("C:/uploads/" + imgPath);
-			
-			
+
 			ResponseEntity<byte []> result = null;
-			
+
 			try {
 				HttpHeaders header = new HttpHeaders();
 				header.add("Content-Type", Files.probeContentType(file.toPath()));
@@ -122,17 +124,17 @@ public class BusinessProfilesController {
 			}
 			return result;
 		}
-			
+
 		uploadPath  = memberVO.getUploadPath();
 		fileName  = memberVO.getFileName();
 		uuid  = memberVO.getUuid();
-		
+
 		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
-		
+
 		File file = new File ("C:/uploads/" + imgPath);
-		
+
 		ResponseEntity<byte []> result = null;
-		
+
 		try {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
@@ -144,8 +146,8 @@ public class BusinessProfilesController {
 	}
 	
 	
-	/*
-	@GetMapping("images/{bno}")
+	/*	
+	@GetMapping("iimmgg/{bno}")
 	public ResponseEntity<byte []> storesImg (@PathVariable("bno") long bno){
 	
 		
@@ -155,13 +157,22 @@ public class BusinessProfilesController {
 		String fileName;
 		String uuid;
 		
-		uploadPath  = memberVO.getUploadPath();
-		fileName  = memberVO.getFileName();
-		uuid  = memberVO.getUuid();
+
 		
-		String imgPath = uploadPath + "/" + "s_" + uuid + "_"  + fileName; 
+		List<File> aa = new ArrayList<>();
 		
-		File file = new File ("C:/uploads/" + imgPath);
+		for (int i =0; i < storesImages.size(); i++ ) {
+			
+			
+			String uploadPath = storesImages.get(i).getUploadPath();
+			String uuid = storesImages.get(i).getUuid();
+			String fileName = storesImages.get(i).getFileName();
+			
+			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
+			File file = new File ("file:///C:/upload/" + imgPath);
+			
+			aa.add(file);
+		}
 		
 		ResponseEntity<byte []> result = null;
 		
@@ -177,7 +188,59 @@ public class BusinessProfilesController {
 	
 	*/
 	
-	//게시물 수정하기 페이지 진입
+	
+	@GetMapping("imgs/{bno}")
+	public ResponseEntity<MultiValueMap<String, Resource>> storesImg(@PathVariable("bno") long bno) {
+		System.out.println("게시물 src bno 확인"+bno);
+	    List<StoresImagesVO> storesImages = storesService.getAttachList(bno);
+	    
+	    List<Resource> resources = new ArrayList<>();
+	    
+	    for (StoresImagesVO image : storesImages) {
+	        String uploadPath = image.getUploadPath();
+	        String uuid = image.getUuid();
+	        String fileName = image.getFileName();
+	        
+	        String imgPath = uploadPath + "/" + uuid + "_" + fileName;
+	        File file = new File("C:/upload/" + imgPath);
+	        
+	        try {
+	            Resource resource = new UrlResource(file.toURI());
+	            if (resource.exists()) {
+	                resources.add(resource);
+	            }
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    List<MediaType> mediaTypes = new ArrayList<>();
+	    resources.forEach(resource -> {
+	        try {
+	            mediaTypes.add(MediaType.parseMediaType(Files.probeContentType(resource.getFile().toPath())));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    });
+	    System.out.println("resources = "+resources);
+	    
+	    MultiValueMap<String, Resource> responseMap = new LinkedMultiValueMap<>();
+	    System.out.println("responseMap : " + responseMap);
+	    System.out.println("여기까지 오긴하냐");
+	    System.out.println("responseMap entrySet : " + responseMap.entrySet());
+	    responseMap.put("files", resources);
+	    
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.MULTIPART_MIXED);
+	    headers.setContentDispositionFormData("attachment", null);
+	    
+	  
+	    
+	    return new ResponseEntity<>(responseMap, headers, HttpStatus.OK);
+	}
+	
+	
+	//게시물 수정하기 페이지
 	@GetMapping("/storesModify")
 	public String articleModify(Model model,HttpServletRequest request, @RequestParam("bno") Long bno) {
 		
@@ -199,7 +262,6 @@ public class BusinessProfilesController {
 	@PostMapping("/storesModify")
 	public String ModifyAction(Model model, HttpServletRequest request, StoresVO storesVO, @RequestParam("bno") Long bno) {
 		
-		
 	    storesService.modify(storesVO);
 	    
 	    return "redirect:/stores/stores";
@@ -209,10 +271,7 @@ public class BusinessProfilesController {
 	@PostMapping("/delete")
 	public String deleteAction(Model model, @RequestParam("bno") Long bno) {
 		
-		
 		storesService.remove(bno);
-		
-		System.out.println("삭제하기 수행했음");
 		
 		return "redirect:/stores/stores";
 	}

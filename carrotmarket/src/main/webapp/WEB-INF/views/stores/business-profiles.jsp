@@ -27,14 +27,9 @@
     
     <div class="carousel-inner">
       <div class="carousel-item active">
-	      <c:choose>
-		      <c:when test="${not empty urlResourceList[0]}">
-		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image1">
-		      </c:when>
-		      <c:otherwise>
-		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
-		      </c:otherwise>
-	      </c:choose>
+	  
+            <img src="/biz/imgs/${files}" class="d-block" alt="image1">
+    
       </div>
       
       <div class="carousel-item">

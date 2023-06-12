@@ -5,6 +5,7 @@
 
 <c:set var="pageTitle" value="회원가입"></c:set>
 <%@ include file="../include/header.jspf" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 
 <div class="container" style= " margin-top:100px; max-width: 500px !important;">
@@ -14,7 +15,7 @@
 					<div>						
 						<div class="form-group uploadDiv">
 							<label for="upload"><h1>프로필 사진 첨부</h1></label>
-							<input type="file" class="form-control" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px" /> 
+							<input type="file" class="form-control-file" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	
@@ -40,7 +41,7 @@
 			<h1>아이디</h1>
 			<input type="text" name="userid"/>
 			
-			<button id="id_check" type="button" class="karrot-button r14vym0 _1s38h9c3 _1s38h9c4 r14vym4 r14vym7 _1knjz49j"  style="width : 100px; height : 40px; font-size: 1.5rem ">중복확인</button>
+			<button id="id_check" type="button" class="karrot-button r14vym0 _1s38h9c3 _1s38h9c4 r14vym4 r14vym7 _1knjz49j"  style="margin-top: 20px; width : 100px; height : 40px; font-size: 1.5rem ">중복확인</button>
 			<input type="hidden" id="id_check_success" value="0"/>
 			
 			<span id="id_check_result" style="font-size : 1.5rem; margin-left : 20px"></span>

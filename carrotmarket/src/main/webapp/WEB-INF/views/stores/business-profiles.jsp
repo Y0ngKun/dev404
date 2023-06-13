@@ -24,18 +24,28 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    
+
+
     <div class="carousel-inner">
       <div class="carousel-item active">
 	  
-            <img src="/biz/imgs/${files}" class="d-block" alt="image1">
-    
+          
+          <c:choose>
+		      <c:when test="${not empty imgList}">
+	  			<img src="showimg/${imgList[0].uuid}" class="d-block" alt="image3">
+		      	
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
+	       
       </div>
       
       <div class="carousel-item">
               <c:choose>
-		      <c:when test="${not empty urlResourceList[1]}">
-		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image2">
+		     <c:when test="${not empty imgList}">
+		      	<img src="showimg/${imgList[1].uuid}" class="d-block" alt="image3">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
@@ -45,8 +55,8 @@
       
       <div class="carousel-item">
               <c:choose>
-		      <c:when test="${not empty urlResourceList[2]}">
-		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image3">
+		      <c:when test="${not empty imgList}">
+		      	<img src="showimg/${imgList[2].uuid}" class="d-block" alt="image3">
 		      </c:when>
 		      <c:otherwise>
 		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">

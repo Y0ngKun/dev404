@@ -46,6 +46,10 @@
 		delete CARROT_STORES_IMAGES where bno = #{bno}
 
 	</delete>
+	
+	<select id="getImg" resultType="org.ezen.ex02.domain.StoresImagesVO">
+		select * from CARROT_STORES_IMAGES where uuid = #{uuid}
+	</select>
 
 
 </mapper>

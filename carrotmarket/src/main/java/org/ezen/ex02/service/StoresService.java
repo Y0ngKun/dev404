@@ -34,5 +34,7 @@ public interface StoresService {
 	
 	public MemberVO getWriterImg(long id);
 
+	public StoresImagesVO getImg(String uuid);
+
 
 }

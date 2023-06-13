@@ -160,9 +160,33 @@
 						value='<c:out value="${cri.amount}"/>'>
 					
 					<div id="map" style="width:500px;height:400px;"></div>
-					<p><em>지도를 클릭해주세요!</em></p> 
+						<p><em>지도를 클릭해주세요!</em></p> 
 					<div id="clickLatlng"></div>
+					
+					<!-- 댓글 창 추가-->
+					<!--  
+					<div class="row mt-4">
+						<div class="col-md-12 clearfix">
+							<i class="fas fa-reply fa-2x">댓글</i>
+							<button id='addReplyBtn' class='btn btn-outline-primary fload-right'>
+								새 댓글
+							</button>
+						</div>
+					</div>
+					
+					<div class="row mt-2">
+						<div class="col-md-12">
+							<ul class="chat list-group">
+							
+							</ul>
+						</div>
+					</div>
 				
+					<div id='replyPage'>
+					
+					</div>
+					 -->
+					<!-- 댓글용 페이지 표시하기 -->
 				</div>
 			</div>
 		</div>
@@ -306,11 +330,349 @@ function showImage(fileCallPath) {
 		.animate({width:'100%', height: '100%'}, 1000);
 	
 	$('.imageModal_car .modal-body').html("<img class='d-block w-75 mx-auto' src='../car/display?fileName=" + encodeURI(fileCallPath)+"&size=1'>");
-    $('.imageModal_car').modal('show');
+    
+	$(".imageModal_car").modal("show");
 }
 </script>
 
+<!-- 댓글 처리 -->
+	<script>
+		$(document).ready(function(){
+			let cnoValue = '<c:out value="${car.cno}"/>';
+			let replyUL = $(".chat");
+			
+			showList(1);
+			
+			function showList(page) {
+				console.log("show list " + page);
+				
+				replyService.getList({cno:cnoValue,page: page|| 1 },						
+						function(list){  //list는 서버에서 ArrayList(배열형태,요소는 reply객체의 JSON배열)
+						//자바스크립트에서는 JS객체 처럼 사용
+						
+						var str="";							
+						
+						if(list == null || list.length == 0){
+						       replyUL.html("");						      
+						       return;
+						}
+						
+						for (let i = 0, len = list.length || 0; i < len; i++) {
+							str += "<li class='list-group-item clearfix' data-rno='"+list[i].rno+"'>";
+							str += "<strong class='text-primary'>" + list[i].replyer + "</strong>";
+							//str += "<small class='float-right text-mute'>" + list[i].replyDate + "</small>";
+							str += "<small class='float-right text-mute'>" + replyService.displayTime(list[i].replyDate) + "</small>";						
+							str += "<p>" + list[i].reply + "</p>";
+							str += "</li>";							
+					    }
+					
+					//자바에서 Date객체는 ajax로 클라이언트에서 처리시는 posix로 처리됨
+					
+					replyUL.html(str);
+					
+				});
+			} 
+			
+			/*
+			function showList(page){
+				
+				console.log("show list " + page);
+			    
+			    replyService.getList({cno:cnoValue,page: page|| 1 }, function(rpDto) {
+			    	let replyCnt = rpDto.replyCnt;
+			    	let list = rpDto.list;
+				    console.log("replyCnt: "+ replyCnt );
+				    console.log("list: " + list);
+				    
+				    if(page == -1){
+				      pageNum = Math.ceil(replyCnt/10.0);
+				      showList(pageNum);
+				      return;
+				    }
+				      
+				     let str="";
+				     
+				     if(list == null || list.length == 0){
+				    	 replyUL.html(""); 
+				         return;
+				     }
+				     
+				     for (let i = 0, len = list.length || 0; i < len; i++) {
+							str += "<li class='list-group-item clearfix' data-rno='"+list[i].rno+"'>";
+							str += "<strong class='text-primary'>" + list[i].replyer + "</strong>";
+							//str += "<small class='float-right text-mute'>" + list[i].replyDate + "</small>";
+							str += "<small class='float-right text-mute'>" + replyService.displayTime(list[i].replyDate) + "</small>";						
+							str += "<p>" + list[i].reply + "</p>";
+							str += "</li>";
+					 }
+				     
+				     replyUL.html(str);
+				     
+				     showReplyPage(replyCnt);
+			 
+			   });//replyService.getList()
+			     
+			}//end showList()
+			*/
+			
+			let pageNum = 1;
+			let replyPageFooter = $("#replyPage");
+			
+			function showReplyPage(replyCnt) {
+				
+				let endNum = Math.ceil(pageNum / 10.0) * 10;
+				let startNum = endNum - 9;
+				
+				let prev = startNum != 1;
+			    let next = false;
+			    
+			    if(endNum * 10 >= replyCnt) {
+			    	endNum = Math.ceil(replyCnt/10.0);
+			    }
+			    
+			    if(endNum * 10 < replyCnt) {
+			    	next = true;
+			    }
+			    
+			    let str = "<ul class='pagination justify-content-center' style='margin: 20px 0'>";
+			    if(prev) {
+			    	str += "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+			    }
+			    
+			    for(let i = startNum ; i <= endNum; i++) {
+			    	let active = pageNum == i ? "active": "";
+			    	str+= "<li class='page-item " +active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+			    }
+			    
+			    if(next) {
+			    	str += "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";
+			    }
+				
+			    str += "</ul>";
+			    
+			    console.log(str);
+			    
+			    replyPageFooter.html(str);
+			    
+			} //showReplyPage(replyCnt)
+			
+			let modal = $("#myReplyModal");
+		    let modalInputReply = modal.find("input[name='reply']"); //find는 후손중에서 선택
+		    let modalInputReplyer = modal.find("input[name='replyer']");
+		    let modalInputReplyDate = modal.find("input[name='replyDate']");
+		    
+		    let modalModBtn = $("#modalModBtn");
+		    let modalRemoveBtn = $("#modalRemoveBtn");
+		    let modalRegisterBtn = $("#modalRegisterBtn");
+		    
+			let replyer = null;
+			
+			/*
+			<sec:authentication property="principal" var="pinfo"/>
+		    <sec:authorize access="isAuthenticated()">		    
+		    	replyer = '<sec:authentication property="principal.username"/>'; 
+		    	//이메일 주소가 encode되어 나옴
+		    	replyerS = "${pinfo.username}"; //정상 이메일 문자열		    	
+			</sec:authorize>
+		    
+		    let csrfHeaderName ="${_csrf.headerName}"; 
+		    let csrfTokenValue="${_csrf.token}";
+		    
+		    $(document).ajaxSend(function(e, xhr, options) { 
+		        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+		    });
+		    */
+		    
+		    //나가기 버튼 이벤트 처리
+		    $("#modalCloseBtn").on("click", function(e){
+    	
+    			modal.modal('hide');
+    		});
+		    
+		    //등록 모달창 이벤트
+			$("#addReplyBtn").on("click", function(e){
+				
+				modal.find("input").val(""); //input의 값을 초기화
+			    modal.find("input[name='replyer']").val(replyer); //로그인한 사용자로 작성자 고정
+			    modalInputReplyDate.closest("div").hide(); //날짜 입력DOM은 감춤
+			    modal.find("button[id !='modalCloseBtn']").hide(); //나가기만 보임
+			      
+			    modalRegisterBtn.show(); //등록버튼 다시 보이게
+			      
+			    $(".replyModal_car").modal("show");			   
+			      
+			 });
+		    
+		    //댓글 등록 이벤트
+		    modalRegisterBtn.on("click",function(e){
+      
+		      let reply = {
+		            reply: modalInputReply.val(),
+		            replyer:modalInputReplyer.val(),
+		            cno:cnoValue
+		      };
+		      replyService.add(reply, function(result){
+		        
+		        alert(result);
+		        
+		        modal.find("input").val("");
+		        modal.modal("hide");
+		        
+		        showList(1); //등록후 댓글 목록 보이게 함
+		        //showList(-1);
+		        
+		   	  });
+		    });
+		    
+		    //댓글 조회 이벤트
+		    $(".chat").on("click", "li", function(e){  //li는 .chat의 자식(후손)
+		       
+		        let rno = $(this).data("rno"); 
+		    	//이벤트가 일어난 li는 this
+		    	//data(data-의 값)은 data-값으로 되어있는 DOM선택
+		        
+		        replyService.get(rno, function(reply){
+		        //reply는 서버에서 받은 ReplyVo의 JSON인데 바로 JS의 객체로 처리 		        
+		        modalInputReply.val(reply.reply);		       
+		        modalInputReplyer.val(reply.replyer);		        
+		        modalInputReplyDate.val(replyService.displayTime( reply.replyDate))
+		        .attr("readonly","readonly");
+		        modal.data("rno", reply.rno);
+		        //data-rno속성을 reply.rno로 추가
+		          
+		        modal.find("button[id !='modalCloseBtn']").hide();
+		        modalModBtn.show();
+		        modalRemoveBtn.show();
+		          
+		        $(".replyModal").modal("show");
+		              
+		      });
+		    });
+		    
+		    //댓글 수정 이벤트
+		    /*
+		    modalModBtn.on("click", function(e){
+		        
+		        var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+		        
+		        replyService.update(reply, function(result){
+		              
+		          alert(result);
+		          modal.modal("hide");
+		          showList(1);
+		          
+		        });
+		        
+		    });
+		    */
+		    
+		    //modal창에서 이메일 주소가 encode형식으로 되어 있음,remove와 modify에서 비교는 인코딩상태로 하고 reply.js로는 정상 형태로 보냄
+		    modalModBtn.on("click", function(e){
+		    	
+		    	let originalReplyer = modalInputReplyer.val();
+		    	
+		      let reply = {
+		    		      rno:modal.data("rno"), 
+		    		      reply: modalInputReply.val(),
+		    		      //replyer: originalReplyer}; 
+		      			  replyer : replyerS};
+		      
+		    	if(!replyerS){
+		    		 alert("로그인후 수정이 가능합니다.");
+		    		 modal.modal("hide");
+		    		 return;
+		    	}
+
+		    	console.log("Original Replyer: " + originalReplyer);
+		    	
+		    	if(replyerS  != originalReplyer){
+		    	 
+		    		 alert("자신이 작성한 댓글만 수정이 가능합니다.");
+		    		 modal.modal("hide");
+		    		 return;
+		    	 
+		    	}
+		    	  
+		    	replyService.update(reply, function(result){
+		    	      
+		    	  alert(result);
+		    	  modal.modal("hide");
+		    	  showList(pageNum);
+		    	  
+		    	});
+		      
+		    });
+		    
+		    //삭제 이벤트
+		    modalRemoveBtn.on("click", function (e){
+		    	  
+		    	  let rno = modal.data("rno");
+		    	  
+		    	  console.log("RNO: " + rno);
+		       	  console.log("REPLYER: " + replyer);
+		       	 
+		       	  
+		       	  if(!replyer){
+		     	 	  alert("로그인후 삭제가 가능합니다.");
+		     		  modal.modal("hide");
+		     		  return;
+		     	  }
+		       	  
+		          let originalReplyer = modalInputReplyer.val();
+		     	  
+		     	  console.log("Original Replyer: " + originalReplyer);
+		     	  
+		     	 if(replyerS  != originalReplyer){
+		     		  
+		     		  alert("자신이 작성한 댓글만 삭제가 가능합니다.");
+		     		  modal.modal("hide");
+		     		  return;
+		     		  
+		     	  }
+		    	
+		     	  originalReplyer = replyerS;
+		     	
+		    	 // replyService.remove(rno, originalReplyer, function(result){
+		    	 replyService.remove(rno, function(result){	
+		    	        
+		    	      alert(result);
+		    	      modal.modal("hide");
+		    	      //showList(1);		    	     
+		    	      showList(pageNum);
+		    	      
+		    	  });
+		    	  
+		   });
+		    
+		    //페이지 번호 클릭 이벤트
+		    replyPageFooter.on("click","li a", function(e){
+		        e.preventDefault();
+		        console.log("page click");
+		        
+		        var targetPageNum = $(this).attr("href");
+		        
+		        console.log("targetPageNum: " + targetPageNum);
+		        
+		        pageNum = targetPageNum;
+		        
+		        showList(pageNum);
+		     });
+		    
+		});
+	</script>
+
 <%@ include file="../include/footer.jspf" %>
+<%@ include file="../include/replyModal_car.jsp" %>
+<%@ include file="../include/imageModal_car.jsp" %>
+
+<!-- CarReply.js 외부 js 파일 import! -->
+<script src="../js/CarReply.js"></script>
+
+<!-- 카카오맵 api 라이브러리 추가  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+
+<!-- 카카오맵 api - services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
 <!-- 데이터를 잘 받아오는지 확인용으로 작성해본 테스트 코드  
 <table style="margin-top:600px;">
@@ -328,12 +690,6 @@ function showImage(fileCallPath) {
   </tr>
 </table>
 -->
-
-<!-- 카카오맵 api 라이브러리 추가  -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
-
-<!-- 카카오맵 api - services와 clusterer, drawing 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
 </body>
 </html>

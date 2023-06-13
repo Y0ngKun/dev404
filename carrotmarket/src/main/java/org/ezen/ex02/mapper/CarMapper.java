@@ -2,6 +2,7 @@ package org.ezen.ex02.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.ezen.ex02.domain.CarCriteria;
 import org.ezen.ex02.domain.CarVO;
 
@@ -40,5 +41,8 @@ public interface CarMapper {
 	
 	//페이징 관련 메서드, 게시글 총 갯수를 반환
 	public int getTotalCount(CarCriteria cri);
+	
+	//게시판 댓글 숫자 업데이트 메서드
+	public void updateReplyCnt(@Param("cno") Long cno, @Param("amount") int amount);
 	
 }

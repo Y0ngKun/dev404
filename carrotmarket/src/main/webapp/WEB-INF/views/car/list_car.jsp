@@ -39,24 +39,24 @@
 					<!-- The slideshow -->
 					<div class="carousel-inner ">
 						<div class="carousel-item active">
-							<img src="../images/펠리세이드.jpg" alt="Los Angeles" class="d-block mx-auto">
+							<img src="../images/bmw520d.jpg" alt="Los Angeles" class="d-block mx-auto">
 							<div class="carousel-caption">
 								<h1>최근 인기 매물 TOP-1</h1>
-								<p>르노 코리아 - QM6</p>
+								<p>BMW - 520d</p>
 							</div>
 						</div>
 						<div class="carousel-item">
 							<img src="../images/펠리세이드.jpg" alt="Chicago" class="d-block mx-auto ">
 							<div class="carousel-caption">
 								<h1>최근 인기 매물 TOP-2</h1>
-								<p>볼보 - XC90</p>
+								<p>현대 - 펠리세이드</p>
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img src="../images/펠리세이드.jpg" alt="New York" class="d-block mx-auto ">
+							<img src="../images/그랜저.jpg" alt="New York" class="d-block mx-auto ">
 							<div class="carousel-caption">
 								<h1>최근 인기 매물 TOP-3</h1>
-								<p>기아 - 스포티지</p>
+								<p>현대 - 그랜저</p>
 							</div>
 						</div>
 					</div>

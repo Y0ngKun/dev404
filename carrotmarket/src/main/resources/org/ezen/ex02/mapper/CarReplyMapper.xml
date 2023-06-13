@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ezen.ex02.mapper.CarReplyMapper">
+	
+	<insert id="insert" parameterType="org.ezen.ex02.domain.CarReplyVO">
+		insert into carrot_reply(rno, cno, reply, replyer) 
+		values(seq_reply_car.naxtval, #{cno}, #{reply}, #{replyer});
+	</insert>
+	
+	<select id="read" resultType="org.ezen.ex02.domain.CarReplyVO">
+		select * from carrot_reply where rno = #{rno}
+	</select>
+	
+	<update id="update">
+		update carrot_reply set reply = #{reply}, updateDate = sysdate
+		where rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from carrot_reply where rno = #{rno}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from carrot_reply where cno = #{cno}
+	</delete>
+
+	<!-- 댓글에 페이징 적용하기 -->	
+	<select id="getListWithPaging" resultType="org.ezen.ex02.domain.CarReplyVO">
+		<![CDATA[
+			select rno, cno, reply, replyer, replydate, updatedate
+			from(
+				select /*+INDEX(carrot_reply idx_reply_car)*/
+					rownum rn, rno, cno, reply, replyer, replydate, updatedate
+				from carrot_reply
+				where cno = #{cno}
+				and rno > 0
+				and rownum <= #{cri.pageNum} * #{cri.amount}
+				)
+				where rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<!-- 댓글의 갯수를 cno(게시글 번호) 기준으로 가져오기 -->
+	<select id="getCountByCno" resultType="int">
+		<![CDATA[
+			select count(rno) from carrot_reply where cno = #{cno}
+		]]>
+	</select>
+	
+</mapper>

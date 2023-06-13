@@ -51,6 +51,8 @@
 	  					</div>	  				
 	  				</div>
 				
+				<br/><br/>
+				
 				<h4 class="text-center text-success">게시글 수정</h4>
 				
 					<!-- 버튼 클릭을 처리하기 위해 form추가, 보이지 않게 설정해둠 -->

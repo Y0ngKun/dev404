@@ -1,9 +1,13 @@
 Manifest-Version: 1.0
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 Built-By: h
 =======
 Built-By: 404-22
 >>>>>>> master
+=======
+Built-By: 82104
+>>>>>>> Stashed changes
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 

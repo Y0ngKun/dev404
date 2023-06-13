@@ -192,7 +192,7 @@
 </div>
 
 <!-- 카카오맵 api 사용 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf46e64de5f0ca1e92c805829085a93d"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=?"></script>
 
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

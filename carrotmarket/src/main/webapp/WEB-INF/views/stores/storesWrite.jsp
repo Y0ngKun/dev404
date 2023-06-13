@@ -22,6 +22,7 @@
   	font-size:15px;
     color: #eaebee !important; 
   }
+ 
   </style>
   
 

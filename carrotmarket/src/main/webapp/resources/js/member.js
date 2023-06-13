@@ -78,6 +78,7 @@
  		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); //확장자가 지정된 것은 업로드 제한
  		let maxSize = 25242880; //25MB 파일 최대 크기
  		let uploadUL = $(".uploadResult #card");
+ 		let uploadULL = $("#profiles");
  	
  	//회원가입이 버튼 누를 시 조건 확인
  	$("#join_submit").on("click",function(e){
@@ -198,7 +199,7 @@
 			
 			if(obj.image) {
 				let fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);				
-				str += "<div class='card col-md-3'>";
+				str += "<div class='card col-md-3' style='display:none'>";
 				str += "<div class='card-body'>";
 				str += "<p class='mx-auto' style='width:90%;' title='"+ obj.fileName + "'" ;
 				str +=  "data-path='"+obj.uploadPath +"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'>";						
@@ -206,7 +207,13 @@
 
 				str += "</p>";
 				str += "<h4><span class='d-block w-50 mx-auto badge badge-danger badge-pill' data-file='"+fileCallPath+"' data-type='image'> &times; </span></h4>";				
-				str += "</div></div>";				
+				str += "</div></div>";
+					uploadULL.css({
+  					'background-image': 'url("../member/display?fileName=' + fileCallPath + '")',
+					'background-repeat': 'no-repeat',
+					'background-position': 'center',
+					'background-size': '100px 100px'
+});				
 			}
 			else {
 				

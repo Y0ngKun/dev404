@@ -57,16 +57,19 @@ public class BusinessProfilesController {
 		StoresVO storesVO = storesService.get(bno);
 		
 		//로그인 유저와 게시글 작성자 비교해서 수정 버튼 보이게 model에 값 넘겨주기
+		if(session.getAttribute("loginUser") != null) {
 		Integer loginUserInteger = (Integer) session.getAttribute("loginUser");
 		String loginUser = loginUserInteger.toString();
 		
 		long writer = storesVO.getWriter();
 		String articleWriter = String.valueOf(writer);
-	
 		
 		if(loginUser != null && loginUser.equals(articleWriter)) {
 			model.addAttribute("message","1");
+		}else if( (loginUser == null ) || (loginUser.isEmpty()) || (loginUser.equals("null"))) {
+			model.addAttribute("message","2");
 		}
+	}
 		
 		model.addAttribute(storesVO);
 		model.addAttribute("bno", bno);

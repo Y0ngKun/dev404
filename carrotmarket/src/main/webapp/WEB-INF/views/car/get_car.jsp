@@ -164,6 +164,7 @@
 					<div id="clickLatlng"></div>
 					
 					<!-- 댓글 창 추가-->
+					<!--  
 					<div class="row mt-4">
 						<div class="col-md-12 clearfix">
 							<i class="fas fa-reply fa-2x">댓글</i>
@@ -181,11 +182,11 @@
 						</div>
 					</div>
 				
-					<!-- 댓글용 페이지 표시하기 -->
 					<div id='replyPage'>
 					
 					</div>
-					 
+					 -->
+					<!-- 댓글용 페이지 표시하기 -->
 				</div>
 			</div>
 		</div>

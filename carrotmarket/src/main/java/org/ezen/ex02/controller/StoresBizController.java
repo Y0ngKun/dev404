@@ -44,7 +44,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/biz")
 @AllArgsConstructor
-public class BusinessProfilesController {
+public class StoresBizController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private StoresService storesService;
@@ -94,7 +94,7 @@ public class BusinessProfilesController {
 		
 		model.addAttribute("imgList",storesImagesVO);
 	
-		return "stores/business-profiles";
+		return "stores/storesBiz";
 	}
 	
 	//게시물 상세보기시 회원 프로필 이미지 불러오기
@@ -155,15 +155,12 @@ public class BusinessProfilesController {
 	@ResponseBody
 	public Resource showImg(@PathVariable("uuid") String uuid) throws MalformedURLException {
 		
-		
 		StoresImagesVO storesImagesVO = storesService.getImg(uuid);
 		
 		String uploadPath = storesImagesVO.getUploadPath();
 		String fileName = storesImagesVO.getFileName();
 		
 		String imgPath = "C:\\upload\\"+uploadPath + "\\" + uuid + "_"  + fileName;
-		
-		System.out.println("imgPath"+imgPath);
 		
 		return new UrlResource("file:" + imgPath);
 		

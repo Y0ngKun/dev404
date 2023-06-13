@@ -104,6 +104,8 @@ public class MemberController {
 		
 		if(url.contains("member")) {
 			url = "";
+		}else if ((url.isEmpty()) || (url == null)) {
+			url = "/";
 		}
 		
 		System.out.println("url 로그인 창 : " + url);

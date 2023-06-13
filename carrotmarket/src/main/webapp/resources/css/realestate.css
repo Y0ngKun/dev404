@@ -288,7 +288,12 @@ aticle {
 margin:0!important
 }
 
+<<<<<<< HEAD
 /*�뜽�꽕�씪 �겢由��떆 �굹���굹�뒗 紐⑤떖 �씠誘몄�*/
 body > div.imageModal.modal.fade.in > div > div > div.modal-body > img{
+=======
+/*썸네일 클릭시 나타나는 모달 이미지*/
+body > div.imageModal_car.modal.fade.in > div > div > div.modal-body > img{
+>>>>>>> h
 width:100%
 }

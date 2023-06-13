@@ -28,25 +28,19 @@ public class StoresServiceImpl implements StoresService {
 	@Setter(onMethod_= {@Autowired})
 	private MemberMapper memberMapper;
 	
-	//BoardMapper와 BoardAttachMapper 동시 처리하므로 트랜젝션 처리
+	 	//Create, BoardMapper와 BoardAttachMapper 동시 처리하므로 트랜젝션 처리
 		@Transactional
 		@Override
 		public void register(StoresVO board) {
-
-			log.info("동네가게 게시판 등록 : " + board);
-
+			
 			storesMapper.insertSelectKey(board);
-
 			if (board.getAttachList() == null || board.getAttachList().size() <= 0) {
 				return;
 			}
-
 			board.getAttachList().forEach(attach -> {
-				
 				attach.setBno(board.getBno());
 				imageMapper.insert(attach);
 			});
-			
 		}
 
 		@Override
@@ -57,28 +51,34 @@ public class StoresServiceImpl implements StoresService {
 			return storesMapper.read(bno);
 		}
 		
-		/*
+		//Update, 첨부물 미고려한 상태
 		@Override
-		public boolean modify(BoardVO board) {
+		public boolean modify(StoresVO storesVO) {
 
-			log.info("modify......" + board);
+			log.info("modify......" + storesVO);
 
-			return mapper.update(board) == 1;
+			return storesMapper.modify(storesVO) == 1;
 		}
-		*/
 		
-		/*
+		//Delete, 첨부물 고려할 때 삭제
+		@Transactional
 		@Override
 		public boolean remove(Long bno) {
 
 			log.info("remove...." + bno);
+			
+			//replyMapper.deleteAll(bno);
 
-			return mapper.delete(bno) == 1;
+			imageMapper.deleteAll(bno);
+
+			return storesMapper.delete(bno) == 1;
 		}
-		*/
 		
-		//첨부물 고려
-		@Transactional //두개 테이블 처라하므로 트랜젝션
+		
+		
+		//첨부물 고려할때 수정
+		/*
+		@Transactional //두개 테이블 처리하므로 트랜젝션
 		@Override
 		public boolean modify(StoresVO board) {
 
@@ -103,26 +103,16 @@ public class StoresServiceImpl implements StoresService {
 
 			return modifyResult;
 		}
+		*/
 		
-		@Transactional
-		@Override
-		public boolean remove(Long bno) {
-
-			log.info("remove...." + bno);
-			
-			//replyMapper.deleteAll(bno);
-
-			imageMapper.deleteAll(bno);
-
-			return storesMapper.delete(bno) == 1;
-		}
+	
+		
 		
 		
 		//댓글 작업 전이라서 활성화
 		@Override
 		//목록보기(select all)
 		public List<StoresVO> getList() {		
-			log.info("getList..........");
 			return storesMapper.getList();
 		}
 		
@@ -144,7 +134,7 @@ public class StoresServiceImpl implements StoresService {
 //		}
 		
 		@Override
-		public StoresImagesVO getAttachList(Long bno) {
+		public List<StoresImagesVO> getAttachList(Long bno) {
 
 
 			return imageMapper.findByBno(bno);

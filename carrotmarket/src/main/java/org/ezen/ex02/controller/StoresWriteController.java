@@ -182,8 +182,6 @@ public class StoresWriteController {
 
 		File file = new File("c:/upload/" + fileName);
 
-		log.info("file: " + file);
-
 		ResponseEntity<byte[]> result = null;
 
 		try {

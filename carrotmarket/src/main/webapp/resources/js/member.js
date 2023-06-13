@@ -268,4 +268,3 @@
  	let temp = input.offset();
  	$("html, body").animate({scrollTop : temp.top-200},100);
  }
-

@@ -156,6 +156,12 @@ public class StoresServiceImpl implements StoresService {
 			return imageMapper.getAllImages();
 			
 		}
+
+		@Override
+		public StoresImagesVO getImg(String uuid) {
+			
+			return imageMapper.getImg(uuid);
+		}
 		
 		
 

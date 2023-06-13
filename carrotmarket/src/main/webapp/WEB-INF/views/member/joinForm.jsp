@@ -14,14 +14,16 @@
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script type="text/javascript" src="../js/member.js"></script>
 
-<div class="container" style= " margin-top:100px; max-width: 500px !important;">
+<div class="container" style= " margin-top:100px; max-width: 500px !important; background-image: url('');">
 	
 	<!-- 파일 첨부 창 -->				
 				<div class="attach mt-4 ">
 					<div>						
 						<div class="form-group uploadDiv">
-							<label for="upload" style="font-size: 20px;">프로필 사진 첨부</label>
-							<input type="file" class="form-control-file" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px" /> 
+							<div class="profile" id="profiles" style="width: 80px; height: 80px; margin: 0 auto; background-image: url('../images/stores/defaultpFImg.png') ; border-radius: 50%; position: relative; border: 1px solid #fff;">
+							  <label for="upload" style="font-size: 20px; position: absolute; top: 79%; left: 87%; transform: translate(-50%, -50%);"><i class="fas fa-camera" style="width: 30px;height: 30px; background-color: #fff; line-height: 30px; text-align: center; border-radius: 50%; cursor: pointer;"></i></label>
+							</div>
+							<input style="display : none" type="file" class="form-control-file" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px;" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	

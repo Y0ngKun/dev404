@@ -77,22 +77,23 @@ public class BusinessProfilesController {
 		
 		List<StoresImagesVO> storesImagesVO = storesService.getAttachList(bno);
 		
-		List<File> aa = new ArrayList<>();
+//		List<File> aa = new ArrayList<>();
+//	
+//		for (int i =0; i < storesImagesVO.size(); i++ ) {
+//			
+//			
+//			String uploadPath = storesImagesVO.get(i).getUploadPath();
+//			String uuid = storesImagesVO.get(i).getUuid();
+//			String fileName = storesImagesVO.get(i).getFileName();
+//			
+//			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
+//			File imgs = new File ("file:///C:/upload/" + imgPath);
+//			System.out.println("imgs = "+imgs);
+//			aa.add(imgs);
+//		}
+		
+		model.addAttribute("imgList",storesImagesVO);
 	
-		for (int i =0; i < storesImagesVO.size(); i++ ) {
-			
-			
-			String uploadPath = storesImagesVO.get(i).getUploadPath();
-			String uuid = storesImagesVO.get(i).getUuid();
-			String fileName = storesImagesVO.get(i).getFileName();
-			
-			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
-			File imgs = new File ("file:///C:/upload/" + imgPath);
-			System.out.println("imgs = "+imgs);
-			aa.add(imgs);
-		}
-	
-        
 		return "stores/business-profiles";
 	}
 	
@@ -149,49 +150,53 @@ public class BusinessProfilesController {
 	}
 	
 	
-	/*	
-	@GetMapping("iimmgg/{bno}")
-	public ResponseEntity<byte []> storesImg (@PathVariable("bno") long bno){
 	
+	@GetMapping("/showimg/{uuid}")
+	@ResponseBody
+	public Resource showImg(@PathVariable("uuid") String uuid) throws MalformedURLException {
 		
-		List<StoresImagesVO> storesImages = storesService.getAttachList(bno);
 		
-		String uploadPath;
-		String fileName;
-		String uuid;
+		StoresImagesVO storesImagesVO = storesService.getImg(uuid);
 		
-
+		String uploadPath = storesImagesVO.getUploadPath();
+		String fileName = storesImagesVO.getFileName();
 		
-		List<File> aa = new ArrayList<>();
+		String imgPath = "C:\\upload\\"+uploadPath + "\\" + uuid + "_"  + fileName;
 		
-		for (int i =0; i < storesImages.size(); i++ ) {
-			
-			
-			String uploadPath = storesImages.get(i).getUploadPath();
-			String uuid = storesImages.get(i).getUuid();
-			String fileName = storesImages.get(i).getFileName();
-			
-			String imgPath = uploadPath + "/" + uuid + "_"  + fileName; 
-			File file = new File ("file:///C:/upload/" + imgPath);
-			
-			aa.add(file);
-		}
+		System.out.println("imgPath"+imgPath);
 		
-		ResponseEntity<byte []> result = null;
+		return new UrlResource("file:" + imgPath);
 		
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<> (FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
 	}
 	
+	
+	/* 1번 실험체
+	@GetMapping("articleimg/{bno}")
+	public ResponseEntity<List<StoresImagesVO>> articleImg(@PathVariable("bno") long bno) {
+	    List<StoresImagesVO> storesImages = storesService.getAttachList(bno);
+
+	    List<StoresImagesVO> result = new ArrayList<>();
+
+	    for (StoresImagesVO storesImage : storesImages) {
+	        String uploadPath = storesImage.getUploadPath();
+	        String uuid = storesImage.getUuid();
+	        String fileName = storesImage.getFileName();
+
+	        String imgPath = uploadPath + "/" + uuid + "_" + fileName;
+	        File file = new File("C:/upload/" + imgPath);
+
+	        if (file.exists()) {
+	            result.add(storesImage);
+	        }
+	    }
+	    System.out.println("result" + result);
+
+	    return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	*/
 	
 	
+	/* 2번 실험체
 	@GetMapping("imgs/{bno}")
 	public ResponseEntity<MultiValueMap<String, Resource>> storesImg(@PathVariable("bno") long bno) {
 		System.out.println("게시물 src bno 확인"+bno);
@@ -241,7 +246,7 @@ public class BusinessProfilesController {
 	    
 	    return new ResponseEntity<>(responseMap, headers, HttpStatus.OK);
 	}
-	
+	*/
 	
 	//게시물 수정하기 페이지
 	@GetMapping("/storesModify")

@@ -3,34 +3,58 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
-
 <c:set var="pageTitle" value="동네 이웃들이 자주가는 동네 가게"></c:set>
 <%@ include file="../include/header.jspf" %>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 
 <div class="container align-items-center" style="max-width:768px margin: 100px 0 0 0 auto; padding: 0;">
 <div class="row text-center justify-content-md-center">
 
 <!-- 이미지 영역 시작 -->
 <div class="container mt-3 mb-5 p-0 m-0 mx-auto d-flex justify-content-center">
+
+  <!-- carousel 시작 -->
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-  
+    
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../images/susan1.jpeg" class="d-block" alt="image1">
+	  
+            <img src="/biz/imgs/${files}" class="d-block" alt="image1">
+    
       </div>
+      
       <div class="carousel-item">
-        <img src="../images/susan2.jpeg" class="d-block" alt="image2">
+              <c:choose>
+		      <c:when test="${not empty urlResourceList[1]}">
+		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image2">
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
       </div>
+      
       <div class="carousel-item">
-        <img src="../images/susan3.jpeg" class="d-block" alt="image3">
+              <c:choose>
+		      <c:when test="${not empty urlResourceList[2]}">
+		      	<img src="imgs/${list[0].writer}" class="d-block" alt="image3">
+		      </c:when>
+		      <c:otherwise>
+		      	<img src="../images/stores/article_defaultImg.jpg" class="d-block" alt="기본이미지">
+		      </c:otherwise>
+	      </c:choose>
       </div>
     </div>
+    <!-- carousel 끝 -->
   
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -52,7 +76,7 @@
 				<div class="aa2">
 					<div class="d5c2h80 ">
 						<a href="#" class="d5c2h81 ">
-							<img alt="#" src="https://dnvefa72aowie.cloudfront.net/businessPlatform/bizPlatform/profile/center_biz_5863590/1677722646074/e956d3d9f7a89abd32a1c13a79476d7290aa53d05f2b2e40c79490551994c6d4.jpeg?q=82&s=640x640&t=crop">
+							<img alt="#" src="images/${storesVO.writer}">
 						</a>
 						<div class="d5c2h82">
 						 	<a href="#">${storesVO.storeName}</a>
@@ -112,14 +136,15 @@
 					</div>
 					
 					<div>
-					<span style="font-size: 18px; font-weight:700; ">알림</span>
-					<span style="font-size: 18px; display: block;">토요일 일요일은 택배사 휴무로 인해 예약주문시 월요일 순차적으로 발송합니다. 저녁,밤,주말 및 공휴일은 늦더라도 채팅남겨주시면 꼭 답장 드리겠습니다. ^^</span>
+					<span style="font-size: 18px;">알림</span>
+					<span style="font-size: 18px; display: block;"><c:out value="${storesVO.notice}"></c:out></span>
 					</div>
 					
 				</article>
 				
-				<h3 style="text-align: left; font-size: 22px; font-weight: bold;">정보</h3>
-				<span style="font-size: 18px;"> <c:out value="${content}"></c:out>
+				<h3 style="text-align: left; font-size: 22px; font-weight:bold; margin-top: 43px;">정보</h3>
+				
+				<span style="font-size: 18px;"> <c:out value="${storesVO.content}"></c:out>
 				</span>
 
 
@@ -131,7 +156,7 @@
 		<section class="map d-flex flex-column" style="margin-top: 30px; margin-bottom: 20px;">
 			<div style="text-align: left; margin-bottom: 10px;" >
 				<span style="margin-right: 6px;"> <i class="fas fa-map-marker" style="font-size: 18px;"></i> </span> 
-				<span style="font-size: 20px;"> 위치정보 </span>
+				<span style="font-size: 20px;"> <c:out value="${storesVO.storesLocation }"></c:out> </span>
 			</div>
 
 			<!-- 지도  -->
@@ -243,29 +268,32 @@
 이만큼이나 나오네요 채팅방에 문의드려도 답도 없으시고 담부턴 주문하지 말아야겠네요
 사과 상태가 너무 안좋네요 다른것도 겉은 멀쩡해도
 깍이니 멍든부분도 많고ㅜㅜ</p>
-				</li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
-	</section>
-
-
-
-
-
+					</li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</section>
 	</div>
 </div>
 
-
+<!-- 수정/삭제 페이지 진입 버튼 -->
+<c:if test="${message == 1}">
+<div class="fixed-button text-center">
+  <a href="/ex02/biz/storesModify?bno=${bno}"><span><i class="far fa-edit fa-xs"></i>  </span></a>
+</div>
+</c:if>
 
 
 
 <%@ include file="../include/footer.jspf" %>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=787053e4ea44893735697779f0b00441"></script>
-	<script>
+<!-- 카카오맵 공식 스크립트  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=787053e4ea44893735697779f0b00441">
+</script>
+<!-- 카카오맵 커스텀 스크립트 -->
+<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.5164947, 129.1164823), // 지도의 중심좌표
@@ -302,9 +330,12 @@
 </style>
 
 <script type="text/javascript">
+$(document).ready(function(){
 $('.carousel').carousel({
     touch: true
   });
+})
+
 </script>
 </body>
 
@@ -429,6 +460,35 @@ padding: 0;
 margin: 0;
 padding: 0;
 }
+
+/*글 수정, 삭제 버튼*/
+.fixed-button {
+	width:50px;
+ 	height:50px;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    align-items: center;
+    
+ }
+.fixed-button a{
+ text-decoration: none;
+ }
+.fixed-button a span{
+font-size:37px;
+text-align: center;
+margin: 0 auto;
+color: #ffffff;
+display: block;
+
+width: 70px;
+height: 70px;
+padding-left: 4px;
+background-color: #ff6f0f;
+border-radius: 50%;
+
+}
+
 
 </style>
 

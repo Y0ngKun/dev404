@@ -20,12 +20,13 @@ public interface StoresMapper {
 	// PK값인 TBL_BOARD테이블의 BNO에 들어가는 seq_board의 nextval값을 미리 알필요 있는 경우
 	public Integer insertSelectKey(StoresVO board);
 
+	
+	public int modify(StoresVO storesVO);
 
 	// PK값인 BNO를 검색 조건으로 하여 일치하는 하나의 레코드를 삭제하고 삭제한 레코드 개수를 반환
 	public int delete(Long bno);
 
 	
-	public int update(StoresVO board);
 	
 	
 	

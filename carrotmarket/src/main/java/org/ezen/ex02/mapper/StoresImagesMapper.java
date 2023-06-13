@@ -13,7 +13,7 @@ public void insert(StoresImagesVO vo);
 
 public void delete(String uuid);
 
-public StoresImagesVO findByBno(Long bno);
+public List<StoresImagesVO> findByBno(Long bno);
 
 public void deleteAll(Long bno);
 

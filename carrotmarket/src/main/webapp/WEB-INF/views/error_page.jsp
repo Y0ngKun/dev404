@@ -22,18 +22,18 @@
 </div>
 
 <div>
-<h4><c:out value="${exception.getMessage()}"></c:out></h4>
+<h4 style="font-size: 23px;"><c:out value="${exception.getMessage()}"></c:out></h4>
  
   <ul>
    <c:forEach items="${exception.getStackTrace() }" var="stack">
-     <li><c:out value="${stack}"></c:out></li>
+     <li style="font-size: 17px;"><c:out value="${stack}"></c:out></li>
    </c:forEach>
   </ul>
 
 </div>
 
-<div  style="width: 70%; height:50px; border-radius: 1%; background-color: #fa6616; margin: 0 auto; line-height: 50px">
-<a href="/ex02" style="text-decoration: none;"> <span style="font-size: 20px; color: #ffffff;">홈으로 이동</span> </a>
+<div  style="width: 70%; height:50px; border-radius: 1%; background-color: #fa6616; margin: 0 auto; line-height: 50px; margin-bottom: 50px; margin-top: 60px;">
+<a href="/ex02" style="text-decoration: none;"> <span style="font-size: 20px; color: #ffffff; ">홈으로 이동</span> </a>
 </div>
 
 </div> <!-- main content 끝 -->

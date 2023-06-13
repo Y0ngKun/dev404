@@ -20,8 +20,8 @@
 				<div class="attach mt-4 ">
 					<div>						
 						<div class="form-group uploadDiv">
-							<div class="profile" id="profiles" style="width: 100px; height: 100px; margin: 0 auto; background-color: #e8faf6; border-radius: 100px; position: relative; border: 1px solid #fff;">
-							  <label for="upload" style="font-size: 20px; position: absolute; top: 70%; left: 83%; transform: translate(-50%, -50%);"><i class="fas fa-camera" style="width: 30px;height: 30px; background-color: #fff; line-height: 30px; text-align: center; border-radius: 50%;"></i></label>
+							<div class="profile" id="profiles" style="width: 80px; height: 80px; margin: 0 auto; background-image: url('../images/stores/defaultpFImg.png') ; border-radius: 50%; position: relative; border: 1px solid #fff;">
+							  <label for="upload" style="font-size: 20px; position: absolute; top: 79%; left: 87%; transform: translate(-50%, -50%);"><i class="fas fa-camera" style="width: 30px;height: 30px; background-color: #fff; line-height: 30px; text-align: center; border-radius: 50%; cursor: pointer;"></i></label>
 							</div>
 							<input style="display : none" type="file" class="form-control-file" id="upload" name="uploadFile" accept=".jpg, .png, .jpeg" style="width: 100%; margin-bottom: 20px; padding: 9px 20px; font-size: 19px;" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->

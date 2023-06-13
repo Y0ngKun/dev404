@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: h
-=======
-Built-By: 404-22
->>>>>>> master
+Built-By: lovei
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 

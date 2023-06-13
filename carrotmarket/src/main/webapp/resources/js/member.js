@@ -212,7 +212,7 @@
   					'background-image': 'url("../member/display?fileName=' + fileCallPath + '")',
 					'background-repeat': 'no-repeat',
 					'background-position': 'center',
-					'background-size': '100px 100px'
+					'background-size': '80px 80px'
 });				
 			}
 			else {

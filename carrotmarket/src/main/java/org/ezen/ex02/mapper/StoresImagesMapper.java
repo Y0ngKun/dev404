@@ -21,4 +21,6 @@ public List<StoresImagesVO> getOldFiles(); //어제의 첨부 파일 데이터 �
 
 public List <StoresImagesVO> getAllImages();
 
+public StoresImagesVO getImg(String uuid);
+
 }

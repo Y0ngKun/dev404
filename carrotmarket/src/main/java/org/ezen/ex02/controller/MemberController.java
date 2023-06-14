@@ -104,6 +104,8 @@ public class MemberController {
 		
 		if(url.contains("member")) {
 			url = "";
+		}else if ((url.isEmpty()) || (url == null)) {
+			url = "/";
 		}
 		
 		System.out.println("url 로그인 창 : " + url);
@@ -203,11 +205,7 @@ public class MemberController {
 	    return new ResponseEntity<>(attachDTO, HttpStatus.OK);
 	}
 	
-	
-	
-	
-	
-	//글작성시 업로드한 이미지 미리보기 메서드
+	//회원가입폼 프로필 이미지 첨부 미리보기
 		@GetMapping(value = "/display", produces = MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
 		public ResponseEntity<byte[]> getFile(String fileName) {
@@ -234,25 +232,6 @@ public class MemberController {
 			}
 			return result;
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//아이디 중복 확인

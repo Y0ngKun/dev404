@@ -5,12 +5,12 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
  <style type="text/css">
     .container {
       max-width: 768px !important;
-      font-size: 15px;
+      font-size: 18px;
     }
 
     input {
@@ -22,12 +22,9 @@
   	font-size:15px;
     color: #eaebee !important; 
   }
+ 
   </style>
   
-  
-  
-  
-
 
 <!-- register 메인화면 -->
 <div class="container" id="mainContent" >
@@ -40,7 +37,7 @@
 					<div class="row">						
 						<div class="form-group uploadDiv">
 							<label for="upload"><strong>상점 이미지를 등록해주세요</strong> </label>
-							<input type="file" class="form-control" id="upload" name="uploadFile" multiple="multiple" /> 
+							<input type="file" class="form-control" id="upload" name="uploadFile" multiple="multiple" style="paddin: 10px;" /> 
 							<!-- submit버튼없이 change이벤트로 처리 -->
 						</div>
 					</div>	

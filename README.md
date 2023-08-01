@@ -47,7 +47,7 @@
 - 채팅(WebSocket)
 - 판매 정보 변경(예약중/거래완료)
 
-#### 동네가게 - <a href="#" >상세보기 - WIKI 이동</a>
+#### 동네가게 - <a href="https://github.com/Y0ngKun/dev404/wiki/%EB%8F%99%EB%84%A4%EA%B0%80%EA%B2%8C(Stores)" >상세보기 - WIKI 이동</a>
 - 글 작성, 읽기, 수정, 삭제(CRUD)
 
 #### 부동산 직거래 - <a href="#" >상세보기 - WIKI 이동</a> 
